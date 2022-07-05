@@ -9,9 +9,7 @@ const LoginPage = () => {
       </p>
       <p>or</p>
       <p>
-        <button>
-          <a href="/lessons">Get started!</a>
-        </button>
+        <a href="/lessons">Get started!</a>
       </p>
     </section>
   );
