@@ -1,6 +1,6 @@
 import React from "react";
 import classes from "./MainNavigation.module.css";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const MainNavigation = () => {
   return (
@@ -35,7 +35,7 @@ const MainNavigation = () => {
         </ul>
       </nav>
       <div>
-        <a href="/login">Login</a>
+        <Link to="/login">Login</Link>
       </div>
     </section>
   );

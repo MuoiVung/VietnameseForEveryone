@@ -1,15 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const LoginPage = () => {
   return (
     <section>
-      LoginPage
+      <h1>LoginPage</h1>
       <p>
         <button>Login</button>
       </p>
       <p>or</p>
       <p>
-        <a href="/lessons">Get started!</a>
+        <Link to="/lessons">Get started!</Link>
       </p>
     </section>
   );

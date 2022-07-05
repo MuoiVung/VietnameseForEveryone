@@ -1,7 +1,7 @@
 import React from "react";
 
 const QuizArenaPage = () => {
-  return <div>QuizArenaPage</div>;
+  return <h1>QuizArenaPage</h1>;
 };
 
 export default QuizArenaPage;
