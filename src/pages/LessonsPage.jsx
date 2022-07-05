@@ -1,7 +1,16 @@
 import React from "react";
+import { useParams, Link } from "react-router-dom";
 
 const LessonsPage = () => {
-  return <div>LessonsPage</div>;
+  const { lessonId } = useParams();
+
+  return (
+    <div>
+      <h1>LessonsPage</h1>
+      <p>{lessonId}</p>
+      <Link to="/lessons/lesson1">lesson 1</Link>
+    </div>
+  );
 };
 
 export default LessonsPage;
