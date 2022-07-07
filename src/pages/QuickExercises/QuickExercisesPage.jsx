@@ -15,7 +15,7 @@ const QuickExercisesPage = () => {
         <h2 className={classes.title}>Quick Exercises</h2>
         <div className={classes.notice}>
           <p className={classes["notice-title"]}>
-            Select a skill, random an exercise
+            Select a skill, random exercise
           </p>
           <p className={classes["notice-content"]}>
             Please choose a skill which you want to practice. We will generate a
