@@ -24,6 +24,14 @@ code {
   --color-text: #fff;
 
   --font-heading: 'Montserrat', sans-serif;
-  --font-logo1: 'Pacifico', cursive;
-  --font-logo2: 'Splash', cursive;
+  --font-logo1: 'Pacifico', sans-serif;
+  --font-logo2: 'Splash', sans-serif;
+
+  --size-navigation: 18rem;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
