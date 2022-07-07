@@ -1,0 +1,85 @@
+.title {
+    font-size: 1.5rem;
+    font-family: var(--font-heading);
+    font-weight: 400;
+    color: var(--color-heading);
+}
+
+.notice {
+    margin-top: 5%;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.notice-title {
+    font-size: 2.5rem;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+}
+
+.notice-content {
+    color: var(--color-heading);
+    font-weight: 400;
+}
+
+.skills {
+    display: grid;
+    list-style: none;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+    padding: 0 10%;
+}
+
+.skill {
+    text-align: center;
+    padding: 2rem;
+    border: 1px solid var(--color-primary);
+    border-radius: 16px;
+    background-color: var(--color-text);
+}
+
+.skill-header {
+    color: var(--color-heading);
+    font-family: var(--font-heading);
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.skill-img {
+    margin-bottom: 1rem;
+}
+
+.skill-img img {
+    filter: invert(46%) sepia(14%) saturate(2371%) hue-rotate(296deg) brightness(115%) contrast(86%);
+    width: 10rem;
+    height: 100%;
+    object-fit: cover;
+}
+
+.skill-content {
+    margin-top: 1rem;
+    text-align: justify;
+    min-height: 5rem;
+    width: 13.75rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.skill-btn {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.5rem 2rem;
+    border-radius: 10px;
+    border: 1px solid var(--color-primary);
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.skill-btn:hover,
+.skill-btn:active {
+    background-color: var(--color-primary);
+    color: var(--color-text);
+}

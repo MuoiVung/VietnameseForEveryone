@@ -22,6 +22,10 @@ code {
 :root {
   --color-primary: #ED6789;
   --color-text: #fff;
+  --color-heading: #4e4e4e;
+  --color-light-black: #afafaf;
+
+  --color-bg: #f9f9f9;
 
   --font-heading: 'Montserrat', sans-serif;
   --font-logo1: 'Pacifico', sans-serif;

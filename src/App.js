@@ -1,12 +1,12 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import LessonsPage from './pages/LessonsPage';
-import LessonsBeginnerPage from './pages/LessonsBeginnerPage';
-import LessonsIntermediatePage from './pages/LessonsIntermediatePage';
-import LessonsAdvancedPage from './pages/LessonsAdvancedPage';
-import QuizArenaPage from './pages/QuizArenaPage';
+import LessonsPage from './pages/Lessons/LessonsPage';
+import LessonsBeginnerPage from './pages/Lessons/LessonsBeginnerPage';
+import LessonsIntermediatePage from './pages/Lessons/LessonsIntermediatePage';
+import LessonsAdvancedPage from './pages/Lessons/LessonsAdvancedPage';
+import QuickExercisesPage from './pages/QuickExercises/QuickExercisesPage';
 import FlashcardPage from './pages/FlashcardPage';
-import LessonDetailPage from "./pages/LessonDetailPage";
+import LessonDetailPage from "./pages/Lessons/LessonDetailPage";
 import HomePage from "./components/Layout/HomePage";
 import LoginPage from "./pages/LoginPage";
 
@@ -21,7 +21,7 @@ function App() {
         <Route path="/lessons/intermediate" element={<LessonsIntermediatePage />} />
         <Route path="/lessons/advanced" element={<LessonsAdvancedPage />} />
         <Route path="/lessons/:lessonId" element={<LessonDetailPage />} />
-        <Route path="quiz-arena" element={<QuizArenaPage />} />
+        <Route path="quick-exercises" element={<QuickExercisesPage />} />
         <Route path="flashcard" element={<FlashcardPage />} />
       </Route>
     </Routes>
