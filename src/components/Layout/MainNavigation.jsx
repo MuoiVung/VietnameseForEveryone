@@ -75,14 +75,14 @@ const MainNavigation = () => {
             </li>
             <li className={classes["nav-item"]}>
               <NavLink
-                to="/quiz-arena"
+                to="/quick-exercises"
                 className={(navData) =>
                   navData.isActive ? classes.active : ""
                 }
               >
                 <div className="flex-center">
                   <QuizIcon className={classes.icon} />
-                  Quiz Arena
+                  Quick Exercises
                 </div>
               </NavLink>
             </li>
