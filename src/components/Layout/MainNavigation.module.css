@@ -1,14 +1,15 @@
 .sidebar {
     position: fixed;
-    width: 15%;
+    width: var(--size-navigation);
     top: 0;
     bottom: 0;
     background-color: var(--color-primary);
     color: var(--color-text);
+    border-radius: 0 16px 16px 0;
 }
 
 .container {
-    padding: 2rem 2rem;
+    padding: 2rem 1rem;
 }
 
 .logo {
@@ -28,6 +29,7 @@
     display: block;
     margin: 0 auto;
     width: 4rem;
+    max-width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
@@ -44,14 +46,64 @@
     padding: 0;
 }
 
-nav a {
+.nav-item {
+    margin: 0.2rem;
+}
+
+.nav-item a {
+    position: relative;
+    padding: 0.75rem 1rem;
     text-decoration: none;
+    color: var(--color-text);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-item:last-child a {
+    justify-content: initial;
+}
+
+.nav-item a:hover,
+.nav-item a:active,
+a.active {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    transition: all 0.25s ease;
+}
+
+a.active~.subnav {
+    display: block;
+}
+
+a.active .icon-arrow {
+    display: none;
+}
+
+a.active .icon-arrow.hidden {
+    display: block;
 }
 
 .icon {
     font-size: 1rem;
+    margin-right: 0.5rem;
 }
 
-.active {
-    color: #fff;
+.icon-arrow {
+    font-size: 1.2rem
+}
+
+.icon-arrow.hidden {
+    display: none;
+}
+
+
+.subnav {
+    display: none;
+    list-style: none;
+    padding-left: 2rem;
+}
+
+.subnav-item {
+    margin: 0.2rem;
 }

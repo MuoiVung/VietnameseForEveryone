@@ -1,6 +1,9 @@
 import React from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import LessonsPage from './pages/LessonsPage';
+import LessonsBeginnerPage from './pages/LessonsBeginnerPage';
+import LessonsIntermediatePage from './pages/LessonsIntermediatePage';
+import LessonsAdvancedPage from './pages/LessonsAdvancedPage';
 import QuizArenaPage from './pages/QuizArenaPage';
 import FlashcardPage from './pages/FlashcardPage';
 import LessonDetailPage from "./pages/LessonDetailPage";
@@ -14,6 +17,9 @@ function App() {
       <Route path="/" element={<HomePage />}>
         <Route path="/" element={<Navigate replace to="/lessons" />} />
         <Route path="/lessons/" element={<LessonsPage />} />
+        <Route path="/lessons/beginner" element={<LessonsBeginnerPage />} />
+        <Route path="/lessons/intermediate" element={<LessonsIntermediatePage />} />
+        <Route path="/lessons/advanced" element={<LessonsAdvancedPage />} />
         <Route path="/lessons/:lessonId" element={<LessonDetailPage />} />
         <Route path="quiz-arena" element={<QuizArenaPage />} />
         <Route path="flashcard" element={<FlashcardPage />} />
