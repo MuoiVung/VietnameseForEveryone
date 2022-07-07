@@ -1,7 +1,7 @@
 import React from "react";
 
-const FlashcardPage = () => {
+const VocabularyPage = () => {
   return <h1>FlashcardPage</h1>;
 };
 
-export default FlashcardPage;
+export default VocabularyPage;

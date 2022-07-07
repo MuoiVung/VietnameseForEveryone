@@ -26,10 +26,10 @@ const MainNavigation = () => {
           </li>
           <li>
             <NavLink
-              to="/flashcard"
+              to="/Flashcard"
               className={(navData) => (navData.isActive ? classes.active : "")}
             >
-              Flashcard
+              Vocabulary
             </NavLink>
           </li>
         </ul>
