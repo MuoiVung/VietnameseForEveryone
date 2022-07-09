@@ -1,3 +1,8 @@
 .container {
-    margin-left: 20%;
+    padding-left: calc(var(--size-navigation) + 2.5rem);
+    padding-top: 2.5rem;
+    padding-bottom: 2.5rem;
+    padding-right: 2.5rem;
+    min-height: 100vh;
+    background-color: var(--color-bg);
 }
