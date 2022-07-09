@@ -3,24 +3,24 @@ import ReactAudioPlayer from "react-audio-player";
 import exAudio from "../../assets/audios/listening-moi-trau.webm";
 
 const paragraph =
-  "Phận duyên be bé cơi trầu buồng cau ." +
-  "Hẹn thề bên nhau đến khi bạc đầu" +
-  "Tròn lăn lông lốc trên dòng tình duyên " +
-  "Chuyện hợp hay tan còn chăng hồng nhan " +
-  "Chuyện tình em đi có chăng vội vàng " +
-  "Chuyện tình em trôi ghềnh thác ngược xuôi " +
-  "Đêm khuya thanh vắng " +
-  "Trống canh dồn trong đêm đen " +
-  "Tim em đã hát mối duyên tình con con " +
-  "Quả cau nho nhỏ miếng trầu hôi " +
-  "Này của Xuân Hương mới quệt rồi " +
-  "Phải duyên ta lại thắm nồng cùng nhau " +
-  "Đừng xanh như lá bạc như là vôi " +
-  "Chuyện tình em đi có chăng vội vàng " +
-  "Chuyện tình em trôi ghềnh thác ngược xuôi " +
-  "Đêm khuya thanh vắng " +
-  "Trống canh dồn trong đêm đen " +
-  "Tim em đã hát mối duyên tình con con ";
+  "Phận duyên be bé cơi trầu buồng cau . " +
+  "Hẹn thề bên nhau đến khi bạc đầu . " +
+  "Tròn lăn lông lốc trên dòng tình duyên . " +
+  "Chuyện hợp hay tan còn chăng hồng nhan . " +
+  "Chuyện tình em đi có chăng vội vàng . " +
+  "Chuyện tình em trôi ghềnh thác ngược xuôi . " +
+  "Đêm khuya thanh vắng . " +
+  "Trống canh dồn trong đêm đen . " +
+  "Tim em đã hát mối duyên tình con con . " +
+  "Quả cau nho nhỏ miếng trầu hôi . " +
+  "Này của Xuân Hương mới quệt rồi . " +
+  "Phải duyên ta lại thắm nồng cùng nhau . " +
+  "Đừng xanh như lá bạc như là vôi . " +
+  "Chuyện tình em đi có chăng vội vàng . " +
+  "Chuyện tình em trôi ghềnh thác ngược xuôi . " +
+  "Đêm khuya thanh vắng . " +
+  "Trống canh dồn trong đêm đen . " +
+  "Tim em đã hát mối duyên tình con con . ";
 
 const lowerCaseParaWords = paragraph.toLowerCase().split(" ");
 const paraWords = paragraph.split(" ");
