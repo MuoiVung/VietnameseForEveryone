@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import { RiContactsBookUploadLine } from "react-icons/ri";
 import exAudio from "../../assets/audios/listening-moi-trau.webm";
 
 const paragraph =
