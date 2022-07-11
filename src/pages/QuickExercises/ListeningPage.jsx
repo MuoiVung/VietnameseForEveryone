@@ -41,7 +41,7 @@ const ListeningPage = () => {
   const foundWordIndexes = enteredWords
     .map((word) => {
       return lowerCaseParaWords.reduce((wordIndexes, currWord, index) => {
-        if (word === currWord.replace(/[.,]/, "")) {
+        if (word === currWord.replace(/[.,?]/, "")) {
           wordIndexes.push(index);
         }
         return wordIndexes;
