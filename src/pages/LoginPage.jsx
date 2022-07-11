@@ -77,11 +77,9 @@ const LoginPage = () => {
         return setCheckNameID(true)
       }
     }
-
     if (Password !== ConfirmPassword) {
       return setCheckPass(true)
     }
-
     if (Phonenumber.length < 9) {
       return setChecknum(true)
     }
