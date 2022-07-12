@@ -3708,17 +3708,10 @@ ejs@^3.1.6:
   dependencies:
     jake "^10.8.5"
 
-<<<<<<< HEAD
-"electron-to-chromium@^1.4.172":
-  "integrity" "sha512-1XeTb/U/8Xgh2YgPOqhakLYsvCcU4U7jUjTMbEnhIJoIWd/Qt3yC8y0cbG+fHzn4zUNF99Ey1xiPf20bwgLO3Q=="
-  "resolved" "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.179.tgz"
-  "version" "1.4.179"
-=======
 electron-to-chromium@^1.4.172:
   version "1.4.182"
   resolved "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.4.182.tgz"
   integrity sha512-OpEjTADzGoXABjqobGhpy0D2YsTncAax7IkER68ycc4adaq0dqEG9//9aenKPy7BGA90bqQdLac0dPp6uMkcSg==
->>>>>>> 08dbf721158135aa6211aa45c8620fdd403c4cee
 
 emittery@^0.10.2:
   version "0.10.2"
