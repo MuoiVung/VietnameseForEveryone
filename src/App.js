@@ -9,6 +9,7 @@ import FlashcardPage from './pages/FlashcardPage';
 import LessonDetailPage from "./pages/Lessons/LessonDetailPage";
 import HomePage from "./components/Layout/HomePage";
 import LoginPage from "./pages/LoginPage";
+import ListeningPage from "./pages/QuickExercises/ListeningPage";
 
 function App() {
   return (
@@ -21,7 +22,8 @@ function App() {
         <Route path="/lessons/intermediate" element={<LessonsIntermediatePage />} />
         <Route path="/lessons/advanced" element={<LessonsAdvancedPage />} />
         <Route path="/lessons/:lessonId" element={<LessonDetailPage />} />
-        <Route path="quick-exercises" element={<QuickExercisesPage />} />
+        <Route path="/quick-exercises" element={<QuickExercisesPage />} />
+        <Route path="/quick-exercises/listening" element={<ListeningPage />} />
         <Route path="flashcard" element={<FlashcardPage />} />
       </Route>
     </Routes>
