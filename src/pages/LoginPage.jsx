@@ -6,14 +6,8 @@ const LoginPage = () => {
   const navigate = useNavigate();
 
   // array lưu user
-  const [Listuser, setListuser] = useState([
-    {
-      Name: "nghia",
-      Email: "nghia@gmail.com",
-      Password: 123,
-      Phonenumber: 1234567890,
-    },
-  ]);
+  const [Listuser, setListuser] = useState([{ Name: "nghia", Email: "nghia@gmail.com", Password: "123", Phonenumber: 1234567890 },]);
+
   // check
   const [CheckNameID, setCheckNameID] = useState(false);
   const [CheckName, setCheckName] = useState(false);
@@ -95,27 +89,28 @@ const LoginPage = () => {
 
   // đăng nhập
 
-  const CheckNameLogin = (loginName) => {
-    for (let index = 0; index < Listuser.length; index++) {
-      if (loginName === Listuser[index].Name) {
-        return true;
-      }
+
+  const CheckNameLogin = (loginName, Listuser) => {
+    if (loginName === Listuser.Name) {
+      return true
     }
   };
 
-  const CheckPassLogin = (loginPassword) => {
-    for (let index = 0; index < Listuser.length; index++) {
-      if (loginPassword === Listuser[index].Password) {
-        return true;
-      }
+
+  const CheckPassLogin = (loginPassword, Listuser) => {
+    if (loginPassword === Listuser.Password) {
+      return true
     }
   };
 
   const handleSubmitLogin = (e) => {
-    e.preventDefault();
-    if (CheckNameLogin(loginName)) {
-      if (CheckPassLogin(loginPassword)) {
-        navigate("/lessons");
+
+    e.preventDefault()
+    for (let index = 0; index < Listuser.length; index++) {
+      if (CheckNameLogin(loginName, Listuser[index])) {
+        if (CheckPassLogin(loginPassword, Listuser[index])) {
+          navigate("/lessons")
+        }
       }
     }
     setCheckloginName(true);
