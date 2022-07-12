@@ -1,14 +1,13 @@
 import React, { useState } from "react";
-import * as Yup from "yup"
+
 import { useFormik } from "formik";
 import { Link } from "react-router-dom";
-import "./LoginPage.css"
+import "./LoginPage.css";
 
 const LoginPage = () => {
-  // array lưu user 
-  const [Listuser, setListuser] = useState([])
-  const [isSignup, setIsSignup] = useState(true)
-
+  // array lưu user
+  const [Listuser, setListuser] = useState([]);
+  const [isSignup, setIsSignup] = useState(true);
 
   const formik = useFormik({
     initialValues: {
@@ -16,7 +15,7 @@ const LoginPage = () => {
       name: "",
       phone: "",
       password: "",
-      confirmedPassword: ""
+      confirmedPassword: "",
     },
     // validationSchema: Yup.object({
     //   name: Yup.string().required("Required").min(6, "Must be 6 characters of more"),
@@ -27,109 +26,108 @@ const LoginPage = () => {
     // }),
     onSubmit: (values) => {
       window.alert("Form submitted");
-      setListuser([...Listuser, values])
-      console.log(Listuser)
-    }
-  })
-
-
+      setListuser([...Listuser, values]);
+      console.log(Listuser);
+    },
+  });
 
   return (
     <section>
-      {
-        isSignup
-          ? <section className="body-infor">
-            <div>
-              <form className="infoform" onSubmit={formik.handleSubmit}>
-                <header>Sign up</header>
-                <labal>Your name</labal>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formik.values.name}
-                  onChange={formik.handleChange}
-                  placeholder="Enter your name" />
+      {isSignup ? (
+        <section className="body-infor">
+          <div>
+            <form className="infoform" onSubmit={formik.handleSubmit}>
+              <header>Sign up</header>
+              <label>Your name</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formik.values.name}
+                onChange={formik.handleChange}
+                placeholder="Enter your name"
+              />
 
-                {formik.errors.name && (
-                  <p className="errorMsg">{formik.errors.name}</p>
-                )}
+              {formik.errors.name && (
+                <p className="errorMsg">{formik.errors.name}</p>
+              )}
 
-                <labal>Email address</labal>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formik.values.email}
-                  onChange={formik.handleChange}
-                  placeholder="Enter your email " />
+              <label>Email address</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formik.values.email}
+                onChange={formik.handleChange}
+                placeholder="Enter your email "
+              />
 
-                {formik.errors.email && (
-                  <p className="errorMsg">{formik.errors.email}</p>
-                )}
+              {formik.errors.email && (
+                <p className="errorMsg">{formik.errors.email}</p>
+              )}
 
-                <labal>Password</labal>
-                <input
-                  type="text"
-                  id="password"
-                  name="password"
-                  value={formik.values.password}
-                  onChange={formik.handleChange}
-                  placeholder="Enter your password " />
+              <label>Password</label>
+              <input
+                type="text"
+                id="password"
+                name="password"
+                value={formik.values.password}
+                onChange={formik.handleChange}
+                placeholder="Enter your password "
+              />
 
-                {formik.errors.password && (
-                  <p className="errorMsg">{formik.errors.password}</p>
-                )}
+              {formik.errors.password && (
+                <p className="errorMsg">{formik.errors.password}</p>
+              )}
 
-                <labal>Confirm Password</labal>
-                <input
-                  type="text"
-                  id="confirmedPassword"
-                  name="confirmedPassword"
-                  value={formik.values.confirmedPassword}
-                  onChange={formik.handleChange}
-                  placeholder="Enter your confirm password " />
+              <label>Confirm Password</label>
+              <input
+                type="text"
+                id="confirmedPassword"
+                name="confirmedPassword"
+                value={formik.values.confirmedPassword}
+                onChange={formik.handleChange}
+                placeholder="Enter your confirm password "
+              />
 
-                {formik.errors.confirmedPassword && (
-                  <p className="errorMsg">{formik.errors.confirmedPassword}</p>
-                )}
+              {formik.errors.confirmedPassword && (
+                <p className="errorMsg">{formik.errors.confirmedPassword}</p>
+              )}
 
-                <labal>Phone number</labal>
-                <input
-                  type="text"
-                  id="phone"
-                  name="phone"
-                  value={formik.values.phone}
-                  onChange={formik.handleChange}
-                  placeholder="Enter your phone numbers" />
+              <label>Phone number</label>
+              <input
+                type="text"
+                id="phone"
+                name="phone"
+                value={formik.values.phone}
+                onChange={formik.handleChange}
+                placeholder="Enter your phone numbers"
+              />
 
-                {formik.errors.phone && (
-                  <p className="errorMsg">{formik.errors.phone}</p>
-                )}
+              {formik.errors.phone && (
+                <p className="errorMsg">{formik.errors.phone}</p>
+              )}
 
-                <button type="submit">Sign up</button>
-              </form>
+              <button type="submit">Sign up</button>
+            </form>
 
-              <p>
-                <Link to="/lessons">Get started!</Link>
-              </p>
-
-            </div>
-          </section>
-
-          : <div>
-            <h1>LoginPage</h1>
-            <p>
-              <button>Login</button>
-            </p>
-            <p>or</p>
             <p>
               <Link to="/lessons">Get started!</Link>
             </p>
           </div>
-      }
-
-
+        </section>
+      ) : (
+        <div>
+          <h1>LoginPage</h1>
+          <p>
+            <button>Login</button>
+          </p>
+          <p>or</p>
+          <p>
+            <Link to="/lessons">Get started!</Link>
+          </p>
+        </div>
+      )}
     </section>
   );
 };
