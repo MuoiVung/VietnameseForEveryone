@@ -10,8 +10,8 @@ const LoginPage = () => {
 
   // check
   const [CheckNameID, setCheckNameID] = useState(false);
-  const [CheckName, setCheckName] = useState(false);
   const [CheckPass, setCheckPass] = useState(false);
+  const [CheckConfirmPassword, setCheckConfirmPassword] = useState(false);
   const [checkNum, setChecknum] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
 
@@ -32,22 +32,59 @@ const LoginPage = () => {
 
   //  ************************************************
   useEffect(() => {
-    if (CheckNameID) {
-      setCheckName(true);
+    for (let index = 0; index < Listuser.length; index++) {
+      if (Name === Listuser[index].Name) {
+        setCheckNameID(true);
+      } else {
+        setCheckNameID(false)
+      }
     }
-  }, [CheckNameID]);
+
+  }, [Name, Listuser]);
 
   useEffect(() => {
-    if (CheckPass) {
+    if (Password.length === 0) {
+      setCheckPass(false)
+      return
+    }
+    if (Password.length < 6) {
       setCheckPass(true);
+    } else {
+      setCheckPass(false)
     }
-  }, [CheckPass]);
+  }, [Password]);
 
   useEffect(() => {
-    if (checkNum) {
-      setChecknum(true);
+    if (Password !== ConfirmPassword) {
+      setCheckConfirmPassword(true)
+    } else {
+      setCheckConfirmPassword(false)
     }
-  }, [checkNum]);
+  }, [Password, ConfirmPassword])
+
+  useEffect(() => {
+    if (Phonenumber.length === 0) {
+      return
+    }
+    if (Phonenumber.length < 10) {
+      setChecknum(true);
+    } else {
+      setChecknum(false);
+    }
+  }, [Phonenumber]);
+
+  useEffect(() => {
+    if (loginName.length === 0) {
+      setCheckloginName(false)
+    }
+  }, [loginName])
+
+
+  useEffect(() => {
+    if (loginPassword.length === 0) {
+      setCheckloginPassword(false)
+    }
+  }, [loginPassword])
 
   //  xử lí đăng kí
 
@@ -81,7 +118,7 @@ const LoginPage = () => {
     }
 
     setChecknum(false);
-    setCheckName(false);
+    setCheckNameID(false);
     setCheckPass(false);
     setListuser([...Listuser, NewUser]);
     navigate("/lessons");
@@ -117,7 +154,7 @@ const LoginPage = () => {
     setCheckloginPassword(true);
   };
 
-  console.log("test this", Listuser);
+  // console.log("test this", Listuser);
 
   return (
     <section>
@@ -135,8 +172,8 @@ const LoginPage = () => {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name"
               />
-              {CheckName ? (
-                <p style={{ color: "red", fontSize: "10px" }}>name sagging !</p>
+              {CheckNameID ? (
+                <p style={{ color: "red", fontSize: "10px" }}>Your name is already taken</p>
               ) : null}
 
               <label>Email address</label>
@@ -159,6 +196,11 @@ const LoginPage = () => {
                 placeholder="Enter your password "
               />
 
+
+              {CheckPass ? (
+                <p style={{ color: "red", fontSize: "10px" }}>Password must be more than 6 characters</p>
+              ) : null}
+
               <label>Confirm Password</label>
               <input
                 type="password"
@@ -169,8 +211,8 @@ const LoginPage = () => {
                 placeholder="Enter your confirm password "
               />
 
-              {CheckPass ? (
-                <p style={{ color: "red", fontSize: "10px" }}>Error</p>
+              {CheckConfirmPassword ? (
+                <p style={{ color: "red", fontSize: "10px" }}>Please enter the true password</p>
               ) : null}
 
               <label>Phone number</label>
@@ -218,7 +260,7 @@ const LoginPage = () => {
                   placeholder="Enter your name"
                 />
                 {CheckloginName ? (
-                  <p style={{ color: "red", fontSize: "10px" }}>Not found !</p>
+                  <p style={{ color: "red", fontSize: "10px" }}>Your Name could not be found</p>
                 ) : null}
 
                 <label>Password</label>
@@ -232,7 +274,7 @@ const LoginPage = () => {
                 />
 
                 {CheckloginPassword ? (
-                  <p style={{ color: "red", fontSize: "10px" }}>Not found !</p>
+                  <p style={{ color: "red", fontSize: "10px" }}>Please enter the correct password</p>
                 ) : null}
 
                 <p
