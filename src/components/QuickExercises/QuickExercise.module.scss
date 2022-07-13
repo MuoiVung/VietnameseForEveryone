@@ -1,0 +1,22 @@
+.body {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 2rem;
+
+  .instruction {
+    width: 25%;
+    color: var(--color-light-black);
+
+    .title {
+      color: var(--color-primary);
+      margin-bottom: 1rem;
+      font-family: var(--font-heading);
+    }
+  }
+
+  .exercise {
+    width: 72%;
+    color: var(--color-primary);
+  }
+}
