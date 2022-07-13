@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React, { Fragment, useState } from "react";
 import ReactAudioPlayer from "react-audio-player";
 import exAudio from "../../assets/audios/listening-moi-trau.webm";
+import QuickExercise from "../../components/QuickExercises/QuickExercise";
+import StyledButton from "../../components/UI/StyledButton";
+import classes from "./ListeningPage.module.css";
 
 const paragraph =
   "Phận duyên be bé cơi trầu buồng cau. " +
@@ -73,40 +76,40 @@ const ListeningPage = () => {
     }
   };
 
-  return (
-    <section style={{ padding: "0 20%" }}>
-      <h2>Listening Exercise</h2>
+  const Instruction = (
+    <ul>
+      <li>Listen and type what you hear in the "Guess" box.</li>
+      <li>Press "Check" - Correct words will replace the stars.</li>
+      <li>Keep going until you have all of the text.</li>
+      <li>Do NOT type full stops / periods, commas or dashes ( - ).</li>
+      <li>
+        Click the "Hint" button to reveal more letters (and the whole sentence).
+      </li>
+    </ul>
+  );
 
+  const ListeningExercise = (
+    <Fragment>
       <div>
-        <h3>How to Play</h3>
-        <ul>
-          <li>Listen and type what you hear in the "Guess" box.</li>
-          <li>Press "Check" - Correct words will replace the stars.</li>
-          <li>Keep going until you have all of the text.</li>
-          <li>Do NOT type full stops / periods, commas or dashes ( - ).</li>
-          <li>
-            Click the "Hint" button to reveal more letters (and the whole
-            sentence).
-          </li>
-        </ul>
-      </div>
-
-      <div>
+        <p>Mời trầu </p>
         <ReactAudioPlayer src={exAudio} controls />
       </div>
-
       {!isFinished && (
         <form onSubmit={submitFormHandler}>
-          <input
+          <label htmlFor="dictation">
+            Write the text into this text field:
+          </label>
+          <textarea
+            id="dictation"
             style={{ color: "black" }}
             onChange={inputChangeHandler}
             type="text"
             value={enteredInput}
           />
-          <button>Check</button>
+          <StyledButton>Check Answer</StyledButton>
+          <StyledButton>Give Up</StyledButton>
         </form>
       )}
-
       <p>{hiddenParagraph}</p>
       {isFinished && (
         <p
@@ -118,7 +121,11 @@ const ListeningPage = () => {
           Congratulations!
         </p>
       )}
-    </section>
+    </Fragment>
+  );
+
+  return (
+    <QuickExercise instruction={Instruction} exercise={ListeningExercise} />
   );
 };
 

@@ -7,6 +7,7 @@ import {
 } from "../../assets/icons/QuickExercisesIcons";
 import classes from "./QuickExercisesPage.module.css";
 import { Link } from "react-router-dom";
+import StyledButton from "../../components/UI/StyledButton";
 
 const skills = (
   <section className={classes.container}>
@@ -28,9 +29,9 @@ const skills = (
         <p className={classes["skill-content"]}>
           Listen some sentences and write them again.
         </p>
-        <Link to="/quick-exercises/listening" className={classes["skill-btn"]}>
+        <StyledButton as={Link} to="/quick-exercises/listening">
           Start
-        </Link>
+        </StyledButton>
       </li>
 
       <li className={classes.skill}>
@@ -41,9 +42,9 @@ const skills = (
         <p className={classes["skill-content"]}>
           Read a paragraph and answer questions.
         </p>
-        <Link to="/" className={classes["skill-btn"]}>
+        <StyledButton as={Link} to="/quick-exercises/listening">
           Start
-        </Link>
+        </StyledButton>
       </li>
 
       <li className={classes.skill}>
@@ -54,9 +55,9 @@ const skills = (
         <p className={classes["skill-content"]}>
           Rearrange all words to complete a correct sentence.
         </p>
-        <Link to="/" className={classes["skill-btn"]}>
+        <StyledButton as={Link} to="/quick-exercises/listening">
           Start
-        </Link>
+        </StyledButton>
       </li>
 
       <li className={classes.skill}>
@@ -67,9 +68,9 @@ const skills = (
         <p className={classes["skill-content"]}>
           Hear an audio and repeat that audio.
         </p>
-        <Link to="/" className={classes["skill-btn"]}>
+        <StyledButton as={Link} to="/quick-exercises/listening">
           Start
-        </Link>
+        </StyledButton>
       </li>
     </ul>
   </section>

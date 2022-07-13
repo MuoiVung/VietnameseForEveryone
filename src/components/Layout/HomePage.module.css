@@ -1,8 +1,8 @@
 .container {
-    padding-left: calc(var(--size-navigation) + 2.5rem);
-    padding-top: 2.5rem;
-    padding-bottom: 2.5rem;
-    padding-right: 2.5rem;
+    padding-left: calc(var(--size-navigation) + 3rem);
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    padding-right: 3rem;
     min-height: 100vh;
     background-color: var(--color-bg);
 }
