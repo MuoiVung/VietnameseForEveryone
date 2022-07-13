@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Container from "./Container";
-import classes from "./QuickExercise.module.css";
+import classes from "./QuickExercise.module.scss";
 import Title from "./Title";
 
 const QuickExercise = (props) => {
@@ -15,7 +15,7 @@ const QuickExercise = (props) => {
 
         <section className={classes.exercise}>
           <p className={classes.title}>Exercise</p>
-          <Container>{props.exercise}</Container>
+          <Container>{props.children}</Container>
         </section>
       </section>
     </Fragment>
