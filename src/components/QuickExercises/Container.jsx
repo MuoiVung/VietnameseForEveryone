@@ -3,13 +3,15 @@ import styled from "styled-components";
 
 const StyledContainer = styled.section`
   padding: 2rem;
-  background-color: white;
+  background-color: ${(props) => {
+    return props.color || "white";
+  }};
   color: var(--color-heading);
   border-radius: 16px;
 `;
 
 const Container = (props) => {
-  return <StyledContainer>{props.children}</StyledContainer>;
+  return <StyledContainer {...props}>{props.children}</StyledContainer>;
 };
 
 export default Container;
