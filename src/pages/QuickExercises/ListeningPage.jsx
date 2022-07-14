@@ -10,12 +10,12 @@ const ListeningPage = () => {
   const Instruction = (
     <ul className={classes.instruction}>
       <li>Listen and type what you hear in the "Guess" box.</li>
-      <li>Press "Check" - Correct words will replace the stars.</li>
+      <li>Press "Check Answer" - Correct words will replace the stars.</li>
       <li>Keep going until you have all of the text.</li>
       <li>Do NOT type full stops / periods, commas or dashes ( - ).</li>
-      <li>
-        Click the "Hint" button to reveal more letters (and the whole sentence).
-      </li>
+      <li>Click the "Give Up" button to reveal whole letters.</li>
+      <li>Click "Next Question" button to start new question</li>
+      <li>Click "Try Again" button to do the current question once again</li>
     </ul>
   );
 
