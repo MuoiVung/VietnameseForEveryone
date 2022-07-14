@@ -1,8 +1,5 @@
 import React from "react";
-import ReactAudioPlayer from "react-audio-player";
-import exAudio from "../../assets/audios/listening-moi-trau.webm";
 import QuickExercise from "../../components/QuickExercises/QuickExercise";
-import StyledButton from "../../components/UI/StyledButton";
 import ListeningExercise from "../../components/QuickExercises/ListeningExercise";
 import classes from "./ListeningPage.module.scss";
 
