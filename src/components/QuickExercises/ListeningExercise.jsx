@@ -1,107 +1,211 @@
-import { useState, Fragment } from "react";
+import { useState, Fragment, useEffect, useRef } from "react";
 import ReactAudioPlayer from "react-audio-player";
-import exAudio from "../../assets/audios/listening-moi-trau.webm";
 import StyledButton from "../../components/UI/StyledButton";
 import Container from "./Container";
 import classes from "./ListeningExercise.module.scss";
+import { fetchListeningExercises } from "../../lib/listening-api";
+import { useReducer } from "react";
 
-const paragraph = "Phận duyên be bé cơi trầu buồng cau. ";
+let paragraph = "";
 
-const paraWords = paragraph.trim().split(" ");
+let paraWords;
 
-let isChecked = false;
+let lowerCaseParaWords;
 
-const lowerCaseParaWords = paragraph.trim().toLowerCase().split(" ");
+let isInitial = true;
 
-let hiddenParagraph = paragraph.replace(/[^., ]/g, "*");
+const getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min) + min);
+};
+
+const initExercisesData = {
+  exercises: [],
+  randomExercise: null,
+};
+
+const exercisesReducer = (state, action) => {
+  const getRandomExercise = (exercises) => {
+    let newRandomExercise;
+    if (exercises.length > 0) {
+      do {
+        const randomIndex = getRandomInt(0, exercises.length);
+        newRandomExercise = exercises[randomIndex];
+      } while (newRandomExercise.vn === state.randomExercise?.vn);
+    }
+    return newRandomExercise;
+  };
+
+  if (action.type === "SET_EXERCISES") {
+    const newRandomExercise = getRandomExercise(action.exercises);
+
+    return {
+      exercises: action.exercises,
+      randomExercise: newRandomExercise
+        ? newRandomExercise
+        : state.randomExercise,
+    };
+  }
+
+  if (action.type === "SET_RANDOM_EXERCISE") {
+    const newRandomExercise = getRandomExercise(state.exercises);
+
+    return {
+      exercises: state.exercises,
+      randomExercise: newRandomExercise,
+    };
+  }
+
+  return initExercisesData;
+};
 
 const ListeningExercise = () => {
-  const [enteredInput, setEnteredInput] = useState("");
-  const [isFinished, setIsFinished] = useState(false);
   const [isGivenUp, setIsGivenUp] = useState(false);
+  const [hiddenParagraph, setHiddenParagraph] = useState(null);
+  const [isChecked, setIsChecked] = useState(false);
+  const enteredInputRef = useRef();
+  const [exercisesData, dispatchExercises] = useReducer(
+    exercisesReducer,
+    initExercisesData
+  );
 
-  const enteredWords =
-    enteredInput.trim().length !== 0
-      ? enteredInput.trim().toLowerCase().split(" ")
-      : [];
+  const isFinished =
+    paragraph?.trim().length !== 0 &&
+    hiddenParagraph?.trim() === paragraph?.trim();
 
-  //find an array includes all indexes of found words.
-  const foundWordIndexes = enteredWords
-    .map((word) => {
-      return lowerCaseParaWords.reduce((wordIndexes, currWord, index) => {
-        if (word === currWord.replace(/[.,?]/, "")) {
-          wordIndexes.push(index);
-        }
-        return wordIndexes;
-      }, []);
-    })
-    .flat();
+  useEffect(() => {
+    const sendRequest = async () => {
+      const data = await fetchListeningExercises();
+      dispatchExercises({ type: "SET_EXERCISES", exercises: data });
+    };
 
-  const inputChangeHandler = (event) => {
-    setEnteredInput(event.target.value);
-  };
+    sendRequest().catch((error) => console.error(error.message));
+  }, []);
+
+  useEffect(() => {
+    const createHiddenPara = () => {
+      if (!exercisesData.randomExercise) {
+        return;
+      }
+
+      paragraph = exercisesData.randomExercise.vn;
+
+      paraWords = paragraph.trim().split(" ");
+
+      lowerCaseParaWords = paragraph.trim().toLowerCase().split(" ");
+
+      setHiddenParagraph(paragraph.replace(/[^., ]/g, "*"));
+    };
+
+    createHiddenPara();
+  }, [exercisesData.randomExercise]);
 
   const checkAnswerHandler = (event) => {
     event.preventDefault();
+    const enteredInput = enteredInputRef.current.value;
+
     if (enteredInput.trim().length === 0) return;
 
     if (isFinished) return;
 
     if (!isChecked) {
-      isChecked = true;
+      setIsChecked(true);
     }
 
-    setEnteredInput("");
+    const enteredWords =
+      enteredInput.trim().length !== 0
+        ? enteredInput.trim().toLowerCase().split(" ")
+        : [];
+
+    //find an array includes all indexes of found words.
+    const foundWordIndexes = enteredWords
+      .map((word) => {
+        return lowerCaseParaWords.reduce((wordIndexes, currWord, index) => {
+          if (word === currWord.replace(/[.,?]/, "")) {
+            wordIndexes.push(index);
+          }
+          return wordIndexes;
+        }, []);
+      })
+      .flat();
+
+    let hiddenParaWords = hiddenParagraph.split(" ");
 
     if (foundWordIndexes.length !== 0) {
-      const hiddenParaWords = hiddenParagraph.split(" ");
-
       foundWordIndexes.forEach((wordIndex) => {
         hiddenParaWords[wordIndex] = paraWords[wordIndex];
       });
-      hiddenParagraph = hiddenParaWords.join(" ");
     }
 
-    if (hiddenParagraph === paragraph) {
-      setIsFinished(true);
-    }
+    setHiddenParagraph(hiddenParaWords.join(" "));
+
+    enteredInputRef.current.value = "";
   };
 
   const giveUpHandler = (event) => {
     event.preventDefault();
-    hiddenParagraph = paragraph;
+    setHiddenParagraph(paragraph);
     setIsGivenUp(true);
-    setIsFinished(true);
-    isChecked = true;
+    setIsChecked(true);
+    enteredInputRef.current.value = "";
   };
 
-  const nextExHandler = (event) => {
+  const nextQuesttionHandler = (event) => {
     event.preventDefault();
+    dispatchExercises({ type: "SET_RANDOM_EXERCISE" });
+    setIsGivenUp(false);
+    setIsChecked(false);
+    setHiddenParagraph(paragraph.replace(/[^., ]/g, "*"));
+
+    if (isInitial) {
+      isInitial = false;
+    }
   };
 
   const tryAgainHandler = (event) => {
     event.preventDefault();
     setIsGivenUp(false);
-    setIsFinished(false);
-    isChecked = false;
-    hiddenParagraph = paragraph.replace(/[^., ]/g, "*");
+    setIsChecked(false);
+    setHiddenParagraph(paragraph.replace(/[^., ]/g, "*"));
+
+    if (isInitial) {
+      isInitial = false;
+    }
   };
 
   return (
     <Fragment>
-      <div className={classes.dialogue}>
-        <ReactAudioPlayer src={exAudio} controls />
-      </div>
+      {isInitial && (
+        <div className={classes.dialogue}>
+          <ReactAudioPlayer
+            src={exercisesData.randomExercise?.audio}
+            controls
+          />
+        </div>
+      )}
+
+      {!isInitial && (
+        <div className={classes.dialogue}>
+          <ReactAudioPlayer
+            src={exercisesData.randomExercise?.audio}
+            autoPlay
+            controls
+          />
+        </div>
+      )}
 
       <form>
         <label htmlFor="dictation">What is the speaker saying?</label>
-        <input
-          id="dictation"
-          style={{ color: "black" }}
-          onChange={inputChangeHandler}
-          type="text"
-          value={enteredInput}
-        />
+        {!isFinished && (
+          <input
+            id="dictation"
+            style={{ color: "black" }}
+            type="text"
+            ref={enteredInputRef}
+          />
+        )}
+        {isFinished && <input disabled />}
         {!isFinished && (
           <StyledButton onClick={checkAnswerHandler}>Check Answer</StyledButton>
         )}
@@ -109,7 +213,9 @@ const ListeningExercise = () => {
           <StyledButton onClick={giveUpHandler}>Give Up</StyledButton>
         )}
         {isFinished && (
-          <StyledButton onClick={nextExHandler}>Next</StyledButton>
+          <StyledButton onClick={nextQuesttionHandler}>
+            Next Question
+          </StyledButton>
         )}
         {isFinished && (
           <StyledButton onClick={tryAgainHandler}>Try Again</StyledButton>
@@ -120,6 +226,7 @@ const ListeningExercise = () => {
         <Container color={isFinished ? "#90ee9080" : "wheat"}>
           {!isGivenUp && <h3>{isFinished ? "Nice job" : "Try again"}</h3>}
           <p className={classes["hidden-para"]}>{hiddenParagraph}</p>
+          {isFinished && <p>{exercisesData.randomExercise.eng}</p>}
         </Container>
       )}
     </Fragment>
