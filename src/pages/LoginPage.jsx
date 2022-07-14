@@ -3,126 +3,162 @@ import { Link, useNavigate } from "react-router-dom";
 import "./LoginPage.css";
 
 const LoginPage = () => {
-
   const navigate = useNavigate();
 
   // array lưu user
-  const [Listuser, setListuser] = useState([{ Name: "nghia", Email: "nghia@gmail.com", Password: 123, Phonenumber: 1234567890 },]);
+  const [Listuser, setListuser] = useState([{ Name: "nghia", Email: "nghia@gmail.com", Password: "123", Phonenumber: 1234567890 },]);
+
   // check
-  const [CheckNameID, setCheckNameID] = useState(false)
-  const [CheckName, setCheckName] = useState(false)
-  const [CheckPass, setCheckPass] = useState(false)
-  const [checkNum, setChecknum] = useState(false)
+  const [CheckNameID, setCheckNameID] = useState(false);
+  const [CheckPass, setCheckPass] = useState(false);
+  const [CheckConfirmPassword, setCheckConfirmPassword] = useState(false);
+  const [checkNum, setChecknum] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
 
+  // đăng kí
+  const [Name, setName] = useState("");
+  const [Email, setEmail] = useState("");
+  const [Password, setPassword] = useState("");
+  const [ConfirmPassword, setConfirmPassword] = useState("");
+  const [Phonenumber, setPhonenumber] = useState("");
 
-  // đăng kí 
-  const [Name, setName] = useState("")
-  const [Email, setEmail] = useState("")
-  const [Password, setPassword] = useState("")
-  const [ConfirmPassword, setConfirmPassword] = useState("")
-  const [Phonenumber, setPhonenumber] = useState("")
-
-  // đăng nhập 
-  const [loginName, setloginName] = useState("")
-  const [loginPassword, setloginPassword] = useState("")
+  // đăng nhập
+  const [loginName, setloginName] = useState("");
+  const [loginPassword, setloginPassword] = useState("");
 
   // xử lí đăng nhập
-  const [CheckloginName, setCheckloginName] = useState(false)
-  const [CheckloginPassword, setCheckloginPassword] = useState(false)
-
-
+  const [CheckloginName, setCheckloginName] = useState(false);
+  const [CheckloginPassword, setCheckloginPassword] = useState(false);
 
   //  ************************************************
   useEffect(() => {
-    if (CheckNameID) {
-      setCheckName(true)
+    for (let index = 0; index < Listuser.length; index++) {
+      if (Name === Listuser[index].Name) {
+        setCheckNameID(true);
+      } else {
+        setCheckNameID(false)
+      }
     }
-  }, [CheckNameID])
+
+  }, [Name, Listuser]);
 
   useEffect(() => {
-    if (CheckPass) {
-      setCheckPass(true)
+    if (Password.length === 0) {
+      setCheckPass(false)
+      return
     }
-  }, [CheckPass])
+    if (Password.length < 6) {
+      setCheckPass(true);
+    } else {
+      setCheckPass(false)
+    }
+  }, [Password]);
 
   useEffect(() => {
-    if (checkNum) {
-      setChecknum(true)
+    if (Password !== ConfirmPassword) {
+      setCheckConfirmPassword(true)
+    } else {
+      setCheckConfirmPassword(false)
     }
-  }, [checkNum])
+  }, [Password, ConfirmPassword])
+
+  useEffect(() => {
+    if (Phonenumber.length === 0) {
+      return
+    }
+    if (Phonenumber.length < 10) {
+      setChecknum(true);
+    } else {
+      setChecknum(false);
+    }
+  }, [Phonenumber]);
+
+  useEffect(() => {
+    if (loginName.length === 0) {
+      setCheckloginName(false)
+    }
+  }, [loginName])
+
+
+  useEffect(() => {
+    if (loginPassword.length === 0) {
+      setCheckloginPassword(false)
+    }
+  }, [loginPassword])
 
   //  xử lí đăng kí
 
-
   function NewUserClass(Name, Email, Password, Phonenumber) {
-    this.Name = Name
-    this.Email = Email
-    this.Password = Password
-    this.Phonenumber = Phonenumber
+    this.Name = Name;
+    this.Email = Email;
+    this.Password = Password;
+    this.Phonenumber = Phonenumber;
 
     this.Lessons = {
       Beginner: true,
       Intermediate: false,
-      Advanced: false
-    }
+      Advanced: false,
+    };
   }
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    const NewUser = new NewUserClass(Name, Email, Password, Phonenumber)
+    e.preventDefault();
+    const NewUser = new NewUserClass(Name, Email, Password, Phonenumber);
 
     for (let index = 0; index < Listuser.length; index++) {
       if (NewUser.Name === Listuser[index].Name) {
-        return setCheckNameID(true)
+        return setCheckNameID(true);
       }
     }
+    if (Password.length < 6) {
+      return setCheckPass(true);
+    }
+
     if (Password !== ConfirmPassword) {
-      return setCheckPass(true)
+      return setCheckPass(true);
     }
     if (Phonenumber.length < 9) {
-      return setChecknum(true)
+      return setChecknum(true);
     }
 
-    setChecknum(false)
-    setCheckName(false)
-    setCheckPass(false)
-    setListuser([...Listuser, NewUser])
-    navigate("/lessons")
-  }
-
+    setChecknum(false);
+    setCheckNameID(false);
+    setCheckPass(false);
+    setListuser([...Listuser, NewUser]);
+    navigate("/lessons");
+  };
 
   // đăng nhập
 
-  const CheckNameLogin = (loginName) => {
-    for (let index = 0; index < Listuser.length; index++) {
-      if (loginName === Listuser[index].Name) {
-        return true
-      }
-    }
-  }
 
-  const CheckPassLogin = (loginPassword) => {
-    for (let index = 0; index < Listuser.length; index++) {
-      if (loginPassword == Listuser[index].Password) {
-        return true
-      }
+  const CheckNameLogin = (loginName, Listuser) => {
+    if (loginName === Listuser.Name) {
+      return true
     }
-  }
+  };
 
+
+  const CheckPassLogin = (loginPassword, Listuser) => {
+    if (loginPassword === Listuser.Password) {
+      return true
+    }
+  };
 
   const handleSubmitLogin = (e) => {
+
     e.preventDefault()
-    if (CheckNameLogin(loginName)) {
-      if (CheckPassLogin(loginPassword)) {
-        navigate("/lessons")
+    for (let index = 0; index < Listuser.length; index++) {
+      if (CheckNameLogin(loginName, Listuser[index])) {
+        if (CheckPassLogin(loginPassword, Listuser[index])) {
+          navigate("/lessons")
+        }
       }
     }
-    setCheckloginName(true)
-    setCheckloginPassword(true)
-  }
+    setCheckloginName(true);
+    setCheckloginPassword(true);
+  };
 
-  console.log("test this", Listuser)
+  // console.log("test this", Listuser);
 
   return (
     <section>
@@ -140,10 +176,9 @@ const LoginPage = () => {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name"
               />
-              {
-                CheckName ? <p style={{ color: "red", fontSize: "10px" }}>name sagging !</p> : null
-              }
-
+              {CheckNameID ? (
+                <p style={{ color: "red", fontSize: "10px" }}>Your name is already taken</p>
+              ) : null}
 
               <label>Email address</label>
               <input
@@ -154,8 +189,6 @@ const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email "
               />
-
-
 
               <label>Password</label>
               <input
@@ -168,6 +201,9 @@ const LoginPage = () => {
               />
 
 
+              {CheckPass ? (
+                <p style={{ color: "red", fontSize: "10px" }}>Password must be more than 6 characters</p>
+              ) : null}
 
               <label>Confirm Password</label>
               <input
@@ -179,13 +215,13 @@ const LoginPage = () => {
                 placeholder="Enter your confirm password "
               />
 
-              {
-                CheckPass ? <p style={{ color: "red", fontSize: "10px" }}>Error</p> : null
-              }
+              {CheckConfirmPassword ? (
+                <p style={{ color: "red", fontSize: "10px" }}>Please enter the true password</p>
+              ) : null}
 
               <label>Phone number</label>
               <input
-                type="number"
+                type="text"
                 id="phone"
                 name="phone"
                 value={Phonenumber}
@@ -193,11 +229,17 @@ const LoginPage = () => {
                 placeholder="Enter your phone numbers"
               />
 
-
-              {
-                checkNum ? <p style={{ color: "red", fontSize: "10px" }}>This not Phone number</p> : null
-              }
-              <p style={{ color: "red", cursor: "pointer" }} onClick={() => setIsSignup(false)}>Login</p>
+              {checkNum ? (
+                <p style={{ color: "red", fontSize: "10px" }}>
+                  This not Phone number
+                </p>
+              ) : null}
+              <p
+                style={{ color: "red", cursor: "pointer" }}
+                onClick={() => setIsSignup(false)}
+              >
+                Login
+              </p>
               <button type="submit">Sign up</button>
             </form>
 
@@ -221,10 +263,9 @@ const LoginPage = () => {
                   onChange={(e) => setloginName(e.target.value)}
                   placeholder="Enter your name"
                 />
-                {
-                  CheckloginName ? <p style={{ color: "red", fontSize: "10px" }}>Not found !</p> : null
-                }
-
+                {CheckloginName ? (
+                  <p style={{ color: "red", fontSize: "10px" }}>Your Name could not be found</p>
+                ) : null}
 
                 <label>Password</label>
                 <input
@@ -236,11 +277,17 @@ const LoginPage = () => {
                   placeholder="Enter your password "
                 />
 
-                {
-                  CheckloginPassword ? <p style={{ color: "red", fontSize: "10px" }}>Not found !</p> : null
-                }
+                {CheckloginPassword ? (
+                  <p style={{ color: "red", fontSize: "10px" }}>Please enter the correct password</p>
+                ) : null}
 
-                <p style={{ color: "red", cursor: "pointer" }} onClick={() => setIsSignup(true)}>Sign up</p>
+                <p
+                  style={{ color: "red", cursor: "pointer" }}
+                  onClick={() => setIsSignup(true)}
+                >
+                  Sign up
+                </p>
+
                 <button type="submit">Login </button>
               </form>
 
