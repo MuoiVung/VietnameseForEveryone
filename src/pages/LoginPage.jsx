@@ -110,6 +110,10 @@ const LoginPage = () => {
         return setCheckNameID(true);
       }
     }
+    if (Password.length < 6) {
+      return setCheckPass(true);
+    }
+
     if (Password !== ConfirmPassword) {
       return setCheckPass(true);
     }
@@ -217,7 +221,7 @@ const LoginPage = () => {
 
               <label>Phone number</label>
               <input
-                type="number"
+                type="text"
                 id="phone"
                 name="phone"
                 value={Phonenumber}
@@ -283,6 +287,7 @@ const LoginPage = () => {
                 >
                   Sign up
                 </p>
+
                 <button type="submit">Login </button>
               </form>
 
