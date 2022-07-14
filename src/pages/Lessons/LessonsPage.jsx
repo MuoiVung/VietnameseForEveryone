@@ -6,7 +6,7 @@ const LessonsPage = () => {
     <div>
       <h1>LessonsPage</h1>
       <p>
-        <Link to="/lessons/lesson1"> lesson 1</Link>
+        <Link to="/lessons/"> lesson 1</Link>
       </p>
     </div>
   );
