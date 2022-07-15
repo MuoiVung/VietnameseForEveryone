@@ -1,12 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import userAvatar from "../assets/img/user-avatar.jpg";
+
 import "./LoginPage.css";
+
+
+
+
 
 const LoginPage = () => {
   const navigate = useNavigate();
 
   // array lưu user
-  const [Listuser, setListuser] = useState([{ Name: "nghia", Email: "nghia@gmail.com", Password: "123", Phonenumber: 1234567890 },]);
+  const [Listuser, setListuser] = useState([{ Name: "nghia", Email: "nghia@gmail.com", Password: "123", Phonenumber: 1234567890, NameId: "Admin", Avatar: "https://scontent.fhan4-1.fna.fbcdn.net/v/t39.30808-6/248793490_599009591431369_4830499515000362330_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=of02KyIAjLAAX-zoHUA&_nc_ht=scontent.fhan4-1.fna&oh=00_AT-FMNA2-0Sv8jMiLV8jD0E3BmgrwBUPkppRQBKnYUdvrQ&oe=62D4C9C9" }]);
 
   // check
   const [CheckNameID, setCheckNameID] = useState(false);
@@ -29,6 +35,10 @@ const LoginPage = () => {
   // xử lí đăng nhập
   const [CheckloginName, setCheckloginName] = useState(false);
   const [CheckloginPassword, setCheckloginPassword] = useState(false);
+
+
+  // ===================================
+
 
   //  ************************************************
   useEffect(() => {
@@ -93,6 +103,8 @@ const LoginPage = () => {
     this.Email = Email;
     this.Password = Password;
     this.Phonenumber = Phonenumber;
+    this.Avatar = userAvatar;
+    this.NameId = Name;
 
     this.Lessons = {
       Beginner: true,
@@ -125,6 +137,7 @@ const LoginPage = () => {
     setCheckNameID(false);
     setCheckPass(false);
     setListuser([...Listuser, NewUser]);
+    localStorage.setItem('loginDataNewUser', JSON.stringify(NewUser))
     navigate("/lessons");
   };
 
@@ -150,6 +163,7 @@ const LoginPage = () => {
     for (let index = 0; index < Listuser.length; index++) {
       if (CheckNameLogin(loginName, Listuser[index])) {
         if (CheckPassLogin(loginPassword, Listuser[index])) {
+          localStorage.setItem('loginDataNewUser', JSON.stringify(Listuser[index]))
           navigate("/lessons")
         }
       }
@@ -280,6 +294,8 @@ const LoginPage = () => {
                 {CheckloginPassword ? (
                   <p style={{ color: "red", fontSize: "10px" }}>Please enter the correct password</p>
                 ) : null}
+
+
 
                 <p
                   style={{ color: "red", cursor: "pointer" }}

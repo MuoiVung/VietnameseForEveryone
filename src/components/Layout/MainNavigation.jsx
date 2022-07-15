@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import classes from "./MainNavigation.module.css";
 import { NavLink } from "react-router-dom";
 import userAvatar from "../../assets/img/user-avatar.jpg";
@@ -12,15 +12,27 @@ import { RiLogoutBoxLine as LoginIcon } from "react-icons/ri";
 import { BsCardHeading as FlashcardIcon } from "react-icons/bs";
 
 const MainNavigation = () => {
+  const [LoginData, setLoginData] = useState(
+    localStorage.getItem('loginDataNewUser')
+      ? JSON.parse(localStorage.getItem('loginDataNewUser'))
+      : { Name: "", Email: "", Password: "", Phonenumber: "", NameId: "Wimp Mullan", Avatar: userAvatar }
+  )
+
+  const handleLogout = () => {
+    localStorage.removeItem('loginDataNewUser')
+    setLoginData(localStorage.getItem('loginDataNewUser')
+      ? JSON.parse(localStorage.getItem('loginDataNewUser'))
+      : { Name: "", Email: "", Password: "", Phonenumber: "", NameId: "Wimp Mullan", Avatar: userAvatar })
+  }
   return (
     <section className={classes.sidebar}>
       <div className={classes.container}>
         <h1 className={classes.logo}>Vife</h1>
         <div className={classes.user}>
           <p className={classes["user-avatar"]}>
-            <img src={userAvatar} alt="user avatar" />
+            <img src={LoginData.Avatar} alt="user avatar" />
           </p>
-          <p className={classes["user-name"]}>Wimp Mullan</p>
+          <p className={classes["user-name"]}>{LoginData.NameId}</p>
         </div>
         <nav>
           <ul className={classes["nav-list"]}>
@@ -99,7 +111,7 @@ const MainNavigation = () => {
                 </div>
               </NavLink>
             </li>
-            <li className={classes["nav-item"]}>
+            <li onClick={handleLogout} className={classes["nav-item"]}>
               <NavLink
                 to="/login"
                 className={(navData) =>
