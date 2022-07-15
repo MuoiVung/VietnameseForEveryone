@@ -1,3 +1,4 @@
+
 .container-beginner{
     text-decoration: none;
 }
@@ -46,13 +47,15 @@
 .ld_bar_step{
     display: flex;
     margin-right: 30px;
-    line-height: 40px;
 }
 .ld_bar_step_arrow{
-
+    padding: 0px;
+    height: fit-content;
+   margin: auto 0;
 }
 .ld_bar_step_des{
-    padding: 0 10px
+    line-height: 40px;
+    padding: 0 20px;
 }
 
 .ld_bar_subTitle{
@@ -71,11 +74,10 @@
 }
  /* lesson detail banner */
  .ld_baner{
-     width: 400px;
      margin: 0 auto;
      text-align: left;
+     background-image: linear-gradient(to right,#a772cb,white);
  }
  .ld_banner__category{
-     display: flex;
      justify-content: space-between;
  }
