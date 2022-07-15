@@ -1,0 +1,83 @@
+
+.container-beginner{
+    text-decoration: none;
+}
+.pageBeginner{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-gap: 30px;
+    padding-top: 12px;
+}
+.containerItem{
+    padding: 10px;
+    background-color: black;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.item_img{
+    width: 250px;
+    height: 200px;
+    padding: 5px;
+    list-style: none;
+}
+.link{
+    text-decoration: none;
+    color: var(--color-text);
+}
+
+ /* LessonDetail */
+ .ld_container{
+    text-align: center;
+ }
+ /* lesson detail bar */
+
+.ld_bar{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: space-between;
+    background-color: #1c1c1e;
+    color: white;  
+    padding: 10px; 
+}
+.ld_bar_left{
+    text-align: left;
+    padding-left: 20px;
+}
+.ld_bar_step{
+    display: flex;
+    margin-right: 30px;
+}
+.ld_bar_step_arrow{
+    padding: 0px;
+    height: fit-content;
+   margin: auto 0;
+}
+.ld_bar_step_des{
+    line-height: 40px;
+    padding: 0 20px;
+}
+
+.ld_bar_subTitle{
+    opacity: 0.7;
+}
+.ld_bar_subTitle_completed{
+    padding-left: 10px;
+}
+.ld_bar_right{
+    display: flex;
+}
+
+.ld_bar_showbtn{
+    padding: 0 20px;
+    line-height: 40px;
+}
+ /* lesson detail banner */
+ .ld_baner{
+     margin: 0 auto;
+     text-align: left;
+     background-image: linear-gradient(to right,#a772cb,white);
+ }
+ .ld_banner__category{
+     justify-content: space-between;
+ }
