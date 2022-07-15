@@ -3,6 +3,7 @@ import FlashcardList from "./FlashcardPageChill/FlashcardList";
 import './FlashcardPageChill/appFlashcard.css'
 const FlashcardPage = () => {
   const [flashcard, setFlashcard] = useState(SAPM_FKASHCARDS)
+  setFlashcard();
 
 
   return (
