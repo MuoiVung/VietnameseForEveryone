@@ -66,20 +66,3 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
-
-.skill-btn {
-    display: inline-block;
-    margin-top: 1rem;
-    padding: 0.5rem 2rem;
-    border-radius: 10px;
-    border: 1px solid var(--color-primary);
-    color: var(--color-primary);
-    text-decoration: none;
-    transition: all 0.25s ease;
-}
-
-.skill-btn:hover,
-.skill-btn:active {
-    background-color: var(--color-primary);
-    color: var(--color-text);
-}

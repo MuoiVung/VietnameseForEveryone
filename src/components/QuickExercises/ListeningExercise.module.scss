@@ -1,0 +1,37 @@
+.dialogue {
+  margin-bottom: 2rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+input {
+  display: block;
+  width: 100%;
+  padding: 0.7rem 1rem;
+  font-size: 1rem;
+  border: 1px solid var(--color-light-black);
+  border-radius: 8px;
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--color-primary);
+}
+
+button {
+  margin: 1rem 1rem 2rem 0;
+}
+
+.hidden-para {
+  margin-bottom: 0.5rem;
+}
+
+h3 {
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+  font-family: var(--font-heading);
+  font-weight: 400;
+}

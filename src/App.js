@@ -1,32 +1,47 @@
-import React from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import LessonsPage from './pages/Lessons/LessonsPage';
-import LessonsBeginnerPage from './pages/Lessons/LessonsBeginnerPage';
-import LessonsIntermediatePage from './pages/Lessons/LessonsIntermediatePage';
-import LessonsAdvancedPage from './pages/Lessons/LessonsAdvancedPage';
-import QuickExercisesPage from './pages/QuickExercises/QuickExercisesPage';
-import FlashcardPage from './pages/FlashcardPage';
-import LessonDetailPage from "./pages/Lessons/LessonDetailPage";
 import HomePage from "./components/Layout/HomePage";
-import LoginPage from "./pages/LoginPage";
-import ListeningPage from "./pages/QuickExercises/ListeningPage";
+import LoadingSpinner from "./components/UI/LoadingSpinner";
+
+
+
+
+const LessonsBeginnerPage = React.lazy(() => import('./pages/Lessons/LessonsBeginnerPage'));
+const LessonsIntermediatePage = React.lazy(() => import('./pages/Lessons/LessonsIntermediatePage'));
+const LessonsAdvancedPage = React.lazy(() => import('./pages/Lessons/LessonsAdvancedPage'));
+const LessonDetailPage = React.lazy(() => import('./pages/Lessons/LessonDetailPage'));
+const QuickExercisesPage = React.lazy(() => import('./pages/QuickExercises/QuickExercisesPage'));
+const FlashcardPage = React.lazy(() => import('./pages/FlashcardPage'));
+const LoginPage = React.lazy(() => import('./pages/LoginPage'));
+const ListeningPage = React.lazy(() => import('./pages/QuickExercises/ListeningPage'));
+
+
+
+
+
+
+
+
 
 function App() {
   return (
-    <Routes>
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/" element={<HomePage />}>
-        <Route path="/" element={<Navigate replace to="/lessons" />} />
-        <Route path="/lessons/" element={<LessonsPage />} />
-        <Route path="/lessons/beginner" element={<LessonsBeginnerPage />} />
-        <Route path="/lessons/intermediate" element={<LessonsIntermediatePage />} />
-        <Route path="/lessons/advanced" element={<LessonsAdvancedPage />} />
-        <Route path="/lessons/:lessonId" element={<LessonDetailPage />} />
-        <Route path="/quick-exercises" element={<QuickExercisesPage />} />
-        <Route path="/quick-exercises/listening" element={<ListeningPage />} />
-        <Route path="flashcard" element={<FlashcardPage />} />
-      </Route>
-    </Routes>
+    <Suspense fallback={<LoadingSpinner />}>
+      <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/" element={<HomePage />}>
+          <Route path="/" element={<Navigate replace to="/lessons" />} />
+          <Route path="/lessons/" element={<LessonsPage />} />
+          <Route path="/lessons/beginner" element={<LessonsBeginnerPage />} />
+          <Route path="/lessons/intermediate" element={<LessonsIntermediatePage />} />
+          <Route path="/lessons/advanced" element={<LessonsAdvancedPage />} />
+          <Route path="/lessons/:lessonId" element={<LessonDetailPage />} />
+          <Route path="/quick-exercises" element={<QuickExercisesPage />} />
+          <Route path="/quick-exercises/listening" element={<ListeningPage />} />
+          <Route path="flashcard" element={<FlashcardPage />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
