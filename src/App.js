@@ -1,8 +1,11 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import LessonsPage from './pages/Lessons/LessonsPage';
 import HomePage from "./components/Layout/HomePage";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
+
+
+
 
 const LessonsBeginnerPage = React.lazy(() => import('./pages/Lessons/LessonsBeginnerPage'));
 const LessonsIntermediatePage = React.lazy(() => import('./pages/Lessons/LessonsIntermediatePage'));
@@ -12,6 +15,13 @@ const QuickExercisesPage = React.lazy(() => import('./pages/QuickExercises/Quick
 const FlashcardPage = React.lazy(() => import('./pages/FlashcardPage'));
 const LoginPage = React.lazy(() => import('./pages/LoginPage'));
 const ListeningPage = React.lazy(() => import('./pages/QuickExercises/ListeningPage'));
+
+
+
+
+
+
+
 
 
 function App() {
