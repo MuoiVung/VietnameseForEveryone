@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import Header from './Header';
 import classes from './Lesson.module.css';
 import {Link} from 'react-router-dom';
 
@@ -39,8 +38,7 @@ const LessonsBeginnerPage = () => {
 
   return (
     <div>
-      <Header />
-      <Link to="/lessons:lessonId" className={classes.link}>
+      <Link to="/lessons/lessonId" className={classes.link}>
         <div className={classes.pageBeginner}>
           { lessons && lessons.map ((item, index) => (
             <div key={index} className={classes.containerItem}>
@@ -52,7 +50,6 @@ const LessonsBeginnerPage = () => {
           ))}
         </div>
       </Link>
-
     </div>
   );
 };
