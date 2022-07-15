@@ -4,15 +4,21 @@ import userAvatar from "../assets/img/user-avatar.jpg";
 
 import "./LoginPage.css";
 
-
-
-
-
 const LoginPage = () => {
   const navigate = useNavigate();
 
   // array lưu user
-  const [Listuser, setListuser] = useState([{ Name: "nghia", Email: "nghia@gmail.com", Password: "123", Phonenumber: 1234567890, NameId: "Admin", Avatar: "https://scontent.fhan4-1.fna.fbcdn.net/v/t39.30808-6/248793490_599009591431369_4830499515000362330_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=of02KyIAjLAAX-zoHUA&_nc_ht=scontent.fhan4-1.fna&oh=00_AT-FMNA2-0Sv8jMiLV8jD0E3BmgrwBUPkppRQBKnYUdvrQ&oe=62D4C9C9" }]);
+  const [Listuser, setListuser] = useState([
+    {
+      Name: "nghia",
+      Email: "nghia@gmail.com",
+      Password: "123",
+      Phonenumber: 1234567890,
+      NameId: "Admin",
+      Avatar:
+        "https://scontent.fhan4-1.fna.fbcdn.net/v/t39.30808-6/248793490_599009591431369_4830499515000362330_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=of02KyIAjLAAX-zoHUA&_nc_ht=scontent.fhan4-1.fna&oh=00_AT-FMNA2-0Sv8jMiLV8jD0E3BmgrwBUPkppRQBKnYUdvrQ&oe=62D4C9C9",
+    },
+  ]);
 
   // check
   const [CheckNameID, setCheckNameID] = useState(false);
@@ -36,9 +42,7 @@ const LoginPage = () => {
   const [CheckloginName, setCheckloginName] = useState(false);
   const [CheckloginPassword, setCheckloginPassword] = useState(false);
 
-
   // ===================================
-
 
   //  ************************************************
   useEffect(() => {
@@ -46,35 +50,34 @@ const LoginPage = () => {
       if (Name === Listuser[index].Name) {
         setCheckNameID(true);
       } else {
-        setCheckNameID(false)
+        setCheckNameID(false);
       }
     }
-
   }, [Name, Listuser]);
 
   useEffect(() => {
     if (Password.length === 0) {
-      setCheckPass(false)
-      return
+      setCheckPass(false);
+      return;
     }
     if (Password.length < 6) {
       setCheckPass(true);
     } else {
-      setCheckPass(false)
+      setCheckPass(false);
     }
   }, [Password]);
 
   useEffect(() => {
     if (Password !== ConfirmPassword) {
-      setCheckConfirmPassword(true)
+      setCheckConfirmPassword(true);
     } else {
-      setCheckConfirmPassword(false)
+      setCheckConfirmPassword(false);
     }
-  }, [Password, ConfirmPassword])
+  }, [Password, ConfirmPassword]);
 
   useEffect(() => {
     if (Phonenumber.length === 0) {
-      return
+      return;
     }
     if (Phonenumber.length < 10) {
       setChecknum(true);
@@ -85,16 +88,15 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (loginName.length === 0) {
-      setCheckloginName(false)
+      setCheckloginName(false);
     }
-  }, [loginName])
-
+  }, [loginName]);
 
   useEffect(() => {
     if (loginPassword.length === 0) {
-      setCheckloginPassword(false)
+      setCheckloginPassword(false);
     }
-  }, [loginPassword])
+  }, [loginPassword]);
 
   //  xử lí đăng kí
 
@@ -112,6 +114,35 @@ const LoginPage = () => {
       Advanced: false,
     };
   }
+
+  const sendRequest = async (userEmail, userPassword) => {
+    try {
+      const response = await fetch(
+        "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBJ4LsbZ0AOTjRKo4-kl-KmTjXLbqH1qXw",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: userEmail,
+            password: userPassword,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const data = await response.json();
+
+      console.log(data);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -137,34 +168,36 @@ const LoginPage = () => {
     setCheckNameID(false);
     setCheckPass(false);
     setListuser([...Listuser, NewUser]);
-    localStorage.setItem('loginDataNewUser', JSON.stringify(NewUser))
+    localStorage.setItem("loginDataNewUser", JSON.stringify(NewUser));
+    console.log(NewUser.Email, NewUser.Password);
+    sendRequest(NewUser.Email, NewUser.Password);
     navigate("/lessons");
   };
 
   // đăng nhập
 
-
   const CheckNameLogin = (loginName, Listuser) => {
     if (loginName === Listuser.Name) {
-      return true
+      return true;
     }
   };
 
-
   const CheckPassLogin = (loginPassword, Listuser) => {
     if (loginPassword === Listuser.Password) {
-      return true
+      return true;
     }
   };
 
   const handleSubmitLogin = (e) => {
-
-    e.preventDefault()
+    e.preventDefault();
     for (let index = 0; index < Listuser.length; index++) {
       if (CheckNameLogin(loginName, Listuser[index])) {
         if (CheckPassLogin(loginPassword, Listuser[index])) {
-          localStorage.setItem('loginDataNewUser', JSON.stringify(Listuser[index]))
-          navigate("/lessons")
+          localStorage.setItem(
+            "loginDataNewUser",
+            JSON.stringify(Listuser[index])
+          );
+          navigate("/lessons");
         }
       }
     }
@@ -191,7 +224,9 @@ const LoginPage = () => {
                 placeholder="Enter your name"
               />
               {CheckNameID ? (
-                <p style={{ color: "red", fontSize: "10px" }}>Your name is already taken</p>
+                <p style={{ color: "red", fontSize: "10px" }}>
+                  Your name is already taken
+                </p>
               ) : null}
 
               <label>Email address</label>
@@ -214,9 +249,10 @@ const LoginPage = () => {
                 placeholder="Enter your password "
               />
 
-
               {CheckPass ? (
-                <p style={{ color: "red", fontSize: "10px" }}>Password must be more than 6 characters</p>
+                <p style={{ color: "red", fontSize: "10px" }}>
+                  Password must be more than 6 characters
+                </p>
               ) : null}
 
               <label>Confirm Password</label>
@@ -230,7 +266,9 @@ const LoginPage = () => {
               />
 
               {CheckConfirmPassword ? (
-                <p style={{ color: "red", fontSize: "10px" }}>Please enter the true password</p>
+                <p style={{ color: "red", fontSize: "10px" }}>
+                  Please enter the true password
+                </p>
               ) : null}
 
               <label>Phone number</label>
@@ -278,7 +316,9 @@ const LoginPage = () => {
                   placeholder="Enter your name"
                 />
                 {CheckloginName ? (
-                  <p style={{ color: "red", fontSize: "10px" }}>Your Name could not be found</p>
+                  <p style={{ color: "red", fontSize: "10px" }}>
+                    Your Name could not be found
+                  </p>
                 ) : null}
 
                 <label>Password</label>
@@ -292,10 +332,10 @@ const LoginPage = () => {
                 />
 
                 {CheckloginPassword ? (
-                  <p style={{ color: "red", fontSize: "10px" }}>Please enter the correct password</p>
+                  <p style={{ color: "red", fontSize: "10px" }}>
+                    Please enter the correct password
+                  </p>
                 ) : null}
-
-
 
                 <p
                   style={{ color: "red", cursor: "pointer" }}
