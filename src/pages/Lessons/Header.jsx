@@ -2,7 +2,7 @@ import React from 'react'
 import classes from './Lesson.module.css';
 import SButton from './CustomHooks/SButton'
 
-const Header = () => {
+const Header = ({lessonId}) => {
   return (
     <div>
       <div className={classes.ld_bar}>
@@ -18,7 +18,7 @@ const Header = () => {
         <div className={classes.ld_bar_right}>
           <div className={classes.ld_bar_step}>
             <SButton className={classes.ld_bar_step_arrow}>Prev</SButton>
-            <p className={classes.ld_bar_step_des}>Lesson 1</p>
+            <p className={classes.ld_bar_step_des}>{lessonId}</p>
             <SButton className={classes.ld_bar_step_arrow}>Next</SButton>
           </div>
           <div className={classes.ld_bar_showbtn}>
