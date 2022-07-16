@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userAvatar from "../assets/img/user-avatar.jpg";
@@ -11,12 +12,11 @@ import "./LoginPage.css";
 const LoginPage = () => {
   const navigate = useNavigate();
 
-  // array lưu user
-  const [Listuser, setListuser] = useState([{ Name: "nghia", Email: "nghia@gmail.com", Password: "123", Phonenumber: 1234567890, NameId: "Admin", Avatar: "https://scontent.fhan4-1.fna.fbcdn.net/v/t39.30808-6/248793490_599009591431369_4830499515000362330_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=of02KyIAjLAAX-zoHUA&_nc_ht=scontent.fhan4-1.fna&oh=00_AT-FMNA2-0Sv8jMiLV8jD0E3BmgrwBUPkppRQBKnYUdvrQ&oe=62D4C9C9" }]);
 
   // check
   const [CheckNameID, setCheckNameID] = useState(false);
   const [CheckPass, setCheckPass] = useState(false);
+  const [CheckPassError, setCheckPassError] = useState(false)
   const [CheckConfirmPassword, setCheckConfirmPassword] = useState(false);
   const [checkNum, setChecknum] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
@@ -38,23 +38,21 @@ const LoginPage = () => {
 
 
   // ===================================
+  const [EmailLogin, setEmaillogin] = useState({})
+
 
 
   //  ************************************************
   useEffect(() => {
-    for (let index = 0; index < Listuser.length; index++) {
-      if (Name === Listuser[index].Name) {
-        setCheckNameID(true);
-      } else {
-        setCheckNameID(false)
-      }
+    if (Name.length === 0) {
+      setCheckNameID(false);
     }
-
-  }, [Name, Listuser]);
+  }, [Name]);
 
   useEffect(() => {
     if (Password.length === 0) {
       setCheckPass(false)
+      setCheckPassError(false)
       return
     }
     if (Password.length < 6) {
@@ -65,6 +63,10 @@ const LoginPage = () => {
   }, [Password]);
 
   useEffect(() => {
+    if (ConfirmPassword.length === 0) {
+      setCheckConfirmPassword(false)
+      return
+    }
     if (Password !== ConfirmPassword) {
       setCheckConfirmPassword(true)
     } else {
@@ -99,12 +101,10 @@ const LoginPage = () => {
   //  xử lí đăng kí
 
   function NewUserClass(Name, Email, Password, Phonenumber) {
-    this.Name = Name;
+    this.NameId = Name;
     this.Email = Email;
-    this.Password = Password;
     this.Phonenumber = Phonenumber;
     this.Avatar = userAvatar;
-    this.NameId = Name;
 
     this.Lessons = {
       Beginner: true,
@@ -113,73 +113,71 @@ const LoginPage = () => {
     };
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const NewUser = new NewUserClass(Name, Email, Password, Phonenumber);
-
-    for (let index = 0; index < Listuser.length; index++) {
-      if (NewUser.Name === Listuser[index].Name) {
-        return setCheckNameID(true);
+  const sendRepuestSignUp = async (e) => {
+    e.preventDefault()
+    const NewUser = new NewUserClass(Name, Email, Phonenumber)
+    console.log(NewUser.Email, loginPassword);
+    try {
+      const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBJ4LsbZ0AOTjRKo4-kl-KmTjXLbqH1qXw`, {
+        method: "POST",
+        body: JSON.stringify({
+          email: NewUser.Email,
+          password: Password,
+          returnSecureToken: true,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      if (!res.ok) {
+        throw new Error("Something went wrong!")
       }
+      const DataUser = await res.json()
+      setEmaillogin("new user", DataUser)
+      localStorage.setItem('loginDataNewUser', JSON.stringify(EmailLogin))
+      navigate("/lessons")
+    } catch (error) {
+      console.log("error", error)
+      setCheckPassError(true)
     }
-    if (Password.length < 6) {
-      return setCheckPass(true);
-    }
-
-    if (Password !== ConfirmPassword) {
-      return setCheckPass(true);
-    }
-    if (Phonenumber.length < 9) {
-      return setChecknum(true);
-    }
-
-    setChecknum(false);
-    setCheckNameID(false);
-    setCheckPass(false);
-    setListuser([...Listuser, NewUser]);
-    localStorage.setItem('loginDataNewUser', JSON.stringify(NewUser))
-    navigate("/lessons");
-  };
+  }
 
   // đăng nhập
 
-
-  const CheckNameLogin = (loginName, Listuser) => {
-    if (loginName === Listuser.Name) {
-      return true
-    }
-  };
-
-
-  const CheckPassLogin = (loginPassword, Listuser) => {
-    if (loginPassword === Listuser.Password) {
-      return true
-    }
-  };
-
-  const handleSubmitLogin = (e) => {
-
+  const sendRepuestLogin = async (e) => {
     e.preventDefault()
-    for (let index = 0; index < Listuser.length; index++) {
-      if (CheckNameLogin(loginName, Listuser[index])) {
-        if (CheckPassLogin(loginPassword, Listuser[index])) {
-          localStorage.setItem('loginDataNewUser', JSON.stringify(Listuser[index]))
-          navigate("/lessons")
-        }
+    try {
+      const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBJ4LsbZ0AOTjRKo4-kl-KmTjXLbqH1qXw`, {
+        method: "POST",
+        body: JSON.stringify({
+          email: loginName,
+          password: loginPassword,
+          returnSecureToken: true,
+        }), headers: {
+          "Content-Type": "application/json",
+        },
+      })
+      if (!res.ok) {
+        throw new Error("Something went wrong!")
       }
+      const DataUser = await res.json()
+      setEmaillogin("new user", DataUser)
+      localStorage.setItem('loginDataNewUser', JSON.stringify(EmailLogin))
+      navigate("/lessons")
+      console.log("data login", DataUser)
+    } catch (error) {
+      setCheckloginName(true)
+      setCheckloginPassword(true)
     }
-    setCheckloginName(true);
-    setCheckloginPassword(true);
-  };
+  }
 
-  // console.log("test this", Listuser);
 
   return (
     <section>
       {isSignup ? (
         <section className="body-infor">
           <div>
-            <form className="infoform" onSubmit={handleSubmit}>
+            <form className="infoform" onSubmit={sendRepuestSignUp}>
               <header>Sign up</header>
               <label>Your name</label>
               <input
@@ -190,9 +188,6 @@ const LoginPage = () => {
                 onChange={(e) => setName(e.target.value)}
                 placeholder="Enter your name"
               />
-              {CheckNameID ? (
-                <p style={{ color: "red", fontSize: "10px" }}>Your name is already taken</p>
-              ) : null}
 
               <label>Email address</label>
               <input
@@ -203,6 +198,9 @@ const LoginPage = () => {
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email "
               />
+              {CheckNameID ? (
+                <p style={{ color: "red", fontSize: "10px" }}>You can't find your email.</p>
+              ) : null}
 
               <label>Password</label>
               <input
@@ -214,6 +212,9 @@ const LoginPage = () => {
                 placeholder="Enter your password "
               />
 
+              {CheckPassError ? (
+                <p style={{ color: "red", fontSize: "10px" }}>You seem to be in the wrong password.</p>
+              ) : null}
 
               {CheckPass ? (
                 <p style={{ color: "red", fontSize: "10px" }}>Password must be more than 6 characters</p>
@@ -266,9 +267,9 @@ const LoginPage = () => {
         <div>
           <section className="body-infor">
             <div>
-              <form className="infoform" onSubmit={handleSubmitLogin}>
+              <form className="infoform" onSubmit={sendRepuestLogin}>
                 <header>LoginPage</header>
-                <label>Your name</label>
+                <label>Your email</label>
                 <input
                   type="text"
                   id="name"
