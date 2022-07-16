@@ -1,7 +1,8 @@
 import React from "react";
+import ComingSoon from "../../components/UI/ComingSoon";
 
 const ReadingPage = () => {
-  return <div>ReadingPage</div>;
+  return <ComingSoon />;
 };
 
 export default ReadingPage;
