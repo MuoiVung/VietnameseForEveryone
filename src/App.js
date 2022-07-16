@@ -1,4 +1,4 @@
-import React, { Suspense} from "react";
+import React, { Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import LessonsPage from './pages/Lessons/LessonsPage';
 import HomePage from "./components/Layout/HomePage";

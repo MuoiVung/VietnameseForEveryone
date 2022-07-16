@@ -1,10 +1,8 @@
 import React, { useState } from "react";
 import FlashcardList from "./FlashcardPageChill/FlashcardList";
-import './FlashcardPageChill/appFlashcard.css'
+import "./FlashcardPageChill/appFlashcard.css";
 const FlashcardPage = () => {
-  const [flashcard, setFlashcard] = useState(SAPM_FKASHCARDS)
-  setFlashcard();
-
+  const [flashcard, setFlashcard] = useState(SAPM_FKASHCARDS);
 
   return (
     <>
@@ -13,21 +11,21 @@ const FlashcardPage = () => {
         <FlashcardList flashcard={flashcard} />
       </div>
     </>
-
-  )
+  );
 };
 
 const SAPM_FKASHCARDS = [
   {
     id: 1,
-    question: "Dòng nào nêu đúng các phương diện của yêu cầu sử dụng tiếng Việt?",
-    answer: 'Ngữ âm và chữ viết, phong cách ngôn ngữ, ngữ pháp, từ ngữ.',
+    question:
+      "Dòng nào nêu đúng các phương diện của yêu cầu sử dụng tiếng Việt?",
+    answer: "Ngữ âm và chữ viết, phong cách ngôn ngữ, ngữ pháp, từ ngữ.",
     options: [
-      'Ngữ âm, ngữ pháp, phong cách ngôn ngữ, chính tả.',
-      'Ngữ âm và chữ viết, phong cách ngôn ngữ, ngữ pháp, từ ngữ.',
-      'Chữ viết, phong cách ngôn ngữ, chính tả, ngữ âm.',
-      ' Từ ngữ, ngữ âm, ngữ pháp, phong cách ngôn ngữ.'
-    ]
+      "Ngữ âm, ngữ pháp, phong cách ngôn ngữ, chính tả.",
+      "Ngữ âm và chữ viết, phong cách ngôn ngữ, ngữ pháp, từ ngữ.",
+      "Chữ viết, phong cách ngôn ngữ, chính tả, ngữ âm.",
+      " Từ ngữ, ngữ âm, ngữ pháp, phong cách ngôn ngữ.",
+    ],
   },
   // {
   //   id: 2,
@@ -95,7 +93,6 @@ const SAPM_FKASHCARDS = [
   //     'Viết tiếng Việt đúng theo quy tắc chính tả hiện hành.'
   //   ]
   // },
-
-]
+];
 
 export default FlashcardPage;
