@@ -1,7 +1,8 @@
 import React from "react";
+import ComingSoon from "../../components/UI/ComingSoon";
 
 const WritingPage = () => {
-  return <div>WritingPage</div>;
+  return <ComingSoon />;
 };
 
 export default WritingPage;

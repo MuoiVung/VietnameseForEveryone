@@ -1,7 +1,8 @@
 import React from "react";
+import ComingSoon from "../../components/UI/ComingSoon";
 
 const SpeakingPage = () => {
-  return <div>SpeakingPage</div>;
+  return <ComingSoon />;
 };
 
 export default SpeakingPage;
