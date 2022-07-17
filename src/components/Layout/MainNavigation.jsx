@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./MainNavigation.module.css";
 import { NavLink } from "react-router-dom";
 import userAvatar from "../../assets/img/user-avatar.jpg";
@@ -24,6 +24,24 @@ const MainNavigation = () => {
       ? JSON.parse(localStorage.getItem('loginDataNewUser'))
       : { Name: "", Email: "", Password: "", Phonenumber: "", NameId: "Wimp Mullan", Avatar: userAvatar })
   }
+
+  const handleDataUser = async (check) => {
+    try {
+      const res = await fetch(`https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/users/${check}/.json`)
+      const data = await res.json()
+      console.log(data)
+      setLoginData(data)
+    } catch (error) {
+      alert("chua dang nhap")
+    }
+  }
+
+  useEffect(() => {
+    if (localStorage.getItem('loginDataNewUser')) {
+      handleDataUser(LoginData)
+      console.log(LoginData)
+    }
+  }, [])
   return (
     <section className={classes.sidebar}>
       <div className={classes.container}>

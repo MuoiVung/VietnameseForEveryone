@@ -81,3 +81,10 @@
  .ld_banner__category{
      justify-content: space-between;
  }
+
+ /* dialog */
+ .ld_dialogue{
+     display: flex;
+     justify-content: space-between;
+     background-color: greenyellow;
+ }
