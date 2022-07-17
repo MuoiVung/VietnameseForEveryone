@@ -3,6 +3,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import LessonsPage from './pages/Lessons/LessonsPage';
 import HomePage from "./components/Layout/HomePage";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
+import NotFoundPage from "./pages/NotFoundPage";
 
 
 
@@ -39,6 +40,7 @@ function App() {
           <Route path="/quick-exercises/speaking" element={<SpeakingPage />} />
           <Route path="flashcard" element={<FlashcardPage />} />
         </Route>
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </Suspense>
   );
