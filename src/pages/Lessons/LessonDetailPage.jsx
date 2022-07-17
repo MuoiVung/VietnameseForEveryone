@@ -10,6 +10,7 @@ import Transcript from './LessonDetailContent/Transcript';
 import Comments from './LessonDetailContent/Comments';
 import Dialogue from './LessonDetailContent/Dialogue';
 
+
 const LessonDetailPage = () => {
   const {lessonId} = useParams ();
   const [lesson, setLesson] = useState (null);
@@ -50,11 +51,20 @@ const LessonDetailPage = () => {
               <SButton>Level 1 Vietnamese</SButton>
             </div>
           </div>
-          <Dialogue lesson={lesson}/>
-          <Vocabulary lesson={lesson}/>
-          <Notes lesson={lesson}/>
-          <Transcript lesson={lesson}/>
-          <Comments />
+          <div className={classes.ld_container_content}>
+            <ul className={classes.ld_content_sidebar}>
+              <a href='#dialogue'><li>Dialogue</li></a>
+              <a href='#vocabulary'><li>Vocabulary</li></a>
+              <a href='#vocabulary'><li>Notes</li></a>
+              <a href='#transcripts'><li>Lesson Transcripts</li></a>
+              <a href='#comments'><li>Comments</li></a>
+            </ul>
+            <Dialogue lesson={lesson}/>
+            <Vocabulary lesson={lesson}/>
+            <Notes lesson={lesson}/>
+            <Transcript lesson={lesson}/>
+            <Comments />
+          </div>
         </div>}
     </section>
   );

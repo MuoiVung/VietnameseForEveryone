@@ -44,7 +44,7 @@
 }
  /* LessonDetail */
  .ld_container{
-    text-align: center;
+    text-align: Left;
  }
  /* lesson detail bar */
 
@@ -99,14 +99,40 @@
      justify-content: space-between;
  }
 
+ .ld_container_content{
+     border: 1px solid #999;
+     padding: 20px;
+ }
+ .ld_content_sidebar{
+     list-style: none;
+     display: flex;
+     padding-bottom: 20px;
+     padding-left: 0px;
+ }
  /* dialog */
  .ld_dialogue{
+     margin-bottom:  30px;
      display: flex;
      justify-content: space-between;
      background-color: greenyellow;
  }
+/* vocabulary */
+ .vocabulary_container{
+    margin-bottom: 30px;
+ }
+ /* notes */
+ .notes_container{
+     margin-bottom: 30px;
+ }
+ /* transcript */
+ .transcript_container{
+    margin-bottom: 30px;
+ }
  /* comment */
- .form_comment{
+ .comments_container{
+     margin-bottom: 30px;
+ }
+ .form_comments{
     display: flex;
     flex-direction: column;
     width: 90%;
@@ -135,4 +161,15 @@
     margin: 10px 0;
     padding: 10px;
     border-radius: 5px;
+}
+.comments_item{
+    border: solid 0.5px #555;
+    border-radius: 7px;
+    padding: 10px;
+    margin: 15px 0;
+    text-align: left;
+}
+.comments_item_name{
+    margin-bottom: 20px;
+    font-style: italic;
 }

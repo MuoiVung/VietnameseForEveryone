@@ -5,7 +5,7 @@ import ShowHide from '../CustomHooks/ShowHide';
 
 const Dialogue = ({lesson}) => {
   return (
-    <div className={classes.ld_dialogue}>
+    <div className={classes.ld_dialogue} id='dialogue'>
     <div className={classes.ld_dialogueLeft}>
       <h3>Dialogue - Vietnames</h3>
       <ReactAudioPlayer src={lesson.dialogueAudio} controls />
