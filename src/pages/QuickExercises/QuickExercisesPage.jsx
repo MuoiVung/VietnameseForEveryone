@@ -42,7 +42,7 @@ const skills = (
         <p className={classes["skill-content"]}>
           Read a paragraph and answer questions.
         </p>
-        <StyledButton as={Link} to="/quick-exercises/listening">
+        <StyledButton as={Link} to="/quick-exercises/reading">
           Start
         </StyledButton>
       </li>
@@ -55,7 +55,7 @@ const skills = (
         <p className={classes["skill-content"]}>
           Rearrange all words to complete a correct sentence.
         </p>
-        <StyledButton as={Link} to="/quick-exercises/listening">
+        <StyledButton as={Link} to="/quick-exercises/writing">
           Start
         </StyledButton>
       </li>
@@ -68,7 +68,7 @@ const skills = (
         <p className={classes["skill-content"]}>
           Hear an audio and repeat that audio.
         </p>
-        <StyledButton as={Link} to="/quick-exercises/listening">
+        <StyledButton as={Link} to="/quick-exercises/speaking">
           Start
         </StyledButton>
       </li>

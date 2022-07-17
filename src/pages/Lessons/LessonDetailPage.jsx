@@ -1,13 +1,69 @@
-import React from "react";
-import { useParams } from "react-router-dom";
+import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
+import classes from './Lesson.module.css';
+import ReactAudioPlayer from 'react-audio-player';
+import { BiUpArrow } from 'react-icons/bi'
+import SButton from './CustomHooks/SButton';
+import Header from './Header';
 
 const LessonDetailPage = () => {
-  const { lessonId } = useParams();
+
+  const {lessonId} = useParams ();
+  const [lesson, setLesson] = useState (null);
+
+  console.log (lessonId);
+
+  const URL_API =
+    'https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/lesson-beginner';
+
+  useEffect (
+    () => {
+      const fetchLessonAPI = async () => {
+        try {
+          const response = await fetch (`${URL_API}/${lessonId}/.json`);
+          if (!response.ok) {
+            throw new Error ('Something went wrong!');
+          }
+          const lessonData = await response.json ();
+          setLesson (lessonData);
+        } catch (error) {
+          console.error (error.message);
+        }
+      };
+      fetchLessonAPI ();
+    },
+    [lessonId]
+  );
+  console.log (lesson);
   return (
-    <div>
-      <h1>LessonDetailPage</h1>
-      <p>LessonID: {lessonId}</p>
-    </div>
+    <section className={classes.ld_container}>
+      <Header lessonId={lessonId} />
+      {lesson &&
+        <div className={classes.ld_content}>
+          <div className={classes.ld_baner}>
+            <h1>{lesson && lesson.title}</h1>
+            <p>{lesson.description}</p>
+            <ReactAudioPlayer src={lesson.popAudio} controls />
+            <div className={classes.ld_banner__category}>
+              <span>Also Appears In:</span>
+              <SButton>Beginner</SButton>
+              <SButton>Level 1 Vietnamese</SButton>
+            </div>
+          </div>
+          <div className={classes.ld_dialogue}>
+            <div className={classes.ld_dialogueLeft}>
+              <h3>Dialogue - Vietnames</h3>
+              <ReactAudioPlayer src={lesson.dialogueAudio} controls />
+              <p>{lesson.dialogText}</p>
+              
+            </div>
+            <div className={classes.ld_dialogueRight}>
+                <span>Hide</span>
+                <BiUpArrow/>
+            </div>
+          </div>
+        </div>}
+    </section>
   );
 };
 

@@ -38,7 +38,7 @@ const LoginPage = () => {
 
 
   // ===================================
-  const [EmailLogin, setEmaillogin] = useState({})
+
 
 
 
@@ -100,22 +100,42 @@ const LoginPage = () => {
 
   //  xử lí đăng kí
 
-  function NewUserClass(Name, Email, Password, Phonenumber) {
+  function NewUserClass(Name, Email, Phonenumber) {
     this.NameId = Name;
     this.Email = Email;
     this.Phonenumber = Phonenumber;
     this.Avatar = userAvatar;
-
+    this.point = 0
     this.Lessons = {
       Beginner: true,
       Intermediate: false,
       Advanced: false,
-    };
+    }
+  }
+
+  async function addUserHandler(newUser, localId) {
+    try {
+      const response = await fetch(`https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/users/${localId}/.json`, {
+        method: 'PUT',
+        body: JSON.stringify(newUser),
+        headers: {
+          'Content-Type': 'application/json'
+
+        }
+      });
+      const data = await response.json();
+      console.log(data)
+      return true
+    } catch (error) {
+      return false
+    }
+
   }
 
   const sendRepuestSignUp = async (e) => {
     e.preventDefault()
     const NewUser = new NewUserClass(Name, Email, Phonenumber)
+    console.log(NewUser.Email, loginPassword);
     try {
       const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBJ4LsbZ0AOTjRKo4-kl-KmTjXLbqH1qXw`, {
         method: "POST",
@@ -132,15 +152,12 @@ const LoginPage = () => {
         throw new Error("Something went wrong!")
       }
       const DataUser = await res.json()
-
-      // if(DataUser && DataUser?.idToken) {
-      //   {//em send request lên trên firebase, khi đăng ký tài khoản mới thì nếu đăng ký thành công thì nhận datausser với idtoken
-      // //  => gọi function }
-      // }
-
-      setEmaillogin("new user", DataUser)
-      localStorage.setItem('loginDataNewUser', JSON.stringify(EmailLogin))
-      navigate("/lessons")
+      if (addUserHandler(NewUser, DataUser.localId)) {
+        console.log(DataUser, DataUser.localId);
+        localStorage.setItem('loginDataNewUser', JSON.stringify(DataUser.localId))
+        navigate("/lessons")
+      }
+      setCheckNameID(true)
     } catch (error) {
       console.log("error", error)
       setCheckPassError(true)
@@ -163,17 +180,11 @@ const LoginPage = () => {
         },
       })
       if (!res.ok) {
-        throw new Error("Something went wrong!")
+        throw new Error("Login failed!")
       }
       const DataUser = await res.json()
-      setEmaillogin("new user", DataUser)
-      localStorage.setItem('loginDataNewUser', JSON.stringify(EmailLogin))
+      localStorage.setItem('loginDataNewUser', JSON.stringify(DataUser.localId))
       navigate("/lessons")
-      console.log("data login", DataUser)
-      //em cũng nhận về 1 object có idToken => nếu có idToken => dùng cái email mà họ nhập vào ấy để lấy dữ liệu trên firebase
-      //email lúc này chính là id 
-      //fetch('https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/users/{emailUser}/.json')
-      //=> vào được api của thằng có email dùng đăng nhập => dùng dạng json, nó yêu cầu thế =))
     } catch (error) {
       setCheckloginName(true)
       setCheckloginPassword(true)

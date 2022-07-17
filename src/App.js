@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import LessonsPage from './pages/Lessons/LessonsPage';
 import HomePage from "./components/Layout/HomePage";
@@ -15,13 +15,9 @@ const QuickExercisesPage = React.lazy(() => import('./pages/QuickExercises/Quick
 const FlashcardPage = React.lazy(() => import('./pages/FlashcardPage'));
 const LoginPage = React.lazy(() => import('./pages/LoginPage'));
 const ListeningPage = React.lazy(() => import('./pages/QuickExercises/ListeningPage'));
-
-
-
-
-
-
-
+const ReadingPage = React.lazy(() => import('./pages/QuickExercises/ReadingPage'));
+const SpeakingPage = React.lazy(() => import('./pages/QuickExercises/SpeakingPage'));
+const WritingPage = React.lazy(() => import('./pages/QuickExercises/WritingPage'));
 
 
 function App() {
@@ -38,6 +34,9 @@ function App() {
           <Route path="/lessons/:lessonId" element={<LessonDetailPage />} />
           <Route path="/quick-exercises" element={<QuickExercisesPage />} />
           <Route path="/quick-exercises/listening" element={<ListeningPage />} />
+          <Route path="/quick-exercises/reading" element={<ReadingPage />} />
+          <Route path="/quick-exercises/writing" element={<WritingPage />} />
+          <Route path="/quick-exercises/speaking" element={<SpeakingPage />} />
           <Route path="flashcard" element={<FlashcardPage />} />
         </Route>
       </Routes>
