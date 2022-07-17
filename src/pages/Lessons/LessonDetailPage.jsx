@@ -1,17 +1,18 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from 'react-router-dom';
 import classes from './Lesson.module.css';
-import ReactAudioPlayer from 'react-audio-player';
-import { BiUpArrow } from 'react-icons/bi'
+import ReactAudioPlayer from 'react-audio-player'
 import SButton from './CustomHooks/SButton';
 import Header from './Header';
+import Vocabulary from './LessonDetailContent/Vocabulary';
+import Notes from './LessonDetailContent/Notes';
+import Transcript from './LessonDetailContent/Transcript';
+import Comments from './LessonDetailContent/Comments';
+import Dialogue from './LessonDetailContent/Dialogue';
 
 const LessonDetailPage = () => {
-
   const {lessonId} = useParams ();
   const [lesson, setLesson] = useState (null);
-
-  console.log (lessonId);
 
   const URL_API =
     'https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/lesson-beginner';
@@ -34,7 +35,6 @@ const LessonDetailPage = () => {
     },
     [lessonId]
   );
-  console.log (lesson);
   return (
     <section className={classes.ld_container}>
       <Header lessonId={lessonId} />
@@ -50,18 +50,11 @@ const LessonDetailPage = () => {
               <SButton>Level 1 Vietnamese</SButton>
             </div>
           </div>
-          <div className={classes.ld_dialogue}>
-            <div className={classes.ld_dialogueLeft}>
-              <h3>Dialogue - Vietnames</h3>
-              <ReactAudioPlayer src={lesson.dialogueAudio} controls />
-              <p>{lesson.dialogText}</p>
-              
-            </div>
-            <div className={classes.ld_dialogueRight}>
-                <span>Hide</span>
-                <BiUpArrow/>
-            </div>
-          </div>
+          <Dialogue lesson={lesson}/>
+          <Vocabulary lesson={lesson}/>
+          <Notes lesson={lesson}/>
+          <Transcript lesson={lesson}/>
+          <Comments />
         </div>}
     </section>
   );

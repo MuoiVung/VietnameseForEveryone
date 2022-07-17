@@ -1,7 +1,10 @@
 import React from "react";
+import Comingsoon from '../../components/UI/ComingSoon'
 
 const LessonsAdvancedPage = () => {
-  return <div>LessonsAdvancedPage</div>;
+  return(
+    <Comingsoon/>
+  )
 };
 
 export default LessonsAdvancedPage;

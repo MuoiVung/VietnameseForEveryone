@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import classes from "./Lesson.module.css";
 import { Link } from "react-router-dom";
 
+
 const LessonsBeginnerPage = () => {
   const [lessons, setLessons] = useState(null);
   const URL_API =
@@ -25,7 +26,6 @@ const LessonsBeginnerPage = () => {
           stats: lessonData[key].stats,
         });
       }
-
       setLessons(transformedLessons);
     } catch (error) {
       console.error(error.message);
@@ -34,7 +34,7 @@ const LessonsBeginnerPage = () => {
 
   useEffect(() => {
     fetchLessonAPI();
-  }, []);
+  },[]);
 
   return (
     <div className={classes.pageBeginner}>
@@ -44,16 +44,17 @@ const LessonsBeginnerPage = () => {
             <Link
               to={`/lessons/${item.id}`}
               key={index}
-              className={classes.link}
+              className={classes.item_link}
             >
               <img src={item.image} alt="" className={classes.item_img} />
-              <h3>{item.title}</h3>
-              <h4>{item.description}</h4>
-              <h4>{item.stats}</h4>
+              <h4 className={classes.item_title}>{item.title}</h4>
+              <div className={classes.item_description}>
+                <p className={classes.item_text}>{item.description}</p>
+                <p className={classes.item_text}>{item.stats}</p>
+              </div>
             </Link>
           </div>
         ))}
-      ;
     </div>
   );
 };
