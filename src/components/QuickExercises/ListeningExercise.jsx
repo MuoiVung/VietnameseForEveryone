@@ -174,6 +174,25 @@ const ListeningExercise = () => {
     }
   };
 
+  const enterKeyHandler = (event) => {
+    if (event.key !== "Enter") {
+      return;
+    }
+
+    if (!isFinished) {
+      checkAnswerHandler(event);
+    } else {
+      nextQuesttionHandler(event);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("keydown", enterKeyHandler, false);
+    return () => {
+      document.removeEventListener("keydown", enterKeyHandler);
+    };
+  }, [hiddenParagraph]);
+
   return (
     <Fragment>
       {isInitial && (
@@ -195,32 +214,31 @@ const ListeningExercise = () => {
         </div>
       )}
 
-      <form>
-        <label htmlFor="dictation">What is the speaker saying?</label>
-        {!isFinished && (
+      {!isFinished && (
+        <div>
+          <label htmlFor="dictation">What is the speaker saying?</label>
           <input
             id="dictation"
             style={{ color: "black" }}
             type="text"
             ref={enteredInputRef}
+            autoFocus
           />
-        )}
-        {isFinished && <input disabled />}
-        {!isFinished && (
           <StyledButton onClick={checkAnswerHandler}>Check Answer</StyledButton>
-        )}
-        {!isFinished && (
           <StyledButton onClick={giveUpHandler}>Give Up</StyledButton>
-        )}
-        {isFinished && (
+        </div>
+      )}
+
+      {isFinished && (
+        <div>
+          <label htmlFor="dictation">What is the speaker saying?</label>
+          <input disabled />
           <StyledButton onClick={nextQuesttionHandler}>
             Next Question
           </StyledButton>
-        )}
-        {isFinished && (
           <StyledButton onClick={tryAgainHandler}>Try Again</StyledButton>
-        )}
-      </form>
+        </div>
+      )}
 
       {isChecked && (
         <Container color={isFinished ? "#90ee9080" : "wheat"}>
