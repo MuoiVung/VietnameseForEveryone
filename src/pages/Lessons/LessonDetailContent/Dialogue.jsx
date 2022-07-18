@@ -1,20 +1,24 @@
 import React from 'react'
 import classes from '../Lesson.module.css';
 import ReactAudioPlayer from 'react-audio-player';
-import ShowHide from '../CustomHooks/ShowHide';
+import ShowHide from '../CustomHooks/Hide';
 
-const Dialogue = ({lesson}) => {
+const Dialogue = ({ lesson }) => {
+  
   return (
-    <div className={classes.ld_dialogue} id='dialogue'>
-    <div className={classes.ld_dialogueLeft}>
-      <h3>Dialogue - Vietnames</h3>
+    <div className={classes.dialogue_container} id='dialogue'>
+      <div className={classes.dialogue_header}>
+        <h3>Dialogue - Vietnames</h3>
+        <ShowHide />
+      </div>
       <ReactAudioPlayer src={lesson.dialogueAudio} controls />
-      <p>{lesson.dialogText}</p>
+      <div >
+        <p>{lesson.dialogue.vn}</p>
+        <p>{lesson.dialogue.eng}</p>
+      </div>
+
+
     </div>
-    <div>
-        <ShowHide/>
-    </div>
-  </div>
   )
 }
 

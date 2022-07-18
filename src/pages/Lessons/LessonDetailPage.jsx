@@ -48,14 +48,14 @@ const LessonDetailPage = () => {
             <div className={classes.ld_banner__category}>
               <span>Also Appears In:</span>
               <SButton>Beginner</SButton>
-              <SButton>Level 1 Vietnamese</SButton>
+              <SButton>Beginner Vietnamese</SButton>
             </div>
           </div>
           <div className={classes.ld_container_content}>
             <ul className={classes.ld_content_sidebar}>
               <a href='#dialogue'><li>Dialogue</li></a>
               <a href='#vocabulary'><li>Vocabulary</li></a>
-              <a href='#vocabulary'><li>Notes</li></a>
+              <a href='#notes'><li>Notes</li></a>
               <a href='#transcripts'><li>Lesson Transcripts</li></a>
               <a href='#comments'><li>Comments</li></a>
             </ul>
