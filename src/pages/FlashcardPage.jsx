@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import FlashcardList from "./FlashcardPageChill/FlashcardList";
 import "./FlashcardPageChill/appFlashcard.css";
+
+
+
+
 const FlashcardPage = () => {
   const [flashcard, setFlashcard] = useState(SAPM_FKASHCARDS);
 
@@ -8,7 +12,7 @@ const FlashcardPage = () => {
     <>
       <h1>FlashcardPage</h1>
       <div className="flachcard-page ">
-        <FlashcardList flashcard={flashcard} />
+        <FlashcardList flashcard={flashcard} setFlashcard={setFlashcard} />
       </div>
     </>
   );
