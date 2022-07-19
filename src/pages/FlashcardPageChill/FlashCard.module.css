@@ -85,12 +85,8 @@
   font-size: 0.9rem;
 }
 
-.flashcardOption:first-child {
-  margin-top: 0;
-}
-
 .check_box {
-  margin-top: 24px;
+  margin-top: 10px;
 }
 
 .check_box label {
@@ -100,8 +96,8 @@
 }
 
 .check_box input {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   margin-right: 24px;
   display: inline-block;
   cursor: pointer;

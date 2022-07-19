@@ -38,7 +38,7 @@ const FlashCard = ({ flashcard, setFlashcard }) => {
                         </div>
                     </div>
                     <div className={classes.back}><b>ĐÁP ÁN:<br/></b>{flashcard.answer}</div>
-                </div>
+                </div><br/><br/>
                 <Checkoptions flashcard={flashcard.options} />
                 <div className={classes.bottom}>
                     <StyledButton onClick={() => {
