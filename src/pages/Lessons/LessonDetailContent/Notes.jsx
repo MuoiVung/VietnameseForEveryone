@@ -1,24 +1,36 @@
 import React from 'react';
+import Hide from '../CustomHooks/Hide';
 import classes from '../Lesson.module.css';
 
 const Notes = ({lesson}) => {
-
   return (
     <div className={classes.notes_container} id="notes">
-      <h3>Notes</h3>
-      <div>
-      <h4><i>Lesson Forcus</i></h4>
-      <p>{lesson.notes.forcus}</p>
+      <div className={classes.notes_container_header}>
+        <h3>Notes</h3>
+        <Hide />
       </div>
-      <div>
+      <div className={classes.notes_forcus}>
+        <h4>Lesson Forcus</h4>
+        {lesson.notes.forcus_sub
+          .split ('br')
+          .map ((value, index) => <b key={index}><p>{value}</p></b>)}
+        {lesson.notes.forcus
+          .split ('br')
+          .map ((value, index) => <p key={index}>{value}</p>)}
+      </div>
+      <div className={classes.notes_phrase}>
         <h4>{`Key Vocabulary & Phrases`}</h4>
-        <p>{lesson.notes.phrases}</p>
+        {lesson.notes.phrases
+          .split ('br')
+          .map ((value, index) => <p key={index}>{value}</p>)}
       </div>
-      <div>
+      <div className={classes.notes_cultural}>
         <h4>Cultural Insights</h4>
-        <p>{lesson.notes.cultural}</p>
+        {lesson.notes.cultural
+          .split ('br')
+          .map ((value, index) => <p key={index}>{value}</p>)}
       </div>
     </div>
-  )
-}
+  );
+};
 export default Notes;

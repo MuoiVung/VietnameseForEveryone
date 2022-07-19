@@ -1,74 +1,74 @@
-import React, { useEffect, useState } from "react";
-import classes from "./MainNavigation.module.css";
-import { NavLink } from "react-router-dom";
-import userAvatar from "../../assets/img/user-avatar.jpg";
+import React, {useEffect, useState} from 'react';
+import classes from './MainNavigation.module.css';
+import {NavLink} from 'react-router-dom';
+import userAvatar from '../../assets/img/user-avatar.jpg';
 import {
   MdOutlineQuiz as QuizIcon,
   MdOutlinePlayLesson as LessonIcon,
   MdOutlineKeyboardArrowRight as ArrowRightIcon,
   MdOutlineKeyboardArrowDown as ArrowDownIcon,
-} from "react-icons/md";
-import { RiLogoutBoxLine as LoginIcon } from "react-icons/ri";
-import { BsCardHeading as FlashcardIcon } from "react-icons/bs";
+} from 'react-icons/md';
+import {RiLogoutBoxLine as LoginIcon} from 'react-icons/ri';
+import {BsCardHeading as FlashcardIcon} from 'react-icons/bs';
 
 const MainNavigation = () => {
-  const [LoginData, setLoginData] = useState(
-    localStorage.getItem("loginDataNewUser")
-      ? JSON.parse(localStorage.getItem("loginDataNewUser"))
+  const [LoginData, setLoginData] = useState (
+    localStorage.getItem ('loginDataNewUser')
+      ? JSON.parse (localStorage.getItem ('loginDataNewUser'))
       : {
-          Name: "",
-          Email: "",
-          Password: "",
-          Phonenumber: "",
-          NameId: "Wimp Mullan",
+          Name: '',
+          Email: '',
+          Password: '',
+          Phonenumber: '',
+          NameId: 'Wimp Mullan',
           Avatar: userAvatar,
         }
   );
 
   const handleLogout = () => {
-    localStorage.removeItem("loginDataNewUser");
-    setLoginData(
-      localStorage.getItem("loginDataNewUser")
-        ? JSON.parse(localStorage.getItem("loginDataNewUser"))
+    localStorage.removeItem ('loginDataNewUser');
+    setLoginData (
+      localStorage.getItem ('loginDataNewUser')
+        ? JSON.parse (localStorage.getItem ('loginDataNewUser'))
         : {
-            Name: "",
-            Email: "",
-            Password: "",
-            Phonenumber: "",
-            NameId: "Wimp Mullan",
+            Name: '',
+            Email: '',
+            Password: '',
+            Phonenumber: '',
+            NameId: 'Wimp Mullan',
             Avatar: userAvatar,
           }
     );
   };
 
-  const handleDataUser = async (check) => {
+  const handleDataUser = async check => {
     try {
-      const res = await fetch(
+      const res = await fetch (
         `https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/users/${check}/.json`
       );
-      const data = await res.json();
-      setLoginData(data);
+      const data = await res.json ();
+      setLoginData (data);
     } catch (error) {
-      alert("chua dang nhap");
+      alert ('chua dang nhap');
     }
   };
 
-  useEffect(() => {
+  useEffect (() => {
     const getLocalStorageData = () => {
-      if (localStorage.getItem("loginDataNewUser")) {
-        handleDataUser(LoginData);
+      if (localStorage.getItem ('loginDataNewUser')) {
+        handleDataUser (LoginData);
       }
     };
 
-    getLocalStorageData();
+    getLocalStorageData ();
   }, []);
   return (
     <section className={classes.sidebar}>
-      <div className={classes.container}>
+      {/* <div className={classes.container}>
         <h1 className={classes.logo}>Vife</h1>
         <div className={classes.user}>
           <p className={classes["user-avatar"]}>
-            <img src={LoginData.Avatar} alt="user avatar" />
+            {LoginData.Avatar && <img src={LoginData.Avatar} alt="user avatar" /> }
           </p>
           <p className={classes["user-name"]}>{LoginData.NameId}</p>
         </div>
@@ -162,7 +162,8 @@ const MainNavigation = () => {
             </li>
           </ul>
         </nav>
-      </div>
+      </div> */}
+      <h1>ABC</h1>
     </section>
   );
 };

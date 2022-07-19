@@ -1,15 +1,16 @@
 import React, {useState, useEffect} from 'react';
 import SButton from '../CustomHooks/SButton';
 import classes from '../Lesson.module.css';
+import Hide from '../CustomHooks/Hide';
 
 const Comments = () => {
   const [input, setInput] = useState ('');
 
   const initial = {
-    comment : "",
-    name: "",
-    email: ""
-  }
+    comment: '',
+    name: '',
+    email: '',
+  };
   const [data, setData] = useState (null);
 
   const handleGetInput = e => {
@@ -74,7 +75,7 @@ const Comments = () => {
   const handleSubmit = e => {
     e.preventDefault ();
     addVocabHandler (input);
-    setInput(initial );
+    setInput (initial);
   };
   useEffect (
     () => {
@@ -84,8 +85,11 @@ const Comments = () => {
   );
 
   return (
-    <div className={classes.comments_container} id='comments'>
-      <h3>Comments</h3>
+    <div className={classes.comments_container} id="comments">
+      <div className={classes.comments_header}>
+        <h3>Comments</h3>
+        <Hide />
+      </div>
       <form onSubmit={handleSubmit} className={classes.form_comments}>
         <textarea
           name="comment"
