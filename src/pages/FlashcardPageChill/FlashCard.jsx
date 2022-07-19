@@ -1,14 +1,15 @@
 import React, { useState } from 'react'
 import Checkoptions from './Checkoptions'
+import classes from './FlashCard.module.css';
 
 const FlashCard = ({ flashcard, setFlashcard }) => {
     const [flip, setFlip] = useState(false)
 
     return (
-        <div className='content_flashcard'>
-            <div className='left'>
+        <div className={classes.content_flashcard}>
+            <div className={classes.left}>
                 <h3>How to play</h3>
-                <div className='content-left'>
+                <div className={classes.contentLeft}>
                     Listen and type what you hear in the "Guess" box.
                     Press "Check Answer" - Correct words will replace the stars.
                     Keep going until you have all of the text.
@@ -18,24 +19,27 @@ const FlashCard = ({ flashcard, setFlashcard }) => {
                     Click "Try Again" button to do the current question once again
                 </div>
             </div>
-            <div className='right'>
+            <div className={classes.right}>
                 <h3>Exercise</h3>
                 <div
-                    className={`card ${flip ? 'flip' : ''} `}
+                    className={[classes.card, flip ? classes.flip : ''].join(' ')}
+                    onClick={() => {
+                        setFlip(!flip)
+                    }}
                 >
-                    <div className='front'>
+                    <div className={classes.front}>
                         {flashcard.question}
-                        <div className='flashcarrd-options'>
+                        <div className={classes.flashcardOptions}>
                             {flashcard.options.map((item, i) => {
-                                return <div className='flashcarrd-option' key={i}>{item}</div>
+                                return <div className={classes.flashcardOption} key={i}>{item}</div>
                             })}
                         </div>
                     </div>
-                    <div className='back'>{flashcard.answer}</div>
+                    <div className={classes.back}>{flashcard.answer}</div>
                 </div>
                 <Checkoptions flashcard={flashcard.options} />
             </div>
-            <div className='bottom'>
+            <div className={classes.bottom}>
                 <button onClick={() => {
                     setFlip(!flip)
                 }}>
