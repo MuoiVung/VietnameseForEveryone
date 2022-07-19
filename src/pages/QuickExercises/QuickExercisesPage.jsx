@@ -11,7 +11,7 @@ import StyledButton from "../../components/UI/StyledButton";
 
 const skills = (
   <section className={classes.container}>
-    {/* <h2 className={classes.title}>Quick Exercises</h2> */}
+    <h2 className={classes.title}>Quick Exercises</h2>
     <div className={classes.notice}>
       <p className={classes["notice-title"]}>Select a skill, random exercise</p>
       <p className={classes["notice-content"]}>

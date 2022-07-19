@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userAvatar from "../../assets/img/user-avatar.jpg";
-
-import "./LoginPage.css";
+import StyledLogin from "./StyledLogin";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -196,7 +195,7 @@ const LoginPage = () => {
   };
 
   return (
-    <section>
+    <StyledLogin>
       {isSignup ? (
         <section className="body-infor">
           <div>
@@ -348,7 +347,7 @@ const LoginPage = () => {
           </section>
         </div>
       )}
-    </section>
+    </StyledLogin>
   );
 };
 

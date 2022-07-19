@@ -1,4 +1,7 @@
-/* *,
+import styled from "styled-components";
+
+const StyledLogin = styled.section`
+  /* *,
 *::before,
 *::after {
     box-sizing: border-box;
@@ -11,15 +14,14 @@
 
  */
 
-header {
+  header {
     font-size: 1.5rem;
     color: var(--color-primary);
     font-weight: 700;
     text-align: center;
-}
+  }
 
-
-.body-infor {
+  .body-infor {
     font-family: "Sora", sans-serif;
     display: flex;
     justify-content: center;
@@ -31,9 +33,9 @@ header {
     line-height: 1.5;
     padding: 1rem 2rem 1rem 2rem;
     font-size: 1.15rem;
-}
+  }
 
-.infoform {
+  .infoform {
     display: flex;
     gap: 0.5rem;
     flex-direction: column;
@@ -46,13 +48,13 @@ header {
     min-width: 500px;
     border-radius: 14px;
     box-shadow: 0px 0px 14px 3px rgb(222, 224, 250);
-}
+  }
 
-label {
+  label {
     margin-top: 1rem;
-}
+  }
 
-input {
+  input {
     display: block;
     width: 100%;
     border: none;
@@ -60,9 +62,9 @@ input {
     padding-bottom: 0.25rem;
     outline: none;
     margin-bottom: 8px;
-}
+  }
 
-button {
+  button {
     cursor: pointer;
     align-self: flex-end;
     padding: 0.5rem;
@@ -71,10 +73,13 @@ button {
     border: none;
     font-size: 1rem;
     border-radius: 8px;
-}
+  }
 
-.errorMsg {
+  .errorMsg {
     max-width: 100%;
     font-size: 0.75rem;
     color: rgb(248, 106, 106);
-}
+  }
+`;
+
+export default StyledLogin;

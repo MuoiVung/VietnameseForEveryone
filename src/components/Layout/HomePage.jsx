@@ -8,7 +8,6 @@ const HomePage = () => {
     <Fragment>
       <MainNavigation />
       <main className={classes.container}>
-        <h3>Exercise</h3>
         <Outlet />
       </main>
     </Fragment>
