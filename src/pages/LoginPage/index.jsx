@@ -1,22 +1,16 @@
-
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import userAvatar from "../../assets/img/user-avatar.jpg";
 
 import "./LoginPage.css";
 
-
-
-
-
 const LoginPage = () => {
   const navigate = useNavigate();
-
 
   // check
   const [CheckNameID, setCheckNameID] = useState(false);
   const [CheckPass, setCheckPass] = useState(false);
-  const [CheckPassError, setCheckPassError] = useState(false)
+  const [CheckPassError, setCheckPassError] = useState(false);
   const [CheckConfirmPassword, setCheckConfirmPassword] = useState(false);
   const [checkNum, setChecknum] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
@@ -36,11 +30,7 @@ const LoginPage = () => {
   const [CheckloginName, setCheckloginName] = useState(false);
   const [CheckloginPassword, setCheckloginPassword] = useState(false);
 
-
   // ===================================
-
-
-
 
   //  ************************************************
   useEffect(() => {
@@ -51,32 +41,32 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (Password.length === 0) {
-      setCheckPass(false)
-      setCheckPassError(false)
-      return
+      setCheckPass(false);
+      setCheckPassError(false);
+      return;
     }
     if (Password.length < 6) {
       setCheckPass(true);
     } else {
-      setCheckPass(false)
+      setCheckPass(false);
     }
   }, [Password]);
 
   useEffect(() => {
     if (ConfirmPassword.length === 0) {
-      setCheckConfirmPassword(false)
-      return
+      setCheckConfirmPassword(false);
+      return;
     }
     if (Password !== ConfirmPassword) {
-      setCheckConfirmPassword(true)
+      setCheckConfirmPassword(true);
     } else {
-      setCheckConfirmPassword(false)
+      setCheckConfirmPassword(false);
     }
-  }, [Password, ConfirmPassword])
+  }, [Password, ConfirmPassword]);
 
   useEffect(() => {
     if (Phonenumber.length === 0) {
-      return
+      return;
     }
     if (Phonenumber.length < 10) {
       setChecknum(true);
@@ -87,16 +77,15 @@ const LoginPage = () => {
 
   useEffect(() => {
     if (loginName.length === 0) {
-      setCheckloginName(false)
+      setCheckloginName(false);
     }
-  }, [loginName])
-
+  }, [loginName]);
 
   useEffect(() => {
     if (loginPassword.length === 0) {
-      setCheckloginPassword(false)
+      setCheckloginPassword(false);
     }
-  }, [loginPassword])
+  }, [loginPassword]);
 
   //  xử lí đăng kí
 
@@ -105,92 +94,106 @@ const LoginPage = () => {
     this.Email = Email;
     this.Phonenumber = Phonenumber;
     this.Avatar = userAvatar;
-    this.point = 0
+    this.point = 0;
     this.Lessons = {
       Beginner: true,
       Intermediate: false,
       Advanced: false,
-    }
+    };
   }
 
   async function addUserHandler(newUser, localId) {
     try {
-      const response = await fetch(`https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/users/${localId}/.json`, {
-        method: 'PUT',
-        body: JSON.stringify(newUser),
-        headers: {
-          'Content-Type': 'application/json'
-
+      const response = await fetch(
+        `https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/users/${localId}/.json`,
+        {
+          method: "PUT",
+          body: JSON.stringify(newUser),
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
-      });
+      );
       const data = await response.json();
-      console.log(data)
-      return true
+      console.log(data);
+      return true;
     } catch (error) {
-      return false
+      return false;
     }
-
   }
 
   const sendRepuestSignUp = async (e) => {
-    e.preventDefault()
-    const NewUser = new NewUserClass(Name, Email, Phonenumber)
+    e.preventDefault();
+    const NewUser = new NewUserClass(Name, Email, Phonenumber);
     console.log(NewUser.Email, loginPassword);
     try {
-      const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBJ4LsbZ0AOTjRKo4-kl-KmTjXLbqH1qXw`, {
-        method: "POST",
-        body: JSON.stringify({
-          email: NewUser.Email,
-          password: Password,
-          returnSecureToken: true,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      const res = await fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBJ4LsbZ0AOTjRKo4-kl-KmTjXLbqH1qXw`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: NewUser.Email,
+            password: Password,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (!res.ok) {
-        throw new Error("Something went wrong!")
+        throw new Error("Something went wrong!");
       }
-      const DataUser = await res.json()
-      if (addUserHandler(NewUser, DataUser.localId)) {
-        console.log(DataUser, DataUser.localId);
-        localStorage.setItem('loginDataNewUser', JSON.stringify(DataUser.localId))
-        navigate("/lessons")
+      const DataUser = await res.json();
+
+      const userIsAdded = await addUserHandler(NewUser, DataUser.localId);
+
+      if (userIsAdded) {
+        localStorage.setItem(
+          "loginDataNewUser",
+          JSON.stringify(DataUser.localId)
+        );
+        navigate("/lessons");
       }
-      setCheckNameID(true)
+      setCheckNameID(true);
     } catch (error) {
-      console.log("error", error)
-      setCheckPassError(true)
+      setCheckPassError(true);
     }
-  }
+  };
 
   // đăng nhập
 
   const sendRepuestLogin = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
     try {
-      const res = await fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBJ4LsbZ0AOTjRKo4-kl-KmTjXLbqH1qXw`, {
-        method: "POST",
-        body: JSON.stringify({
-          email: loginName,
-          password: loginPassword,
-          returnSecureToken: true,
-        }), headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      const res = await fetch(
+        `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBJ4LsbZ0AOTjRKo4-kl-KmTjXLbqH1qXw`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            email: loginName,
+            password: loginPassword,
+            returnSecureToken: true,
+          }),
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       if (!res.ok) {
-        throw new Error("Login failed!")
+        throw new Error("Login failed!");
       }
-      const DataUser = await res.json()
-      localStorage.setItem('loginDataNewUser', JSON.stringify(DataUser.localId))
-      navigate("/lessons")
+      const DataUser = await res.json();
+      localStorage.setItem(
+        "loginDataNewUser",
+        JSON.stringify(DataUser.localId)
+      );
+      navigate("/lessons");
     } catch (error) {
-      setCheckloginName(true)
-      setCheckloginPassword(true)
+      setCheckloginName(true);
+      setCheckloginPassword(true);
     }
-  }
-
+  };
 
   return (
     <section>
@@ -219,7 +222,9 @@ const LoginPage = () => {
                 placeholder="Enter your email "
               />
               {CheckNameID ? (
-                <p style={{ color: "red", fontSize: "10px" }}>You can't find your email.</p>
+                <p style={{ color: "red", fontSize: "10px" }}>
+                  You can't find your email.
+                </p>
               ) : null}
 
               <label>Password</label>
@@ -233,11 +238,15 @@ const LoginPage = () => {
               />
 
               {CheckPassError ? (
-                <p style={{ color: "red", fontSize: "10px" }}>You seem to be in the wrong password.</p>
+                <p style={{ color: "red", fontSize: "10px" }}>
+                  You seem to be in the wrong password.
+                </p>
               ) : null}
 
               {CheckPass ? (
-                <p style={{ color: "red", fontSize: "10px" }}>Password must be more than 6 characters</p>
+                <p style={{ color: "red", fontSize: "10px" }}>
+                  Password must be more than 6 characters
+                </p>
               ) : null}
 
               <label>Confirm Password</label>
@@ -251,7 +260,9 @@ const LoginPage = () => {
               />
 
               {CheckConfirmPassword ? (
-                <p style={{ color: "red", fontSize: "10px" }}>Please enter the true password</p>
+                <p style={{ color: "red", fontSize: "10px" }}>
+                  Please enter the true password
+                </p>
               ) : null}
 
               <label>Phone number</label>
@@ -299,7 +310,9 @@ const LoginPage = () => {
                   placeholder="Enter your name"
                 />
                 {CheckloginName ? (
-                  <p style={{ color: "red", fontSize: "10px" }}>Your Name could not be found</p>
+                  <p style={{ color: "red", fontSize: "10px" }}>
+                    Your Name could not be found
+                  </p>
                 ) : null}
 
                 <label>Password</label>
@@ -313,10 +326,10 @@ const LoginPage = () => {
                 />
 
                 {CheckloginPassword ? (
-                  <p style={{ color: "red", fontSize: "10px" }}>Please enter the correct password</p>
+                  <p style={{ color: "red", fontSize: "10px" }}>
+                    Please enter the correct password
+                  </p>
                 ) : null}
-
-
 
                 <p
                   style={{ color: "red", cursor: "pointer" }}
