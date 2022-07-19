@@ -89,6 +89,10 @@
   margin-top: 10px;
 }
 
+.check_box:hover {
+  color: var(--color-primary)
+}
+
 .check_box label {
   display: flex;
   align-items: center;
