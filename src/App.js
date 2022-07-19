@@ -1,34 +1,22 @@
-import React, { Suspense } from "react";
+import React, { Fragment } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import LessonsPage from './pages/Lessons/LessonsPage';
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 import HomePage from "./components/Layout/HomePage";
-import LoadingSpinner from "./components/UI/LoadingSpinner";
-import NotFoundPage from "./pages/NotFoundPage";
-
-
-
-
-const LessonsBeginnerPage = React.lazy(() => import('./pages/Lessons/LessonsBeginnerPage'));
-const LessonsIntermediatePage = React.lazy(() => import('./pages/Lessons/LessonsIntermediatePage'));
-const LessonsAdvancedPage = React.lazy(() => import('./pages/Lessons/LessonsAdvancedPage'));
-const LessonDetailPage = React.lazy(() => import('./pages/Lessons/LessonDetailPage'));
-const QuickExercisesPage = React.lazy(() => import('./pages/QuickExercises/QuickExercisesPage'));
-const FlashcardPage = React.lazy(() => import('./pages/FlashcardPage'));
-const LoginPage = React.lazy(() => import('./pages/LoginPage'));
-const ListeningPage = React.lazy(() => import('./pages/QuickExercises/ListeningPage'));
-const ReadingPage = React.lazy(() => import('./pages/QuickExercises/ReadingPage'));
-const SpeakingPage = React.lazy(() => import('./pages/QuickExercises/SpeakingPage'));
-const WritingPage = React.lazy(() => import('./pages/QuickExercises/WritingPage'));
+import {
+  LessonsPage, NotFoundPage, LessonsBeginnerPage, LessonsIntermediatePage, LessonsAdvancedPage, LessonDetailPage,
+  QuickExercisesPage, FlashcardPage, LoginPage, ListeningPage, ReadingPage, WritingPage, SpeakingPage
+} from "./pages";
 
 
 function App() {
   return (
-    <Suspense fallback={<LoadingSpinner />}>
+    <Fragment>
       <Routes>
         <Route path="/login" element={<LoginPage />} />
         <Route path="/" element={<HomePage />}>
-          <Route path="/" element={<Navigate replace to="/lessons" />} />
-          <Route path="/lessons/" element={<LessonsPage />} />
+          <Route path="/" element={<Navigate replace to="/lessons/beginner" />} />
+          <Route path="/lessons/" element={<Navigate replace to="/lessons/beginner" />} />
           <Route path="/lessons/beginner" element={<LessonsBeginnerPage />} />
           <Route path="/lessons/intermediate" element={<LessonsIntermediatePage />} />
           <Route path="/lessons/advanced" element={<LessonsAdvancedPage />} />
@@ -42,7 +30,8 @@ function App() {
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
-    </Suspense>
+      <ToastContainer />
+    </Fragment>
   );
 }
 

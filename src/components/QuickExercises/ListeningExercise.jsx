@@ -5,6 +5,7 @@ import Container from "./Container";
 import classes from "./ListeningExercise.module.scss";
 import { fetchListeningExercises } from "../../lib/listening-api";
 import { useReducer } from "react";
+import { toast } from "react-toastify";
 
 let paragraph = "";
 
@@ -77,10 +78,14 @@ const ListeningExercise = () => {
   useEffect(() => {
     const sendRequest = async () => {
       const data = await fetchListeningExercises();
+
+      if (!data) {
+        throw new Error("Something went wrong!");
+      }
       dispatchExercises({ type: "SET_EXERCISES", exercises: data });
     };
 
-    sendRequest().catch((error) => console.error(error.message));
+    sendRequest().catch((error) => toast.error(error.message));
   }, []);
 
   useEffect(() => {

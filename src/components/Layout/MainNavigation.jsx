@@ -13,35 +13,55 @@ import { BsCardHeading as FlashcardIcon } from "react-icons/bs";
 
 const MainNavigation = () => {
   const [LoginData, setLoginData] = useState(
-    localStorage.getItem('loginDataNewUser')
-      ? JSON.parse(localStorage.getItem('loginDataNewUser'))
-      : { Name: "", Email: "", Password: "", Phonenumber: "", NameId: "Wimp Mullan", Avatar: userAvatar }
-  )
+    localStorage.getItem("loginDataNewUser")
+      ? JSON.parse(localStorage.getItem("loginDataNewUser"))
+      : {
+          Name: "",
+          Email: "",
+          Password: "",
+          Phonenumber: "",
+          NameId: "Wimp Mullan",
+          Avatar: userAvatar,
+        }
+  );
 
   const handleLogout = () => {
-    localStorage.removeItem('loginDataNewUser')
-    setLoginData(localStorage.getItem('loginDataNewUser')
-      ? JSON.parse(localStorage.getItem('loginDataNewUser'))
-      : { Name: "", Email: "", Password: "", Phonenumber: "", NameId: "Wimp Mullan", Avatar: userAvatar })
-  }
+    localStorage.removeItem("loginDataNewUser");
+    setLoginData(
+      localStorage.getItem("loginDataNewUser")
+        ? JSON.parse(localStorage.getItem("loginDataNewUser"))
+        : {
+            Name: "",
+            Email: "",
+            Password: "",
+            Phonenumber: "",
+            NameId: "Wimp Mullan",
+            Avatar: userAvatar,
+          }
+    );
+  };
 
   const handleDataUser = async (check) => {
     try {
-      const res = await fetch(`https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/users/${check}/.json`)
-      const data = await res.json()
-      console.log(data)
-      setLoginData(data)
+      const res = await fetch(
+        `https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/users/${check}/.json`
+      );
+      const data = await res.json();
+      setLoginData(data);
     } catch (error) {
-      alert("chua dang nhap")
+      alert("chua dang nhap");
     }
-  }
+  };
 
   useEffect(() => {
-    if (localStorage.getItem('loginDataNewUser')) {
-      handleDataUser(LoginData)
-      console.log(LoginData)
-    }
-  }, [])
+    const getLocalStorageData = () => {
+      if (localStorage.getItem("loginDataNewUser")) {
+        handleDataUser(LoginData);
+      }
+    };
+
+    getLocalStorageData();
+  }, []);
   return (
     <section className={classes.sidebar}>
       <div className={classes.container}>
