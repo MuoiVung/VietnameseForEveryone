@@ -1,11 +1,12 @@
 import React from 'react'
 
-const Checkoptions = ({ item }) => {
+const Checkoptions = (flashcard) => {
+    console.log(flashcard)
     return (
         <div>
             {
-                item.options.map((item, i) => {
-                    return <div key={i}><input type='checkbox' name='answer' /> <span>{item}</span></div>
+                flashcard.flashcard.map((item, i) => {
+                    return <div className='check_box' key={i}><input type="radio" name='options' /> <span>{item}</span></div>
                 })
             }
         </div>
