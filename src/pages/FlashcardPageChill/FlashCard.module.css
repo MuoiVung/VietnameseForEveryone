@@ -44,7 +44,7 @@
   transform-style: preserve-3d;
   height: 250px;
   width: 450px;
-  transition: 150ms;
+  transition: 300ms;
   cursor: pointer;
   transform: perspective(1500px) rotateY(var(--rotate-y, 0)) translateY(var(--translate-y, 0));
 }
@@ -84,43 +84,40 @@
   font-size: 0.75rem;
 }
 
-.flashcard-option:first-child {
+.flashcardOption:first-child {
   margin-top: 0;
 }
 
 .check_box {
   margin-top: 24px;
+}
+
+.check_box label {
   display: flex;
+  align-items: center;
 }
 
 .check_box input {
   width: 24px;
   height: 24px;
   margin-right: 24px;
+  display: inline-block;
 }
-
-.check_box span {
-  line-height: 24px;
-}
-
 
 .bottom {
   display: flex;
   width: 100%;
-  justify-content: space-between;
+  justify-content: left;
+  align-items: center;
 }
 
-.bottom button {
+.secondaryBtn {
+  margin: 0 0 1.1rem 1rem;
   cursor: pointer;
   display: block;
-  padding: 12px 16px;
-  background-color: white;
-  border: 1px solid var(--color-primary);
   color: var(--color-primary);
-  border-radius: 5px;
 }
 
-.bottom button:hover {
-  background-color: var(--color-primary);
-  color: white;
+.secondaryBtn:hover {
+  text-decoration: underline;
 }

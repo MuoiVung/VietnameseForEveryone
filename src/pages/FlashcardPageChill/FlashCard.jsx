@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Checkoptions from './Checkoptions'
 import classes from './FlashCard.module.css';
+import StyledButton from '../../components/UI/StyledButton';
 
 const FlashCard = ({ flashcard, setFlashcard }) => {
     const [flip, setFlip] = useState(false)
@@ -38,15 +39,16 @@ const FlashCard = ({ flashcard, setFlashcard }) => {
                     <div className={classes.back}>{flashcard.answer}</div>
                 </div>
                 <Checkoptions flashcard={flashcard.options} />
+                <div className={classes.bottom}>
+                    <StyledButton onClick={() => {
+                        setFlip(true)
+                    }}>
+                        Check Answer
+                    </StyledButton>
+                    <div className={classes.secondaryBtn}>Give Up</div>
+                </div>
             </div>
-            <div className={classes.bottom}>
-                <button onClick={() => {
-                    setFlip(!flip)
-                }}>
-                    Check Answer
-                </button>
-                <button>Give Up</button>
-            </div>
+            
         </div>
     )
 }
