@@ -23,7 +23,7 @@ const FlashCard = ({ flashcard, setFlashcard }) => {
             </div>
             <div className={classes.right}>
                 <h3>Exercise</h3>
-                <div
+                <br/><div
                     className={[classes.card, flip ? classes.flip : ''].join(' ')}
                     onClick={() => {
                         setFlip(!flip)
@@ -33,7 +33,7 @@ const FlashCard = ({ flashcard, setFlashcard }) => {
                         {flashcard.question}
                         <div className={classes.flashcardOptions}>
                             {flashcard.options.map((item, i) => {
-                                return <div className={classes.flashcardOption} key={i}>-{item}</div>
+                                return <div className={classes.flashcardOption} key={i}>{i+1}. {item}</div>
                             })}
                         </div>
                     </div>
