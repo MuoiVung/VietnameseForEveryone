@@ -152,9 +152,9 @@
     color: var(--color-heading);
     padding: 10px 0;
  }
- .vocabulary_item_example{
+ /* .vocabulary_item_example{
 
-}
+} */
  .vocabulary_item_br{
      padding-bottom: 10px;
      border-bottom:  1px solid var(--color-heading);
