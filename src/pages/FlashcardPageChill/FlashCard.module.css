@@ -34,6 +34,7 @@
 }
 
 .card {
+  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,7 +82,7 @@
 .flashcardOption {
   margin-top: 0.25rem;
   color: #555;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
 }
 
 .flashcardOption:first-child {
@@ -95,6 +96,7 @@
 .check_box label {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .check_box input {
@@ -102,6 +104,7 @@
   height: 24px;
   margin-right: 24px;
   display: inline-block;
+  cursor: pointer;
 }
 
 .bottom {
