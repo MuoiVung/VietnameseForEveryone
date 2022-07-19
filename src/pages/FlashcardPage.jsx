@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import FlashcardList from "./FlashcardPageChill/FlashcardList";
-import "./FlashcardPageChill/appFlashcard.css";
-
+import classes from './FlashcardPageChill/FlashCard.module.css';
 
 
 
@@ -11,7 +10,7 @@ const FlashcardPage = () => {
   return (
     <>
       <h1>FlashcardPage</h1>
-      <div className="flachcard-page ">
+      <div className={classes.flachcardPage}>
         <FlashcardList flashcard={flashcard} setFlashcard={setFlashcard} />
       </div>
     </>
