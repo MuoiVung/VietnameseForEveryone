@@ -147,7 +147,33 @@ const MainNavigation = () => {
                   <FlashcardIcon className={classes.icon} />
                   Flashcard
                 </div>
+                <ArrowRightIcon className={classes["icon-arrow"]} />
+                <ArrowDownIcon
+                  className={`${classes["icon-arrow"]} ${classes.hidden}`}
+                />
               </NavLink>
+              <ul className={classes.subnav}>
+                <li className={classes["subnav-item"]}>
+                  <NavLink
+                    to="/flashcard/learn"
+                    className={(subnavData) =>
+                      subnavData.isActive ? classes.active : ""
+                    }
+                  >
+                    Learn
+                  </NavLink>
+                </li>
+                <li className={classes["subnav-item"]}>
+                  <NavLink
+                    to="/flashcard/practice"
+                    className={(subnavData) =>
+                      subnavData.isActive ? classes.active : ""
+                    }
+                  >
+                    Practice
+                  </NavLink>
+                </li>
+              </ul>
             </li>
             <li onClick={handleLogout} className={classes["nav-item"]}>
               <NavLink
