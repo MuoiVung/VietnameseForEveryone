@@ -179,25 +179,6 @@ const ListeningExercise = () => {
     }
   };
 
-  // const enterKeyHandler = (event) => {
-  //   if (event.key !== "Enter") {
-  //     return;
-  //   }
-
-  //   if (!isFinished) {
-  //     checkAnswerHandler(event);
-  //   } else {
-  //     nextQuesttionHandler(event);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.addEventListener("keydown", enterKeyHandler, false);
-  //   return () => {
-  //     document.removeEventListener("keydown", enterKeyHandler);
-  //   };
-  // }, [hiddenParagraph]);
-
   return (
     <Fragment>
       {isInitial && (
