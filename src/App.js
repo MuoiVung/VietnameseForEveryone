@@ -5,7 +5,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import HomePage from "./components/Layout/HomePage";
 import {
   LessonsPage, NotFoundPage, LessonsBeginnerPage, LessonsIntermediatePage, LessonsAdvancedPage, LessonDetailPage,
-  QuickExercisesPage, FlashcardPages, FlashcardLearnPage, FlashcardPracticePage, LoginPage, ListeningPage, ReadingPage, WritingPage, SpeakingPage
+  QuickExercisesPage, FlashcardLearnPage, FlashcardPracticePage, LoginPage, ListeningPage, ReadingPage, WritingPage, SpeakingPage
 } from "./pages";
 
 
