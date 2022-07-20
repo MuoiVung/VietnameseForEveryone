@@ -8,10 +8,17 @@ import {
 import classes from "./QuickExercisesPage.module.css";
 import { Link } from "react-router-dom";
 import StyledButton from "../../components/UI/StyledButton";
+import Header from "../../components/Layout/Header";
+import Breadcrumb from "../../components/UI/Breadcrumb";
+import BreadcrumItem from "../../components/UI/BreadcrumItem";
 
 const skills = (
   <section className={classes.container}>
-    <h2 className={classes.title}>Quick Exercises</h2>
+    <Header title="Quick Exercises">
+      <Breadcrumb>
+        <BreadcrumItem href="/quick-exercises">Quick Exercises</BreadcrumItem>
+      </Breadcrumb>
+    </Header>
     <div className={classes.notice}>
       <p className={classes["notice-title"]}>Select a skill, random exercise</p>
       <p className={classes["notice-content"]}>
