@@ -11,8 +11,9 @@ import ListeningPage from "./QuickExercises/ListeningPage";
 import SpeakingPage from "./QuickExercises/SpeakingPage";
 import ReadingPage from "./QuickExercises/ReadingPage";
 import WritingPage from "./QuickExercises/WritingPage";
+import Dashboard from "./Dashboard";
 
 export {
     LessonsPage, LessonDetailPage, LessonsBeginnerPage, LessonsIntermediatePage, LessonsAdvancedPage, FlashcardPage, LoginPage,
-    NotFoundPage, QuickExercisesPage, ListeningPage, SpeakingPage, ReadingPage, WritingPage
+    NotFoundPage, QuickExercisesPage, ListeningPage, SpeakingPage, ReadingPage, WritingPage, Dashboard
 };

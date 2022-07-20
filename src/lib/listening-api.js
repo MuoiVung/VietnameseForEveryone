@@ -1,5 +1,3 @@
-import { toast } from "react-toastify";
-
 const FIREBASE_DOMAIN = 'https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app';
 
 export const fetchListeningExercises = async () => {

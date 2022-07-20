@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
-import classes from "./Lesson.module.css";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import classes from "./Lesson.module.css";
+import Header from "../../components/Layout/Header";
+import Breadcrumb from "../../components/UI/Breadcrumb";
+import BreadcrumItem from "../../components/UI/BreadcrumItem";
 
 const LessonsBeginnerPage = () => {
   const [lessons, setLessons] = useState(null);
@@ -34,28 +36,36 @@ const LessonsBeginnerPage = () => {
 
   useEffect(() => {
     fetchLessonAPI();
-  },[]);
+  }, []);
 
   return (
-    <div className={classes.pageBeginner}>
-      {lessons &&
-        lessons.map((item, index) => (
-          <div key={index} className={classes.containerItem}>
-            <Link
-              to={`/lessons/${item.id}`}
-              key={index}
-              className={classes.item_link}
-            >
-              <img src={item.image} alt="" className={classes.item_img} />
-              <h4 className={classes.item_title}>{item.title}</h4>
-              <div className={classes.item_description}>
-                <p className={classes.item_text}>{item.description}</p>
-                <p className={classes.item_text}>{item.stats}</p>
-              </div>
-            </Link>
-          </div>
-        ))}
-    </div>
+    <Fragment>
+      <Header title="Beginner Lessons">
+        <Breadcrumb>
+          <BreadcrumItem href="/lessons">Lessons</BreadcrumItem>
+          <BreadcrumItem href="/lessons/beginner">beginner</BreadcrumItem>
+        </Breadcrumb>
+      </Header>
+      <div className={classes.pageBeginner}>
+        {lessons &&
+          lessons.map((item, index) => (
+            <div key={index} className={classes.containerItem}>
+              <Link
+                to={`/lessons/${item.id}`}
+                key={index}
+                className={classes.item_link}
+              >
+                <img src={item.image} alt="" className={classes.item_img} />
+                <h4 className={classes.item_title}>{item.title}</h4>
+                <div className={classes.item_description}>
+                  <p className={classes.item_text}>{item.description}</p>
+                  <p className={classes.item_text}>{item.stats}</p>
+                </div>
+              </Link>
+            </div>
+          ))}
+      </div>
+    </Fragment>
   );
 };
 

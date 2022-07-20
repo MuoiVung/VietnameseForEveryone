@@ -7,6 +7,7 @@ import {
   MdOutlinePlayLesson as LessonIcon,
   MdOutlineKeyboardArrowRight as ArrowRightIcon,
   MdOutlineKeyboardArrowDown as ArrowDownIcon,
+  MdOutlineHome as DashboardIcon,
 } from "react-icons/md";
 import { RiLogoutBoxLine as LoginIcon } from "react-icons/ri";
 import { BsCardHeading as FlashcardIcon } from "react-icons/bs";
@@ -20,7 +21,7 @@ const MainNavigation = () => {
           Email: "",
           Password: "",
           Phonenumber: "",
-          NameId: "Wimp Mullan",
+          NameId: "Demo User",
           Avatar: userAvatar,
         }
   );
@@ -74,6 +75,19 @@ const MainNavigation = () => {
         </div>
         <nav>
           <ul className={classes["nav-list"]}>
+            <li className={classes["nav-item"]}>
+              <NavLink
+                to="/"
+                className={(navData) =>
+                  navData.isActive ? classes.active : ""
+                }
+              >
+                <div className="flex-center">
+                  <DashboardIcon className={classes.icon} />
+                  Dashboard
+                </div>
+              </NavLink>
+            </li>
             <li className={classes["nav-item"]}>
               <NavLink
                 to="/lessons"
