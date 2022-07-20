@@ -64,71 +64,65 @@ const MainNavigation = () => {
   }, []);
   return (
     <section className={classes.sidebar}>
-      {/* <div className={classes.container}>
+      <div className={classes.container}>
         <h1 className={classes.logo}>Vife</h1>
         <div className={classes.user}>
-          <p className={classes["user-avatar"]}>
-            {LoginData.Avatar && <img src={LoginData.Avatar} alt="user avatar" /> }
+          <p className={classes['user-avatar']}>
+            {LoginData.Avatar &&
+              <img src={LoginData.Avatar} alt="user avatar" />}
           </p>
-          <p className={classes["user-name"]}>{LoginData.NameId}</p>
+          <p className={classes['user-name']}>{LoginData.NameId}</p>
         </div>
         <nav>
-          <ul className={classes["nav-list"]}>
-            <li className={classes["nav-item"]}>
+          <ul className={classes['nav-list']}>
+            <li className={classes['nav-item']}>
               <NavLink
                 to="/lessons"
-                className={(navData) =>
-                  navData.isActive ? classes.active : ""
-                }
+                className={navData => (navData.isActive ? classes.active : '')}
               >
                 <div className="flex-center">
                   <LessonIcon className={classes.icon} />
                   Lessons
                 </div>
-                <ArrowRightIcon className={classes["icon-arrow"]} />
+                <ArrowRightIcon className={classes['icon-arrow']} />
                 <ArrowDownIcon
-                  className={`${classes["icon-arrow"]} ${classes.hidden}`}
+                  className={`${classes['icon-arrow']} ${classes.hidden}`}
                 />
               </NavLink>
               <ul className={classes.subnav}>
-                <li className={classes["subnav-item"]}>
+                <li className={classes['subnav-item']}>
                   <NavLink
                     to="/lessons/beginner"
-                    className={(subnavData) =>
-                      subnavData.isActive ? classes.active : ""
-                    }
+                    className={subnavData =>
+                      subnavData.isActive ? classes.active : ''}
                   >
                     Beginner
                   </NavLink>
                 </li>
-                <li className={classes["subnav-item"]}>
+                <li className={classes['subnav-item']}>
                   <NavLink
                     to="/lessons/intermediate"
-                    className={(subnavData) =>
-                      subnavData.isActive ? classes.active : ""
-                    }
+                    className={subnavData =>
+                      subnavData.isActive ? classes.active : ''}
                   >
                     Intermediate
                   </NavLink>
                 </li>
-                <li className={classes["subnav-item"]}>
+                <li className={classes['subnav-item']}>
                   <NavLink
                     to="/lessons/advanced"
-                    className={(subnavData) =>
-                      subnavData.isActive ? classes.active : ""
-                    }
+                    className={subnavData =>
+                      subnavData.isActive ? classes.active : ''}
                   >
                     Advanced
                   </NavLink>
                 </li>
               </ul>
             </li>
-            <li className={classes["nav-item"]}>
+            <li className={classes['nav-item']}>
               <NavLink
                 to="/quick-exercises"
-                className={(navData) =>
-                  navData.isActive ? classes.active : ""
-                }
+                className={navData => (navData.isActive ? classes.active : '')}
               >
                 <div className="flex-center">
                   <QuizIcon className={classes.icon} />
@@ -136,12 +130,10 @@ const MainNavigation = () => {
                 </div>
               </NavLink>
             </li>
-            <li className={classes["nav-item"]}>
+            <li className={classes['nav-item']}>
               <NavLink
                 to="/flashcard"
-                className={(navData) =>
-                  navData.isActive ? classes.active : ""
-                }
+                className={navData => (navData.isActive ? classes.active : '')}
               >
                 <div className="flex-center">
                   <FlashcardIcon className={classes.icon} />
@@ -149,12 +141,10 @@ const MainNavigation = () => {
                 </div>
               </NavLink>
             </li>
-            <li onClick={handleLogout} className={classes["nav-item"]}>
+            <li onClick={handleLogout} className={classes['nav-item']}>
               <NavLink
                 to="/login"
-                className={(navData) =>
-                  navData.isActive ? classes.active : ""
-                }
+                className={navData => (navData.isActive ? classes.active : '')}
               >
                 <LoginIcon className={classes.icon} />
                 Logout
@@ -162,7 +152,7 @@ const MainNavigation = () => {
             </li>
           </ul>
         </nav>
-      </div> */}
+      </div>
       <h1>ABC</h1>
     </section>
   );
