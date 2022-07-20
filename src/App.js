@@ -4,8 +4,8 @@ import { ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import HomePage from "./components/Layout/HomePage";
 import {
-  NotFoundPage, LessonsBeginnerPage, LessonsIntermediatePage, LessonsAdvancedPage, LessonDetailPage,
-  QuickExercisesPage, FlashcardPage, LoginPage, ListeningPage, ReadingPage, WritingPage, SpeakingPage, Dashboard, LessonsPage
+  LessonsPage, NotFoundPage, LessonsBeginnerPage, LessonsIntermediatePage, LessonsAdvancedPage, LessonDetailPage,
+  QuickExercisesPage, FlashcardLearnPage, FlashcardPracticePage, LoginPage, ListeningPage, ReadingPage, WritingPage, SpeakingPage
 } from "./pages";
 
 
@@ -26,7 +26,9 @@ function App() {
           <Route path="/quick-exercises/reading" element={<ReadingPage />} />
           <Route path="/quick-exercises/writing" element={<WritingPage />} />
           <Route path="/quick-exercises/speaking" element={<SpeakingPage />} />
-          <Route path="flashcard" element={<FlashcardPage />} />
+          <Route path="/flashcard/" element={<Navigate replace to="/flashcard/learn" />} />
+          <Route path="/flashcard/learn" element={<FlashcardLearnPage />} />
+          <Route path="/flashcard/practice" element={<FlashcardPracticePage />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

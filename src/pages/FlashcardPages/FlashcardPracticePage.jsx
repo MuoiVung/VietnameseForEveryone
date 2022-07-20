@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import FlashcardList from "./FlashcardPageChill/FlashcardList";
-import classes from './FlashcardPageChill/FlashCard.module.css';
-import styles from "./QuickExercises/QuickExercisesPage.module.css";
+import FlashcardList from "../FlashcardPageChill/FlashcardList";
+import classes from '../FlashcardPageChill/FlashCard.module.css';
+import styles from "../QuickExercises/QuickExercisesPage.module.css";
 
-
-const FlashcardPage = () => {
+const FlashcardPracticePage = () => {
   const [flashcard, setFlashcard] = useState(SAPM_FKASHCARDS);
 
   return (
@@ -98,4 +97,4 @@ const SAPM_FKASHCARDS = [
   // },
 ];
 
-export default FlashcardPage;
+export default FlashcardPracticePage;

@@ -8,7 +8,6 @@ const Checkoptions = (flashcard) => {
       {flashcard.flashcard.map((item, i) => {
         return (
           <div className={classes.check_box} key={i}>
-            {/* <input type="radio" name='options' /> <span>{item}</span> */}
             <label htmlFor={item}>
               <input id={item} type="radio" name="task" /> {item}
             </label>
