@@ -1,18 +1,17 @@
 import React, {useState} from 'react';
 import ReactAudioPlayer from 'react-audio-player';
 import Example from '../CustomHooks/Example';
-import Hide from '../CustomHooks/Hide';
 import classes from '../Lesson.module.css';
 
-const Vocabulary = ({lesson}) => {
-  const [display, setDisplay] = useState ('none');
+const Vocabulary = ({lesson, display}) => {
+  const [displayExample, setDisplayExample] = useState ('none');
 
   return (
-    <div className={classes.vocabulary_container} id="vocabulary">
-      <div className={classes.vocabulary_header}>
-        <h3>Vocabulary</h3>
-        <Hide />
-      </div>
+    <div
+      className={classes.vocabulary_container}
+      id="vocabulary"
+      style={{display: `${display}`}}
+    >
       <ReactAudioPlayer src={lesson.vocabularyAudio} controls />
       {lesson.vocabulary &&
         lesson.vocabulary.map ((vocab, index) => (
@@ -22,7 +21,7 @@ const Vocabulary = ({lesson}) => {
               <div className={classes.vocabulary_item_difenition}>
                 <Example
                   className={classes.vocabulary_item_icon}
-                  setDisplay={setDisplay}
+                  setDisplayExample={setDisplayExample}
                 />
                 <div>
                   <p className={classes.vocabulary_item_vn}>{vocab.vn}</p>
@@ -30,7 +29,7 @@ const Vocabulary = ({lesson}) => {
                 </div>
               </div>
               <div
-                style={{display: `${display}`}}
+                style={{display: `${displayExample}`}}
                 className={classes.vocabulary_item_example}
               >
                 {vocab.example

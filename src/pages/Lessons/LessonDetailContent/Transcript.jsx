@@ -1,14 +1,13 @@
 import React from 'react';
 import classes from '../Lesson.module.css';
-import Hide from '../CustomHooks/Hide';
 
-const Transcript = ({lesson}) => {
+const Transcript = ({lesson, display}) => {
   return (
-    <div className={classes.transcript_container} id="transcripts">
-      <div className={classes.transcript_header}>
-        <h3>{`Lesson Transcript`}</h3>
-        <Hide />
-      </div>
+    <div
+      className={classes.transcript_container}
+      id="transcripts"
+      style={{display: `${display}`}}
+    >
       <div className={classes.transcript_introduction}>
         <h4>{`INTRODUCTION`}</h4>
         {lesson.transcripts.introduction

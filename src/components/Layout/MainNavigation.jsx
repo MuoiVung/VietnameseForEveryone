@@ -7,11 +7,14 @@ import {
   MdOutlinePlayLesson as LessonIcon,
   MdOutlineKeyboardArrowRight as ArrowRightIcon,
   MdOutlineKeyboardArrowDown as ArrowDownIcon,
+  MdOutlineHome as DashboardIcon,
 } from 'react-icons/md';
 import {RiLogoutBoxLine as LoginIcon} from 'react-icons/ri';
 import {BsCardHeading as FlashcardIcon} from 'react-icons/bs';
 
 const MainNavigation = () => {
+  const [isLessonsActive, setIsLessonsActive] = useState (false);
+  const [isFlashcardActive, setIsFlashcardActive] = useState (false);
   const [LoginData, setLoginData] = useState (
     localStorage.getItem ('loginDataNewUser')
       ? JSON.parse (localStorage.getItem ('loginDataNewUser'))
@@ -20,7 +23,7 @@ const MainNavigation = () => {
           Email: '',
           Password: '',
           Phonenumber: '',
-          NameId: 'Wimp Mullan',
+          NameId: 'Demo User',
           Avatar: userAvatar,
         }
   );
@@ -59,9 +62,19 @@ const MainNavigation = () => {
         handleDataUser (LoginData);
       }
     };
-
     getLocalStorageData ();
-  }, []);
+  });
+
+  const toggleLessonsHandler = event => {
+    event.preventDefault ();
+    setIsLessonsActive (!isLessonsActive);
+  };
+
+  const toggleFlashcardHandler = event => {
+    event.preventDefault ();
+    setIsFlashcardActive (!isFlashcardActive);
+  };
+
   return (
     <section className={classes.sidebar}>
       <div className={classes.container}>
@@ -77,8 +90,20 @@ const MainNavigation = () => {
           <ul className={classes['nav-list']}>
             <li className={classes['nav-item']}>
               <NavLink
-                to="/lessons"
+                to="/"
                 className={navData => (navData.isActive ? classes.active : '')}
+              >
+                <div className="flex-center">
+                  <DashboardIcon className={classes.icon} />
+                  Dashboard
+                </div>
+              </NavLink>
+            </li>
+            <li className={classes['nav-item']}>
+              <a
+                href="/lessons"
+                onClick={toggleLessonsHandler}
+                className={isLessonsActive ? classes.active : ''}
               >
                 <div className="flex-center">
                   <LessonIcon className={classes.icon} />
@@ -88,7 +113,7 @@ const MainNavigation = () => {
                 <ArrowDownIcon
                   className={`${classes['icon-arrow']} ${classes.hidden}`}
                 />
-              </NavLink>
+              </a>
               <ul className={classes.subnav}>
                 <li className={classes['subnav-item']}>
                   <NavLink
@@ -131,15 +156,40 @@ const MainNavigation = () => {
               </NavLink>
             </li>
             <li className={classes['nav-item']}>
-              <NavLink
-                to="/flashcard"
-                className={navData => (navData.isActive ? classes.active : '')}
+              <a
+                href="/flashcard"
+                onClick={toggleFlashcardHandler}
+                className={isFlashcardActive ? classes.active : ''}
               >
                 <div className="flex-center">
                   <FlashcardIcon className={classes.icon} />
                   Flashcard
                 </div>
-              </NavLink>
+                <ArrowRightIcon className={classes['icon-arrow']} />
+                <ArrowDownIcon
+                  className={`${classes['icon-arrow']} ${classes.hidden}`}
+                />
+              </a>
+              <ul className={classes.subnav}>
+                <li className={classes['subnav-item']}>
+                  <NavLink
+                    to="/flashcard/learn"
+                    className={subnavData =>
+                      subnavData.isActive ? classes.active : ''}
+                  >
+                    Learn
+                  </NavLink>
+                </li>
+                <li className={classes['subnav-item']}>
+                  <NavLink
+                    to="/flashcard/practice"
+                    className={subnavData =>
+                      subnavData.isActive ? classes.active : ''}
+                  >
+                    Practice
+                  </NavLink>
+                </li>
+              </ul>
             </li>
             <li onClick={handleLogout} className={classes['nav-item']}>
               <NavLink
@@ -153,7 +203,6 @@ const MainNavigation = () => {
           </ul>
         </nav>
       </div>
-      <h1>ABC</h1>
     </section>
   );
 };

@@ -1,7 +1,6 @@
+import styled from 'styled-components';
 
-import styled from 'styled-components'
-
-    const SButton = styled.button`
+const SButton = styled.button`
     background-color:white;
     color: var(--color-primary);
     border-radius: 5px;
@@ -14,4 +13,4 @@ import styled from 'styled-components'
     }
 `;
 
-export default SButton
+export default SButton;

@@ -1,6 +1,6 @@
-import React from 'react'
+import React from 'react';
 import classes from './Lesson.module.css';
-import SButton from './CustomHooks/SButton'
+import SButton from './CustomHooks/SButton';
 
 const Header = ({lessonId}) => {
   return (
@@ -24,10 +24,10 @@ const Header = ({lessonId}) => {
           <div className={classes.ld_bar_showbtn}>
             <SButton>Show Pathway</SButton>
           </div>
-          </div>
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

@@ -9,10 +9,27 @@ const StyledLogin = styled.section`
     margin: 0;
 }
 
-
+    
 
 
  */
+  .infoform{
+    border-top: 5px solid var(--color-primary);
+  }
+
+ .infoform h1{
+    width:180px;
+    font-size: 3rem;
+    font-family: var(--font-logo1);
+    color: white;
+    text-align: center;
+    margin: 0;
+    background-color: var(--color-primary);
+    border-radius: 5px;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    padding:4px;
+ }
 
   header {
     font-size: 1.5rem;
@@ -62,6 +79,7 @@ const StyledLogin = styled.section`
     padding-bottom: 0.25rem;
     outline: none;
     margin-bottom: 8px;
+    border-radius:0;
   }
 
   button {

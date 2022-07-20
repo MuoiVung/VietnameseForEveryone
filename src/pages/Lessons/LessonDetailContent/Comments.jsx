@@ -1,9 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import SButton from '../CustomHooks/SButton';
 import classes from '../Lesson.module.css';
-import Hide from '../CustomHooks/Hide';
 
-const Comments = () => {
+const Comments = ({display}) => {
   const [input, setInput] = useState ('');
 
   const initial = {
@@ -85,11 +84,11 @@ const Comments = () => {
   );
 
   return (
-    <div className={classes.comments_container} id="comments">
-      <div className={classes.comments_header}>
-        <h3>Comments</h3>
-        <Hide />
-      </div>
+    <div
+      className={classes.comments_container}
+      id="comments"
+      style={{display: `${display}`}}
+    >
       <form onSubmit={handleSubmit} className={classes.form_comments}>
         <textarea
           name="comment"

@@ -179,24 +179,24 @@ const ListeningExercise = () => {
     }
   };
 
-  const enterKeyHandler = (event) => {
-    if (event.key !== "Enter") {
-      return;
-    }
+  // const enterKeyHandler = (event) => {
+  //   if (event.key !== "Enter") {
+  //     return;
+  //   }
 
-    if (!isFinished) {
-      checkAnswerHandler(event);
-    } else {
-      nextQuesttionHandler(event);
-    }
-  };
+  //   if (!isFinished) {
+  //     checkAnswerHandler(event);
+  //   } else {
+  //     nextQuesttionHandler(event);
+  //   }
+  // };
 
-  useEffect(() => {
-    document.addEventListener("keydown", enterKeyHandler, false);
-    return () => {
-      document.removeEventListener("keydown", enterKeyHandler);
-    };
-  }, [hiddenParagraph]);
+  // useEffect(() => {
+  //   document.addEventListener("keydown", enterKeyHandler, false);
+  //   return () => {
+  //     document.removeEventListener("keydown", enterKeyHandler);
+  //   };
+  // }, [hiddenParagraph]);
 
   return (
     <Fragment>
@@ -220,7 +220,7 @@ const ListeningExercise = () => {
       )}
 
       {!isFinished && (
-        <div>
+        <form>
           <label htmlFor="dictation">What is the speaker saying?</label>
           <input
             id="dictation"
@@ -229,20 +229,26 @@ const ListeningExercise = () => {
             ref={enteredInputRef}
             autoFocus
           />
-          <StyledButton onClick={checkAnswerHandler}>Check Answer</StyledButton>
-          <StyledButton onClick={giveUpHandler}>Give Up</StyledButton>
-        </div>
+          <StyledButton type="submit" onClick={checkAnswerHandler}>
+            Check Answer
+          </StyledButton>
+          <StyledButton type="button" onClick={giveUpHandler}>
+            Give Up
+          </StyledButton>
+        </form>
       )}
 
       {isFinished && (
-        <div>
+        <form>
           <label htmlFor="dictation">What is the speaker saying?</label>
           <input disabled />
-          <StyledButton onClick={nextQuesttionHandler}>
+          <StyledButton type="submit" onClick={nextQuesttionHandler}>
             Next Question
           </StyledButton>
-          <StyledButton onClick={tryAgainHandler}>Try Again</StyledButton>
-        </div>
+          <StyledButton type="button" onClick={tryAgainHandler}>
+            Try Again
+          </StyledButton>
+        </form>
       )}
 
       {isChecked && (

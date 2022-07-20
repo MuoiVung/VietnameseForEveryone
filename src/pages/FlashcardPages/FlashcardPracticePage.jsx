@@ -1,15 +1,14 @@
 import React, { useState } from "react";
-import FlashcardList from "./FlashcardPageChill/FlashcardList";
-import classes from './FlashcardPageChill/FlashCard.module.css';
+import FlashcardList from "../FlashcardPageChill/FlashcardList";
+import classes from '../FlashcardPageChill/FlashCard.module.css';
+import styles from "../QuickExercises/QuickExercisesPage.module.css";
 
-
-
-const FlashcardPage = () => {
+const FlashcardPracticePage = () => {
   const [flashcard, setFlashcard] = useState(SAPM_FKASHCARDS);
 
   return (
     <>
-      <h1>FlashcardPage</h1>
+      <h1 className={styles.title}>Flashcard Game</h1><br/>
       <div className={classes.flachcardPage}>
         <FlashcardList flashcard={flashcard} setFlashcard={setFlashcard} />
       </div>
@@ -98,4 +97,4 @@ const SAPM_FKASHCARDS = [
   // },
 ];
 
-export default FlashcardPage;
+export default FlashcardPracticePage;

@@ -9,11 +9,19 @@ import Notes from './LessonDetailContent/Notes';
 import Transcript from './LessonDetailContent/Transcript';
 import Comments from './LessonDetailContent/Comments';
 import Dialogue from './LessonDetailContent/Dialogue';
+import Hide from './CustomHooks/Hide';
+import Show from './CustomHooks/Show';
 
 const LessonDetailPage = () => {
   const {lessonId} = useParams ();
   const [lesson, setLesson] = useState (null);
+  const [display, setDisplay] = useState ('block');
+  const [hide, setHide] = useState ('true');
 
+  const handleClick = () => {
+    hide ? setHide (false) : setHide (true);
+    !hide ? setDisplay ('block') : setDisplay ('none');
+  };
   const URL_API =
     'https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/lesson-beginner';
 
@@ -58,11 +66,54 @@ const LessonDetailPage = () => {
               <a href="#transcripts"><li>Lesson Transcripts</li></a>
               <a href="#comments"><li>Comments</li></a>
             </ul>
-            <Dialogue lesson={lesson} />
-            <Vocabulary lesson={lesson} />
-            <Notes lesson={lesson} />
-            <Transcript lesson={lesson} />
-            <Comments />
+            <div>
+              <div>
+                <div className={classes.dialogue_header}>
+                  <h3>Dialogue - Vietnames</h3>
+                  <div onClick={handleClick}>
+                    {hide ? <Hide /> : <Show />}
+                  </div>
+                </div>
+                <Dialogue lesson={lesson} display={display} />
+              </div>
+              <div>
+                <div className={classes.vocabulary_header}>
+                  <h3>Vocabulary</h3>
+                  <div onClick={handleClick}>
+                    {hide ? <Hide /> : <Show />}
+                  </div>
+                </div>
+                <Vocabulary lesson={lesson} display={display} />
+              </div>
+
+              <div>
+                <div className={classes.notes_container_header}>
+                  <h3>Notes</h3>
+                  <div onClick={handleClick}>
+                    {hide ? <Hide /> : <Show />}
+                  </div>
+                </div>
+                <Notes lesson={lesson} display={display} />
+              </div>
+              <div>
+                <div className={classes.transcript_header}>
+                  <h3>Lesson Transcript</h3>
+                  <div onClick={handleClick}>
+                    {hide ? <Hide /> : <Show />}
+                  </div>
+                </div>
+                <Transcript lesson={lesson} display={display} />
+              </div>
+              <div>
+                <div className={classes.comments_header}>
+                  <h3>Comments</h3>
+                  <div onClick={handleClick}>
+                    {hide ? <Hide /> : <Show />}
+                  </div>
+                </div>
+                <Comments display={display} />
+              </div>
+            </div>
           </div>
         </div>}
     </section>

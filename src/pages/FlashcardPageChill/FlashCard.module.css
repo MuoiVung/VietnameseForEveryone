@@ -34,6 +34,7 @@
 }
 
 .card {
+  font-size: 1.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -81,27 +82,29 @@
 .flashcardOption {
   margin-top: 0.25rem;
   color: #555;
-  font-size: 0.75rem;
-}
-
-.flashcardOption:first-child {
-  margin-top: 0;
+  font-size: 0.9rem;
 }
 
 .check_box {
-  margin-top: 24px;
+  margin-top: 10px;
+}
+
+.check_box:hover {
+  color: var(--color-primary)
 }
 
 .check_box label {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .check_box input {
-  width: 24px;
-  height: 24px;
-  margin-right: 24px;
+  width: 22px;
+  height: 22px;
+  margin-right: 15px;
   display: inline-block;
+  cursor: pointer;
 }
 
 .bottom {

@@ -1,14 +1,13 @@
 import React from 'react';
-import Hide from '../CustomHooks/Hide';
 import classes from '../Lesson.module.css';
 
-const Notes = ({lesson}) => {
+const Notes = ({lesson, display}) => {
   return (
-    <div className={classes.notes_container} id="notes">
-      <div className={classes.notes_container_header}>
-        <h3>Notes</h3>
-        <Hide />
-      </div>
+    <div
+      className={classes.notes_container}
+      id="notes"
+      style={{display: `${display}`}}
+    >
       <div className={classes.notes_forcus}>
         <h4>Lesson Forcus</h4>
         {lesson.notes.forcus_sub

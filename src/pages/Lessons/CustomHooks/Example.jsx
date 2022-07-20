@@ -2,15 +2,15 @@ import React, {useState} from 'react';
 import {BiUpArrow} from 'react-icons/bi';
 import {BiDownArrow} from 'react-icons/bi';
 
-const Example = ({setDisplay}) => {
-  const [hiden, setHiden] = useState (true);
-  const handleShowExmple = () => {
-    hiden ? setHiden (false) : setHiden (true);
-    hiden ? setDisplay ('block') : setDisplay ('none');
+const Example = ({setDisplayExample}) => {
+  const [hide, setHide] = useState (true);
+  const handleShowExample = () => {
+    hide ? setHide (false) : setHide (true);
+    hide ? setDisplayExample ('block') : setDisplayExample ('none');
   };
   return (
     <div
-      onClick={handleShowExmple}
+      onClick={handleShowExample}
       style={{
         display: 'flex',
         textAlign: 'center',
@@ -24,7 +24,7 @@ const Example = ({setDisplay}) => {
         Example
       </span>
       <div>
-        {!hiden
+        {!hide
           ? <BiUpArrow
               style={{
                 color: 'var(--color-primary)',
