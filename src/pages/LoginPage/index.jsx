@@ -200,7 +200,8 @@ const LoginPage = () => {
         <section className="body-infor">
           <div>
             <form className="infoform" onSubmit={sendRepuestSignUp}>
-              <header>Sign up</header>
+              <h1>Vife</h1>
+              <header>Register</header>
               <label>Your name</label>
               <input
                 type="text"
@@ -298,6 +299,7 @@ const LoginPage = () => {
           <section className="body-infor">
             <div>
               <form className="infoform" onSubmit={sendRepuestLogin}>
+                <h1>Vife</h1>
                 <header>LoginPage</header>
                 <label>Your email</label>
                 <input
