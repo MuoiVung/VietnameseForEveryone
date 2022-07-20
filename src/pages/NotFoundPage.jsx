@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import NotFoundWrapper from "../components/Wrappers/NotFoundWrapper";
+import NotFoundWrapper from "../components/Styles/NotFoundWrapper";
 import img from "../assets/img/page-not-found.svg";
 import StyledButton from "../components/UI/StyledButton";
 

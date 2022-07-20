@@ -1,7 +1,7 @@
 import React, { Fragment } from "react";
 import Container from "./Container";
 import classes from "./QuickExercise.module.scss";
-import Title from "./Title";
+import Title from "../Layout/Title";
 
 const QuickExercise = (props) => {
   return (

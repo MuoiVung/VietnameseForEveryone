@@ -12,8 +12,9 @@ import ReadingPage from "./QuickExercises/ReadingPage";
 import WritingPage from "./QuickExercises/WritingPage";
 import FlashcardLearnPage from "./FlashcardPages/FlashcardLearnPage";
 import FlashcardPracticePage from "./FlashcardPages/FlashcardPracticePage";
+import Dashboard from "./Dashboard";
 
 export {
-    LessonsPage, LessonDetailPage, LessonsBeginnerPage, LessonsIntermediatePage, LessonsAdvancedPage, FlashcardLearnPage, FlashcardPracticePage, LoginPage,
+    Dashboard, LessonsPage, LessonDetailPage, LessonsBeginnerPage, LessonsIntermediatePage, LessonsAdvancedPage, FlashcardLearnPage, FlashcardPracticePage, LoginPage,
     NotFoundPage, QuickExercisesPage, ListeningPage, SpeakingPage, ReadingPage, WritingPage
 };
