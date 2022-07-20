@@ -42,7 +42,7 @@ const LessonsBeginnerPage = () => {
     <Fragment>
       <Header title="Beginner Lessons">
         <Breadcrumb>
-          <BreadcrumItem href="/lessons">Lessons</BreadcrumItem>
+          <BreadcrumItem>Lessons</BreadcrumItem>
           <BreadcrumItem href="/lessons/beginner">beginner</BreadcrumItem>
         </Breadcrumb>
       </Header>

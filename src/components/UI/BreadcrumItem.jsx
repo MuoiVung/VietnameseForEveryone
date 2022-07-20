@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const SbreadcrumItem = styled.li`
-  a {
+  a,
+  span {
     text-transform: capitalize;
     text-decoration: none;
     color: black;
@@ -18,7 +19,8 @@ const SbreadcrumItem = styled.li`
 const BreadcrumItem = ({ href, children }) => {
   return (
     <SbreadcrumItem>
-      <Link to={href}>{children}</Link>
+      {href && <Link to={href}>{children}</Link>}
+      {!href && <span>{children}</span>}
     </SbreadcrumItem>
   );
 };

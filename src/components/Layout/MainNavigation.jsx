@@ -13,6 +13,8 @@ import { RiLogoutBoxLine as LoginIcon } from "react-icons/ri";
 import { BsCardHeading as FlashcardIcon } from "react-icons/bs";
 
 const MainNavigation = () => {
+  const [isLessonsActive, setIsLessonsActive] = useState(false);
+  const [isFlashcardActive, setIsFlashcardActive] = useState(false);
   const [LoginData, setLoginData] = useState(
     localStorage.getItem("loginDataNewUser")
       ? JSON.parse(localStorage.getItem("loginDataNewUser"))
@@ -63,6 +65,17 @@ const MainNavigation = () => {
 
     getLocalStorageData();
   }, []);
+
+  const toggleLessonsHandler = (event) => {
+    event.preventDefault();
+    setIsLessonsActive(!isLessonsActive);
+  };
+
+  const toggleFlashcardHandler = (event) => {
+    event.preventDefault();
+    setIsFlashcardActive(!isFlashcardActive);
+  };
+
   return (
     <section className={classes.sidebar}>
       <div className={classes.container}>
@@ -89,11 +102,10 @@ const MainNavigation = () => {
               </NavLink>
             </li>
             <li className={classes["nav-item"]}>
-              <NavLink
-                to="/lessons"
-                className={(navData) =>
-                  navData.isActive ? classes.active : ""
-                }
+              <a
+                href="/lessons"
+                onClick={toggleLessonsHandler}
+                className={isLessonsActive ? classes.active : ""}
               >
                 <div className="flex-center">
                   <LessonIcon className={classes.icon} />
@@ -103,7 +115,7 @@ const MainNavigation = () => {
                 <ArrowDownIcon
                   className={`${classes["icon-arrow"]} ${classes.hidden}`}
                 />
-              </NavLink>
+              </a>
               <ul className={classes.subnav}>
                 <li className={classes["subnav-item"]}>
                   <NavLink
@@ -151,11 +163,10 @@ const MainNavigation = () => {
               </NavLink>
             </li>
             <li className={classes["nav-item"]}>
-              <NavLink
-                to="/flashcard"
-                className={(navData) =>
-                  navData.isActive ? classes.active : ""
-                }
+              <a
+                href="/flashcard"
+                onClick={toggleFlashcardHandler}
+                className={isFlashcardActive ? classes.active : ""}
               >
                 <div className="flex-center">
                   <FlashcardIcon className={classes.icon} />
@@ -165,7 +176,7 @@ const MainNavigation = () => {
                 <ArrowDownIcon
                   className={`${classes["icon-arrow"]} ${classes.hidden}`}
                 />
-              </NavLink>
+              </a>
               <ul className={classes.subnav}>
                 <li className={classes["subnav-item"]}>
                   <NavLink
