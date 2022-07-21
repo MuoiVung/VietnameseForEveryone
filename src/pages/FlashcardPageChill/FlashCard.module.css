@@ -124,3 +124,16 @@
 .secondaryBtn:hover {
   text-decoration: underline;
 }
+
+.learnPage {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cardNavigator {
+  margin-top: 30px;
+  display: flex;
+  justify-content: space-between;
+}
