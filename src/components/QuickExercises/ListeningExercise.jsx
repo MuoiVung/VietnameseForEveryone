@@ -179,25 +179,6 @@ const ListeningExercise = () => {
     }
   };
 
-  // const enterKeyHandler = (event) => {
-  //   if (event.key !== "Enter") {
-  //     return;
-  //   }
-
-  //   if (!isFinished) {
-  //     checkAnswerHandler(event);
-  //   } else {
-  //     nextQuesttionHandler(event);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.addEventListener("keydown", enterKeyHandler, false);
-  //   return () => {
-  //     document.removeEventListener("keydown", enterKeyHandler);
-  //   };
-  // }, [hiddenParagraph]);
-
   return (
     <Fragment>
       {isInitial && (
@@ -220,7 +201,7 @@ const ListeningExercise = () => {
       )}
 
       {!isFinished && (
-        <form>
+        <form className={classes.form}>
           <label htmlFor="dictation">What is the speaker saying?</label>
           <input
             id="dictation"
@@ -239,7 +220,7 @@ const ListeningExercise = () => {
       )}
 
       {isFinished && (
-        <form>
+        <form className={classes.form}>
           <label htmlFor="dictation">What is the speaker saying?</label>
           <input disabled />
           <StyledButton type="submit" onClick={nextQuesttionHandler}>
@@ -252,7 +233,10 @@ const ListeningExercise = () => {
       )}
 
       {isChecked && (
-        <Container color={isFinished ? "#90ee9080" : "wheat"}>
+        <Container
+          className={classes.result}
+          color={isFinished ? "#90ee9080" : "wheat"}
+        >
           {!isGivenUp && <h3>{isFinished ? "Nice job" : "Try again"}</h3>}
           <p className={classes["hidden-para"]}>{hiddenParagraph}</p>
           {isFinished && <p>{exercisesData.randomExercise.eng}</p>}
