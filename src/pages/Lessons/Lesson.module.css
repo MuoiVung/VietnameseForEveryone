@@ -1,220 +1,296 @@
+.container-beginner {
+  text-decoration: none;
+}
+.pageBeginner {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 30px;
+  padding-top: 12px;
+}
+.item_link {
+  text-decoration: none;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+}
+.containerItem {
+  padding: 10px;
+  background-color: white;
+  color: var(--color-primary);
+  border-radius: 7px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+  transition: transform linear 0.1s;
+  will-change: transform;
+}
+.containerItem:hover {
+  transform: translateY(-2);
+  box-shadow: 0 1px 20px 0 rgba(0, 0, 0, 0.05);
+}
+.item_img {
+  width: 250px;
+  height: 200px;
+  border-radius: 5px;
+  list-style: none;
+}
+.item_description {
+  padding-top: 10px;
+}
+.item_title {
+  min-height: 70px;
+  color: var(--color-primary);
+  padding-top: 20px;
+}
+.item_text {
+  color: var(--color-heading);
+  height: 50px;
+}
+/* LessonDetail */
+.ld_container {
+  text-align: Left;
+}
+/* lesson detail bar */
 
-.container-beginner{
-    text-decoration: none;
+.ld_bar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #1c1c1e;
+  color: white;
+  padding: 10px;
 }
-.pageBeginner{
-    display: grid;
-    grid-template-columns: repeat(4,1fr);
-    grid-gap: 30px;
-    padding-top: 12px;
+.ld_bar_left {
+  text-align: left;
+  padding-left: 20px;
 }
-.item_link{
-    text-decoration: none;
-    color: var(--color-text);
+.ld_bar_step {
+  display: flex;
+  margin-right: 30px;
 }
-.containerItem{
-    padding: 10px;
-    background-color: white;
-    color: var(--color-primary);
-    border-radius: 7px;
-    cursor: pointer;
+.ld_bar_step_arrow {
+  padding: 0px;
+  height: fit-content;
+  margin: auto 0;
 }
-.item_img{
-    width: 250px;
-    height: 200px;
-    padding: 5px;
-    border-radius: 5px;
-    list-style: none;
-}
-.item_description{
-    min-height: 40px;
-   padding: 10px;
-}
-.item_title{
-    /* -webkit-line-clamp: 1;
-    -webkit-box-orient: 1; */
-    min-height: 40px;
-    color: var(--color-primary);
-    padding: 20px 0;
-}
-.item_text{
-    
-    color: var(--color-heading);
-    padding: 5px 0 ;
-}
- /* LessonDetail */
- .ld_container{
-    text-align: Left;
- }
- /* lesson detail bar */
-
-.ld_bar{
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    background-color: #1c1c1e;
-    color: white;  
-    padding: 10px; 
-}
-.ld_bar_left{
-    text-align: left;
-    padding-left: 20px;
-}
-.ld_bar_step{
-    display: flex;
-    margin-right: 30px;
-}
-.ld_bar_step_arrow{
-    padding: 0px;
-    height: fit-content;
-   margin: auto 0;
-}
-.ld_bar_step_des{
-    line-height: 40px;
-    padding: 0 20px;
-}
-
-.ld_bar_subTitle{
-    opacity: 0.7;
-}
-.ld_bar_subTitle_completed{
-    padding-left: 10px;
-}
-.ld_bar_right{
-    display: flex;
+.ld_bar_step_des {
+  line-height: 40px;
+  padding: 0 20px;
 }
 
-.ld_bar_showbtn{
-    padding: 0 20px;
-    line-height: 40px;
+.ld_bar_subTitle {
+  opacity: 0.7;
 }
- /* lesson detail banner */
- .ld_baner{
-     margin: 0 auto;
-     text-align: left;
-     background-image: linear-gradient(to right,#a772cb,white);
- }
- .ld_banner__category{
-     justify-content: space-between;
- }
+.ld_bar_subTitle_completed {
+  padding-left: 10px;
+}
+.ld_bar_right {
+  display: flex;
+}
 
- .ld_container_content{
-     border: 1px solid #999;
- }
- .ld_content_sidebar{
-     list-style: none;
-     display: flex;
-     padding: 0px;
-     border-bottom: 1px solid var(--color-heading);
-     padding: 10px 20px;
- }
- .ld_content_sidebar a{
-     padding: 10px 20px;
-     text-decoration: none;
-     color: var(--color-heading);
+.ld_bar_showbtn {
+  padding: 0 20px;
+  line-height: 40px;
 }
-.ld_content_sidebar a:hover{
-    color: var(--color-primary);
+/* lesson detail banner */
+.ld_baner {
+  margin: 0 auto;
+  text-align: center;
+  background-color: var(--color-heading);
 }
- /* dialog */
- .dialogue_container{
-     padding: 20px;
-     margin-bottom:  30px;
-     background-color: greenyellow;
- }
- .dialogue_header{
-     display: flex;
-     justify-content: space-between;
-     padding-bottom: 10px;
- }
+.ld_baner h1 {
+  color: var(--color-primary);
+  padding: 20px 0;
+}
+.ld_baner p {
+  padding-bottom: 20px;
+}
+.banner__category {
+  padding: 20px 0;
+  justify-content: space-between;
+}
+.banner__category span {
+  display: inline-block;
+  padding-right: 20px;
+}
+/* detail content */
+
+.ld_container_content {
+  border: 1px solid #999;
+}
+.ld_content_sidebar {
+  list-style: none;
+  display: flex;
+  padding: 0px;
+  border-bottom: 1px solid var(--color-heading);
+  padding: 10px 20px;
+}
+.ld_content_sidebar a {
+  padding: 10px 20px;
+  text-decoration: none;
+  color: var(--color-heading);
+}
+.ld_content_sidebar a:hover {
+  color: var(--color-primary);
+}
+/* dialog */
+.dialogue_container {
+  padding: 20px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid var(--color-heading);
+}
+.dialogue_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 0 20px;
+}
+.dialogue_textVn {
+  padding: 10px;
+}
+.dialogue_textVn p {
+  padding: 5px;
+}
+.dialogue_textVn h4 {
+  margin-bottom: 10px;
+}
+.dialogue_textEng {
+  padding: 10px;
+}
+.dialogue_textEng p {
+  padding: 5px;
+}
+.dialogue_textEng h4 {
+  padding: 10px;
+}
 /* vocabulary */
- .vocabulary_container{
-    margin-bottom: 30px;
-    padding: 20px;
-    padding-top: 0px;
- }
- .vocabulary_header{
-    display: flex;
-    justify-content: space-between;
- }
- .vocabulary_item{
-     padding-left: 30px;
- }
- .vocabulary_item_difenition{
-    position: relative;
- }
- .vocabulary_item_vn{
-    padding-top: 10px;
-    display: inline-block;
- }
- .vocabulary_item_eng{
-    color: var(--color-heading);
-    padding: 10px 0;
- }
- .vocabulary_item_example{
-
+.vocabulary_container {
+  margin-bottom: 30px;
+  padding: 20px;
+  padding-top: 0px;
+  border-bottom: 1px solid var(--color-heading);
 }
- .vocabulary_item_br{
-     padding-bottom: 10px;
-     border-bottom:  1px solid var(--color-heading);
- }
- .vocabulary_item_icon{
-    position: absolute;
-    right: 0px;
-    top: 10px;
- }
- /* notes */
- .notes_container{
-    margin-bottom: 30px;
-    background-color: bisque;
- }
- /* transcript */
- .transcript_container{
-    margin-bottom: 30px;
- }
- /* comment */
- .comments_container{
-     margin-bottom: 30px;
- }
- .form_comments{
-    display: flex;
-    flex-direction: column;
-    width: 90%;
-    margin: 20px auto;
- }
- .form_input_name{
-     width: 50%;
-     margin: 10px 0;
-     padding: 10px;
-     border-radius: 5px;
-     opacity: 0.5;
- }
- .form_input_email{
-    width: 50%;
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
-    opacity: 0.5;
+.vocabulary_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 20px 0 20px;
 }
-.form_input_button{
-    width: 20%;
-    padding: 10px;
-    border-radius: 5px;
+.vocabulary_item_difenition {
+  position: relative;
 }
-.form_textarea{
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 5px;
+.vocabulary_item_vn {
+  padding-top: 10px;
+  display: inline-block;
 }
-.comments_item{
-    border: solid 0.5px #555;
-    border-radius: 7px;
-    padding: 10px;
-    margin: 15px 0;
-    text-align: left;
+.vocabulary_item_eng {
+  color: var(--color-heading);
+  padding: 10px 0;
 }
-.comments_item_name{
-    margin-bottom: 20px;
-    font-style: italic;
+.vocabulary_item_example p {
+  padding: 5px;
+  padding-left: 20px;
+}
+.vocabulary_item_br {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--color-heading);
+}
+.vocabulary_item_icon {
+  position: absolute;
+  right: 0px;
+  top: 10px;
+}
+/* notes */
+.notes_container {
+  margin-bottom: 30px;
+  padding: 20px;
+  border-bottom: 1px solid var(--color-heading);
+}
+.notes_container_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.notes_container h4 {
+  margin: 20px 0;
+}
+.notes_forcus p {
+  padding: 5px;
+}
+.notes_phrase p {
+  padding: 5px;
+}
+.notes_cultural p {
+  padding: 5px;
+}
+/* transcript */
+.transcript_container {
+  margin-bottom: 30px;
+  padding: 20px;
+  border-bottom: 1px solid var(--color-heading);
+}
+.transcript_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px 0 20px;
+}
+.transcript_introduction {
+  padding: 10px;
+}
+.transcript_introduction p {
+  padding: 10px;
+}
+.transcript_dialog {
+  padding: 10px;
+}
+.transcript_dialog p {
+  padding: 10px;
+}
+/* comment */
+.comments_container {
+  margin-bottom: 30px;
+  padding: 20px;
+}
+.comments_header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.form_comments {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 20px auto;
+}
+.form_input_name {
+  width: 50%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0.5;
+}
+.form_input_email {
+  width: 50%;
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+  opacity: 0.5;
+}
+.form_input_button {
+  width: 20%;
+  padding: 10px;
+  border-radius: 5px;
+}
+.form_textarea {
+  margin: 10px 0;
+  padding: 10px;
+  border-radius: 5px;
+}
+.comments_item {
+  border: solid 0.5px #555;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 15px 0;
+  text-align: left;
+}
+.comments_item_name {
+  margin-bottom: 20px;
+  font-style: italic;
 }
