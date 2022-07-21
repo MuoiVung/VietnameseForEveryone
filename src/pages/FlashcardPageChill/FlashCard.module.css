@@ -135,5 +135,39 @@
 .cardNavigator {
   margin-top: 30px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  align-items: center;
+}
+
+.monitor {
+  padding: 7px 10px;
+  margin: 0 10px;
+  border-radius: 5px;
+  border: 2px solid black;
+}
+
+.arrowBtn {
+  border: none;
+  color: var(--color-primary);
+}
+
+.arrowBtn {
+  border: none;
+  background-color: var(--color-bg);
+  font-size: 2rem;
+  font-family: var(--font-text);
+  color: var(--color-primary);
+  width: 2rem;
+  height: 2rem;
+}
+.arrowBtn:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.arrowBtn:disabled {
+  color: grey;
+}
+.arrowBtn:disabled:hover {
+  transform: scale(1);
+  cursor: auto;
 }

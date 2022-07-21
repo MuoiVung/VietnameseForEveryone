@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import StyledButton from "../../components/UI/StyledButton";
 import classes from '../FlashcardPageChill/FlashCard.module.css';
 import Header from "../../components/Layout/Header";
-
+import Breadcrumb from "../../components/UI/Breadcrumb";
+import BreadcrumbItem from "../../components/UI/BreadcrumItem";
+import {AiOutlineArrowLeft,AiOutlineArrowRight} from "react-icons/ai"
 const CardArray = [
   {
     id: 1,
@@ -107,7 +109,13 @@ const FlashcardLearnPage = () => {
   
   return(
     <>
-      <Header title="Learn through flashcards"/><br/>
+      <Header title="Learn through flashcards">
+        <Breadcrumb>
+          <BreadcrumbItem>Flashcard</BreadcrumbItem>
+          <BreadcrumbItem href="/flashcard/learn">Learn</BreadcrumbItem>
+        </Breadcrumb>
+      </Header>
+      <br/>
       <div className={classes.learnPage}>
         <div>
         <div className={[classes.card, flip ? classes.flip : ''].join(' ')} onClick={() => {setFlip(!flip)}}>
@@ -122,8 +130,9 @@ const FlashcardLearnPage = () => {
           <div className={classes.back}><b>ĐÁP ÁN:<br/></b>{currentCard.answer}</div>
         </div>
         <div className={classes.cardNavigator}>
-          <StyledButton disabled={!prevBtnIsActive} onClick={handlePrev}>Previous</StyledButton>
-          <StyledButton disabled={!nextBtnIsActive} onClick={handleNext}>Next</StyledButton>
+          <button className={classes.arrowBtn} disabled={!prevBtnIsActive} onClick={handlePrev}><AiOutlineArrowLeft/></button>
+          <div className={classes.monitor}>{currentCardNum+1} / {CardArray.length}</div>
+          <button className={classes.arrowBtn} disabled={!nextBtnIsActive} onClick={handleNext}><AiOutlineArrowRight/></button>
         </div>
         </div>
       </div>

@@ -2,13 +2,20 @@ import React, { useState } from "react";
 import FlashcardList from "../FlashcardPageChill/FlashcardList";
 import classes from '../FlashcardPageChill/FlashCard.module.css';
 import Header from "../../components/Layout/Header";
+import Breadcrumb from "../../components/UI/Breadcrumb";
+import BreadcrumbItem from "../../components/UI/BreadcrumItem";
 
 const FlashcardPracticePage = () => {
   const [flashcard, setFlashcard] = useState(SAPM_FKASHCARDS);
 
   return (
     <>
-      <Header title="Flashcard Game"/><br/>
+      <Header title="Flashcard Game">
+        <Breadcrumb>
+          <BreadcrumbItem>Flashcard</BreadcrumbItem>
+          <BreadcrumbItem href="/flashcard/practice">Practice</BreadcrumbItem>
+        </Breadcrumb>
+      </Header><br/>
       <div className={classes.flachcardPage}>
         <FlashcardList flashcard={flashcard} setFlashcard={setFlashcard} />
       </div>
