@@ -1,6 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import StyledButton from "../../components/UI/StyledButton";
 import classes from '../FlashcardPageChill/FlashCard.module.css';
 import Header from "../../components/Layout/Header";
 import Breadcrumb from "../../components/UI/Breadcrumb";
@@ -98,6 +97,7 @@ const FlashcardLearnPage = () => {
     (currentCardNum === 0) ? setPrevBtnIsActive(false) : setPrevBtnIsActive(true);
     (currentCardNum === CardArray.length-1) ? setNextBtnIsActive(false) : setNextBtnIsActive(true);
     setCurrentCard(CardArray[currentCardNum]);
+    setFlip(false);
   }, [currentCardNum])
   const handleNext = () => {
     setcurrentCardNum((prev) => prev+1);
