@@ -290,7 +290,7 @@ const LoginPage = () => {
             </form>
 
             <p>
-              <Link to="/lessons">Get started!</Link>
+              <Link to="/">Get started!</Link>
             </p>
           </div>
         </section>
@@ -343,7 +343,7 @@ const LoginPage = () => {
               </form>
 
               <p>
-                <Link to="/lessons">Get started!</Link>
+                <Link to="/">Get started!</Link>
               </p>
             </div>
           </section>
