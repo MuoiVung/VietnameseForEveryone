@@ -18,6 +18,9 @@ const StyledButton = styled.button`
     color: ${(props) => (props.fill ? "#ed6789" : "white")};
     cursor: pointer;
   }
+  &:disabled {
+    cursor: auto;
+  }
 `;
 
 export default StyledButton;
