@@ -1,10 +1,5 @@
 import React, { Fragment } from "react";
-import {
-  writeIcon,
-  listenIcon,
-  readIcon,
-  speakIcon,
-} from "../../assets/icons/QuickExercisesIcons";
+import { writeIcon, listenIcon, readIcon, speakIcon } from "../../assets/icons";
 import classes from "./QuickExercisesPage.module.css";
 import { Link } from "react-router-dom";
 import StyledButton from "../../components/UI/StyledButton";
