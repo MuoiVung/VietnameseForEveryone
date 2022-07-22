@@ -8,6 +8,11 @@ import silverMedal from "./img/medal-silver.png";
 import bronzeMedal from "./img/medal-bronze.png";
 import cuteMedal from "./img/medal-cute.png";
 import beeMedal from "./img/medal-bee.png";
+import listenSkill from "./img/dashboard-listening.png";
+import readSkill from "./img/dashboard-reading.png";
+import writeSkill from "./img/dashboard-writing.png";
+import speakSkill from "./img/dashboard-speaking.png";
+import analystics from "./img/dashboard-analytics.webp";
 
 export {
   writeIcon,
@@ -20,4 +25,9 @@ export {
   bronzeMedal,
   cuteMedal,
   beeMedal,
+  listenSkill,
+  readSkill,
+  writeSkill,
+  speakSkill,
+  analystics,
 };

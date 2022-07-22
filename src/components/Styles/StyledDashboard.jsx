@@ -107,6 +107,29 @@ const StyledDashboard = styled.section`
         gap: 1rem;
       }
     }
+    .tracking {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      .item {
+        height: 20rem;
+      }
+      .skills {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+      .paths {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        img {
+          filter: hue-rotate(145deg) contrast(0.9) brightness(1);
+        }
+      }
+    }
   }
 `;
 export default StyledDashboard;

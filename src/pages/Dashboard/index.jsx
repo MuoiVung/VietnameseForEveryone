@@ -5,7 +5,7 @@ import Breadcrumb from "../../components/UI/Breadcrumb";
 import BreadcrumItem from "../../components/UI/BreadcrumItem";
 import { toast } from "react-toastify";
 import Card from "../../components/UI/Card";
-import ProgressBar from "../../components/Dashboard/ProgressBar";
+import ProgressBar from "./ProgressBar";
 import { Link } from "react-router-dom";
 import StyledButton from "../../components/UI/StyledButton";
 import {
@@ -14,8 +14,15 @@ import {
   bronzeMedal,
   cuteMedal,
   beeMedal,
+  listenSkill,
+  writeSkill,
+  readSkill,
+  speakSkill,
+  analystics,
 } from "../../assets/icons";
 import Achievement from "./Achievement";
+import Skill from "./Skill";
+import Donut from "./Donut";
 
 const Dashboard = () => {
   const [lessons, setLessons] = useState([]);
@@ -150,6 +157,60 @@ const Dashboard = () => {
     </section>
   );
 
+  const tracking = (
+    <section className="tracking db-section">
+      <div>
+        <h3 className="section-title">Related Skills</h3>
+        <ul className="skills item">
+          <Skill
+            goTo="quick-exercises/Listening"
+            src={listenSkill}
+            alt="a headphone"
+            name="Listening"
+            quantity="14 lessons"
+          />
+          <Skill
+            goTo="quick-exercises/Reading"
+            src={readSkill}
+            alt="a book"
+            name="Reading"
+            quantity="42 lessons"
+          />
+          <Skill
+            goTo="quick-exercises/Writing"
+            src={writeSkill}
+            alt="a book and a pen"
+            name="Writing"
+            quantity="25 lessons"
+          />
+          <Skill
+            goTo="quick-exercises/Speaking"
+            src={speakSkill}
+            alt="a mic"
+            name="Speaking"
+            quantity="72 lessons"
+          />
+        </ul>
+      </div>
+      <div>
+        <h3 className="section-title">Your Time</h3>
+        <Card className="item">
+          <Donut />
+        </Card>
+      </div>
+      <div>
+        <h3 className="section-title">Paths</h3>
+        <Card className="item">
+          <div className="paths">
+            <img src={analystics} alt="many bulbs" />
+            <p className="text">You are not on any path!</p>
+            <StyledButton fill="true">Take a Path</StyledButton>
+          </div>
+        </Card>
+      </div>
+    </section>
+  );
+
   return (
     <StyledDashboard>
       <Header title="Welcome back, Demo User">
@@ -160,6 +221,7 @@ const Dashboard = () => {
       <section className="container">
         {courses}
         {achievements}
+        {tracking}
       </section>
     </StyledDashboard>
   );
