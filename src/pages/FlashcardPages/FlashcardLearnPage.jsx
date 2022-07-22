@@ -1,9 +1,12 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import StyledButton from "../../components/UI/StyledButton";
 import classes from '../FlashcardPageChill/FlashCard.module.css';
 import Header from "../../components/Layout/Header";
-
+import Breadcrumb from "../../components/UI/Breadcrumb";
+import BreadcrumbItem from "../../components/UI/BreadcrumItem";
+import {AiOutlineArrowLeft,AiOutlineArrowRight} from "react-icons/ai"
+import styles from "../QuickExercises/ListeningPage.module.scss";
+import StyledButton from "../../components/UI/StyledButton";
 const CardArray = [
   {
     id: 1,
@@ -85,17 +88,21 @@ const CardArray = [
   },
 ];
 
+const subjects = ["Grammar","Alphabet","Numbers","Colors","Food","Clothes","Body parts"];
+
 const FlashcardLearnPage = () => {
   const [currentCardNum, setcurrentCardNum] = useState(0);
   const [currentCard, setCurrentCard] = useState(CardArray[0]);
   const [nextBtnIsActive, setNextBtnIsActive] = useState(true);
   const [prevBtnIsActive, setPrevBtnIsActive] = useState(false);
   const [flip, setFlip] = useState(false)
+  const [currentSubject, setCurrentSubject] = useState(0)
 
   useEffect(() => {
     (currentCardNum === 0) ? setPrevBtnIsActive(false) : setPrevBtnIsActive(true);
     (currentCardNum === CardArray.length-1) ? setNextBtnIsActive(false) : setNextBtnIsActive(true);
     setCurrentCard(CardArray[currentCardNum]);
+    setFlip(false);
   }, [currentCardNum])
   const handleNext = () => {
     setcurrentCardNum((prev) => prev+1);
@@ -104,27 +111,48 @@ const FlashcardLearnPage = () => {
   const handlePrev = () => {
     setcurrentCardNum((prev) => prev-1);
   }
+  const handleChangeSubject = (i) => {
+    (i!==currentSubject) && setCurrentSubject(i);
+  }
   
   return(
     <>
-      <Header title="Learn through flashcards"/><br/>
+      <Header title="Learn through flashcards">
+        <Breadcrumb>
+          <BreadcrumbItem>Flashcard</BreadcrumbItem>
+          <BreadcrumbItem href="/flashcard/learn">Learn</BreadcrumbItem>
+        </Breadcrumb>
+      </Header>
+      <br/>
       <div className={classes.learnPage}>
-        <div>
-        <div className={[classes.card, flip ? classes.flip : ''].join(' ')} onClick={() => {setFlip(!flip)}}>
-          <div className={classes.front}>
-              {currentCard.question}
-              <div className={classes.flashcardOptions}>
-                  {currentCard.options.map((item, i) => {
-                      return <div className={classes.flashcardOption} key={i}>{i+1}. {item}</div>
-                  })}
-              </div>
+        <div className={classes.left}>
+            <h3>Subjects</h3>
+            <div className={classes.contentLeft}>
+            <ul className={styles.instruction}>
+                {subjects.map((subject, i) => (
+                  <li key={`subject_${i}`}><StyledButton disabled={(i===currentSubject)} className={(i===currentSubject) && classes.activeSubject} onClick={() => handleChangeSubject(i)}>{subject}</StyledButton></li>
+                ))}
+            </ul>
+            </div>
+        </div>
+        <div className={classes.right}>   
+          <h3>{subjects[currentSubject]}</h3><br/>
+          <div className={[classes.card, flip ? classes.flip : ''].join(' ')} onClick={() => {setFlip(!flip)}}>
+            <div className={classes.front}>
+                {currentCard.question}
+                <div className={classes.flashcardOptions}>
+                    {currentCard.options.map((item, i) => {
+                        return <div className={classes.flashcardOption} key={i}>{i+1}. {item}</div>
+                    })}
+                </div>
+            </div>
+            <div className={classes.back}><b>ĐÁP ÁN:<br/></b>{currentCard.answer}</div>
           </div>
-          <div className={classes.back}><b>ĐÁP ÁN:<br/></b>{currentCard.answer}</div>
-        </div>
-        <div className={classes.cardNavigator}>
-          <StyledButton disabled={!prevBtnIsActive} onClick={handlePrev}>Previous</StyledButton>
-          <StyledButton disabled={!nextBtnIsActive} onClick={handleNext}>Next</StyledButton>
-        </div>
+          <div className={classes.cardNavigator}>
+            <button className={classes.arrowBtn} disabled={!prevBtnIsActive} onClick={handlePrev}><AiOutlineArrowLeft/></button>
+            <div className={classes.monitor}>{currentCardNum+1} / {CardArray.length}</div>
+            <button className={classes.arrowBtn} disabled={!nextBtnIsActive} onClick={handleNext}><AiOutlineArrowRight/></button>
+          </div>
         </div>
       </div>
     </>
