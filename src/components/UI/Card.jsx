@@ -9,8 +9,12 @@ const StyledCard = styled.div`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
 `;
 
-const Card = ({ className, children }) => {
-  return <StyledCard className={className}>{children}</StyledCard>;
+const Card = ({ as, className, children }) => {
+  return (
+    <StyledCard as={as} className={className}>
+      {children}
+    </StyledCard>
+  );
 };
 
 export default Card;
