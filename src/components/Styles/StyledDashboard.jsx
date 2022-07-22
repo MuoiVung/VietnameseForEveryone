@@ -1,15 +1,22 @@
 import styled from "styled-components";
-import emergencyImg from "../../assets/img/emergency.avif";
+import bg from "../../assets/img/dashboard-bg.webp";
 
 const StyledDashboard = styled.section`
+  ul {
+    list-style: none;
+  }
   .container {
     margin-top: 2rem;
+    .db-section {
+      margin-bottom: 2rem;
+    }
     .section-title {
       margin-bottom: 1rem;
       font-size: 1rem;
       font-family: var(--font-heading);
       color: var(--color-primary);
       font-weight: 400;
+      text-transform: capitalize;
     }
     .courses {
       display: flex;
@@ -67,8 +74,59 @@ const StyledDashboard = styled.section`
         flex: 1;
         .recommend-course {
           height: 22.5rem;
-          background: url(${emergencyImg}) no-repeat right;
+          background: black url(${bg}) no-repeat right;
           background-size: cover;
+          color: #b0b0b0;
+          .content {
+            width: 60%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            .title {
+              font-family: var(--font-heading);
+              font-size: 1.5rem;
+              font-weight: 400;
+              line-height: 1.4;
+            }
+            .text {
+              flex: 1;
+              margin-top: 2rem;
+              line-height: 1.4;
+            }
+            .button {
+            }
+          }
+        }
+      }
+    }
+    .achievements {
+      ul {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 1rem;
+      }
+    }
+    .tracking {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      .item {
+        height: 20rem;
+      }
+      .skills {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.5rem;
+      }
+      .paths {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        img {
+          filter: hue-rotate(145deg) contrast(0.9) brightness(1);
         }
       }
     }
