@@ -3,14 +3,13 @@ import ReactAudioPlayer from 'react-audio-player';
 import Example from '../CustomHooks/Example';
 import classes from '../Lesson.module.css';
 
-const Vocabulary = ({lesson, display}) => {
+const Vocabulary = ({lesson, displayVocab}) => {
   const [displayExample, setDisplayExample] = useState ('none');
 
   return (
     <div
-      className={classes.vocabulary_container}
-      id="vocabulary"
-      style={{display: `${display}`}}
+      style={{display: `${displayVocab}`}}
+      className={classes.vocabulary_content}
     >
       <ReactAudioPlayer src={lesson.vocabularyAudio} controls />
       {lesson.vocabulary &&

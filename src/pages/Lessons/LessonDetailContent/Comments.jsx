@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import SButton from '../CustomHooks/SButton';
 import classes from '../Lesson.module.css';
 
-const Comments = ({display}) => {
+const Comments = ({displayComment}) => {
   const [input, setInput] = useState ('');
 
   const initial = {
@@ -85,9 +85,8 @@ const Comments = ({display}) => {
 
   return (
     <div
-      className={classes.comments_container}
-      id="comments"
-      style={{display: `${display}`}}
+      style={{display: `${displayComment}`}}
+      className={classes.comments_content}
     >
       <form onSubmit={handleSubmit} className={classes.form_comments}>
         <textarea
