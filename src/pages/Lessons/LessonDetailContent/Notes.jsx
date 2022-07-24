@@ -1,13 +1,9 @@
 import React from 'react';
 import classes from '../Lesson.module.css';
 
-const Notes = ({lesson, display}) => {
+const Notes = ({lesson, displayNote}) => {
   return (
-    <div
-      className={classes.notes_container}
-      id="notes"
-      style={{display: `${display}`}}
-    >
+    <div style={{display: `${displayNote}`}} className={classes.notes_content}>
       <div className={classes.notes_forcus}>
         <h4>Lesson Forcus</h4>
         {lesson.notes.forcus_sub

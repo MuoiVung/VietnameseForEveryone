@@ -1,12 +1,11 @@
 import React from 'react';
 import classes from '../Lesson.module.css';
 
-const Transcript = ({lesson, display}) => {
+const Transcript = ({lesson, displayTranscript}) => {
   return (
     <div
-      className={classes.transcript_container}
-      id="transcripts"
-      style={{display: `${display}`}}
+      style={{display: `${displayTranscript}`}}
+      className={classes.transcript_content}
     >
       <div className={classes.transcript_introduction}>
         <h4>{`INTRODUCTION`}</h4>

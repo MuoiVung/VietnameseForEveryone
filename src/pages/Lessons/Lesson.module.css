@@ -47,6 +47,60 @@
 /* LessonDetail */
 .ld_container {
   text-align: Left;
+  position: relative;
+}
+.showPathway{
+  position: absolute;
+  width: 50%;
+  right: 0;
+  top: 60px;
+  z-index: 1;
+  background-color: #1c1c1e;
+  color: white;
+}
+.showPathway_container{
+  
+  color: white;
+  margin: 10px;
+  padding: 10px;
+
+}
+.showPathway_Link{
+  text-decoration: none;
+  color: white; 
+}
+
+.showPathway_content{
+  padding: 10px;
+  margin: 10px;
+  display: flex;
+  background-color: #323235;
+  border-radius: 7px;
+  justify-content: space-between;
+}
+.showPathway_contentLeft{
+  display: flex;
+}
+.showPathway_count{
+  font-size: 25px;
+  padding-top: 20px;
+  padding-left: 10px;
+}
+.showPathway_title{
+  margin: 0 15px;
+  padding:  10px;
+}
+.showPathway_title h3{
+  margin-bottom: 10px;
+}
+.showPathway_contentRight{
+  width: 20px;
+  height: 20px;
+  content: "";
+  border-radius: 50%;
+  margin-right: 10px;
+  margin: auto 10px;
+  cursor: pointer;
 }
 /* lesson detail bar */
 
@@ -68,9 +122,8 @@
   margin-right: 30px;
 }
 .ld_bar_step_arrow {
-  padding: 0px;
+  margin-top: 20px;
   height: fit-content;
-  margin: auto 0;
 }
 .ld_bar_step_des {
   line-height: 40px;
@@ -95,7 +148,7 @@
 .ld_baner {
   margin: 0 auto;
   text-align: center;
-  background-color: var(--color-heading);
+  border: 1px solid var(--color-heading);
 }
 .ld_baner h1 {
   color: var(--color-primary);
@@ -104,44 +157,57 @@
 .ld_baner p {
   padding-bottom: 20px;
 }
-.banner__category {
+.ld_banner__category {
   padding: 20px 0;
-  justify-content: space-between;
+ 
 }
-.banner__category span {
+.ld_banner__category span {
   display: inline-block;
-  padding-right: 20px;
+  margin-right: 10px;
 }
 /* detail content */
 
 .ld_container_content {
   border: 1px solid #999;
+  border-top: none;
+  width: 80%;
+  margin: 0 auto;
 }
 .ld_content_sidebar {
   list-style: none;
-  display: flex;
-  padding: 0px;
+  display: block;
+  padding: 0px 20px;
   border-bottom: 1px solid var(--color-heading);
-  padding: 10px 20px;
 }
 .ld_content_sidebar a {
-  padding: 10px 20px;
   text-decoration: none;
+  padding: 20px 0;
   color: var(--color-heading);
 }
-.ld_content_sidebar a:hover {
+.ld_content_sidebar li:hover {
   color: var(--color-primary);
+  border-bottom: 3px solid var(--color-primary);
+}
+.ld_content_sidebar li{
+  display: inline-block;
+  padding: 20px;
+  font-size: 1.2rem;
 }
 /* dialog */
 .dialogue_container {
   padding: 20px;
-  margin-bottom: 30px;
   border-bottom: 1px solid var(--color-heading);
 }
 .dialogue_header {
   display: flex;
   justify-content: space-between;
-  padding: 20px 20px 0 20px;
+  padding: 10px 20px;
+}
+.dialogue_content{
+  padding: 0 30px;
+}
+.dialogue_header h3{
+  justify-content: center;
 }
 .dialogue_textVn {
   padding: 10px;
@@ -163,15 +229,16 @@
 }
 /* vocabulary */
 .vocabulary_container {
-  margin-bottom: 30px;
   padding: 20px;
-  padding-top: 0px;
   border-bottom: 1px solid var(--color-heading);
 }
 .vocabulary_header {
   display: flex;
   justify-content: space-between;
-  padding: 20px 20px 0 20px;
+  padding: 10px 20px;
+}
+.vocabulary_content{
+  padding: 0 30px;
 }
 .vocabulary_item_difenition {
   position: relative;
@@ -199,14 +266,16 @@
 }
 /* notes */
 .notes_container {
-  margin-bottom: 30px;
   padding: 20px;
   border-bottom: 1px solid var(--color-heading);
 }
 .notes_container_header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px 20px;
+}
+.notes_content{
+  padding: 0 30px;
 }
 .notes_container h4 {
   margin: 20px 0;
@@ -222,14 +291,19 @@
 }
 /* transcript */
 .transcript_container {
-  margin-bottom: 30px;
   padding: 20px;
   border-bottom: 1px solid var(--color-heading);
 }
 .transcript_header {
   display: flex;
   justify-content: space-between;
-  padding: 0 20px 0 20px;
+  padding: 10px 20px
+}
+.transcript_content{
+  padding: 0 30px;
+}
+.transcript_introduction{
+  padding: 0 30px;
 }
 .transcript_introduction {
   padding: 10px;
@@ -245,13 +319,15 @@
 }
 /* comment */
 .comments_container {
-  margin-bottom: 30px;
   padding: 20px;
 }
 .comments_header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 10px 20px;
+}
+.comments_content{
+  padding: 0 30px;
 }
 .form_comments {
   display: flex;
@@ -274,7 +350,7 @@
   opacity: 0.5;
 }
 .form_input_button {
-  width: 20%;
+  width: 25%;
   padding: 10px;
   border-radius: 5px;
 }

@@ -1,14 +1,12 @@
 import React from 'react';
 import classes from '../Lesson.module.css';
 import ReactAudioPlayer from 'react-audio-player';
-// import Hide from '../CustomHooks/Hide';
 
-const Dialogue = ({lesson, display}) => {
+const Dialogue = ({lesson, displayDialog}) => {
   return (
     <div
-      style={{display: `${display}`}}
-      className={classes.dialogue_container}
-      id="dialogue"
+      style={{display: `${displayDialog}`}}
+      className={classes.dialogue_content}
     >
       <ReactAudioPlayer src={lesson.dialogueAudio} controls />
       <div className={classes.dialogue_textVn}>

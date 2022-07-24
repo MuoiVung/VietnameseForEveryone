@@ -2,7 +2,10 @@ import React from 'react';
 import classes from './Lesson.module.css';
 import SButton from './CustomHooks/SButton';
 
-const Header = ({lessonId}) => {
+const Header = ({lessonId, lesson}) => {
+  const handleClickShowPathway = () => {
+    console.log ('ok!');
+  };
   return (
     <div>
       <div className={classes.ld_bar}>
@@ -21,7 +24,10 @@ const Header = ({lessonId}) => {
             <p className={classes.ld_bar_step_des}>{lessonId}</p>
             <SButton className={classes.ld_bar_step_arrow}>Next</SButton>
           </div>
-          <div className={classes.ld_bar_showbtn}>
+          <div
+            className={classes.ld_bar_showbtn}
+            onClick={handleClickShowPathway}
+          >
             <SButton>Show Pathway</SButton>
           </div>
         </div>

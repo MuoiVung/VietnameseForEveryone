@@ -3,14 +3,13 @@ import ReactAudioPlayer from 'react-audio-player';
 import Example from '../CustomHooks/Example';
 import classes from '../Lesson.module.css';
 
-const Vocabulary = ({lesson, display}) => {
+const Vocabulary = ({lesson, displayVocab}) => {
   const [displayExample, setDisplayExample] = useState ('none');
 
   return (
     <div
-      className={classes.vocabulary_container}
-      id="vocabulary"
-      style={{display: `${display}`}}
+      style={{display: `${displayVocab}`}}
+      className={classes.vocabulary_content}
     >
       <ReactAudioPlayer src={lesson.vocabularyAudio} controls />
       {lesson.vocabulary &&
@@ -22,6 +21,7 @@ const Vocabulary = ({lesson, display}) => {
                 <Example
                   className={classes.vocabulary_item_icon}
                   setDisplayExample={setDisplayExample}
+                  order={index}
                 />
                 <div>
                   <p className={classes.vocabulary_item_vn}>{vocab.vn}</p>
@@ -30,7 +30,7 @@ const Vocabulary = ({lesson, display}) => {
               </div>
               <div
                 style={{display: `${displayExample}`}}
-                className={classes.vocabulary_item_example}
+                className={`classes.vocabulary_item_example_${index}`}
               >
                 {vocab.example
                   .split ('br')
