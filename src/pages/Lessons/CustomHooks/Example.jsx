@@ -2,11 +2,13 @@ import React, {useState} from 'react';
 import {BiUpArrow} from 'react-icons/bi';
 import {BiDownArrow} from 'react-icons/bi';
 
-const Example = ({setDisplayExample}) => {
+const Example = ({setDisplayExample, order, a, setA}) => {
+  console.log (a);
   const [hide, setHide] = useState (true);
   const handleShowExample = () => {
+    setA (order);
     hide ? setHide (false) : setHide (true);
-    hide ? setDisplayExample ('block') : setDisplayExample ('none');
+    a === 1 && hide ? setDisplayExample ('block') : setDisplayExample ('none');
   };
   return (
     <div

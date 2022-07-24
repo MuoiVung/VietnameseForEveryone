@@ -7,16 +7,19 @@ const StyledButton = styled.button`
   padding: 0.5rem 2rem;
   border-radius: 10px;
   border: 1px solid var(--color-primary);
-  color: var(--color-primary);
+  color: ${(props) => (props.fill ? "white" : "#ed6789")};
+  background-color: ${(props) => (props.fill ? "#ed6789" : "transparent")};
   transition: all 0.25s ease;
-  background-color: transparent;
   text-decoration: none;
 
   &:hover,
   &:active {
-    background-color: var(--color-primary);
-    color: var(--color-text);
+    background-color: ${(props) => (props.fill ? "transparent" : "#ed6789")};
+    color: ${(props) => (props.fill ? "#ed6789" : "white")};
     cursor: pointer;
+  }
+  &:disabled {
+    cursor: auto;
   }
 `;
 

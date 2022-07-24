@@ -16,7 +16,7 @@ const LessonDetailPage = () => {
   const {lessonId} = useParams ();
   const [lesson, setLesson] = useState (null);
 
-  const [display, setDisplay] = useState ('block');
+  const [display, setDisplay] = useState ('none');
   const [hide, setHide] = useState ('true');
   const handleClickShowPathway = () => {
     hide ? setHide (false) : setHide (true);
@@ -84,12 +84,9 @@ const LessonDetailPage = () => {
   );
 
   const [lessons, setLessons] = useState (null);
-  const URL_APIi =
-    'https://vietnameseforeveryone-576e2-default-rtdb.asia-southeast1.firebasedatabase.app/lesson-beginner';
-
   const fetchLessonAPI = async () => {
     try {
-      const response = await fetch (`${URL_APIi}/.json`);
+      const response = await fetch (`${URL_API}/.json`);
       if (!response.ok) {
         throw new Error ('Something went wrong!');
       }

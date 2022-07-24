@@ -9,7 +9,6 @@
   flex: 2;
 }
 
-
 .contentLeft {
   border-radius: 15px;
   line-height: 1.15;
@@ -59,11 +58,6 @@
   --rotate-y: 180deg
 }
 
-
-.card .front {
-  left: 0;
-}
-
 .card .front,
 .card .back {
   position: absolute;
@@ -108,6 +102,7 @@
 }
 
 .bottom {
+  margin-top: 15px;
   display: flex;
   width: 100%;
   justify-content: left;
@@ -115,7 +110,7 @@
 }
 
 .secondaryBtn {
-  margin: 0 0 1.1rem 1rem;
+  margin-left: 20px;
   cursor: pointer;
   display: block;
   color: var(--color-primary);
@@ -123,4 +118,65 @@
 
 .secondaryBtn:hover {
   text-decoration: underline;
+}
+
+.learnPage {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  flex-wrap: wrap;
+}
+
+.cardNavigator {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  margin-left: 150px;
+}
+
+.monitor {
+  padding: 7px 10px;
+  margin: 0 10px;
+  border-radius: 5px;
+  border: 1px solid black;
+}
+
+.arrowBtn {
+  border: none;
+  color: var(--color-primary);
+}
+
+.arrowBtn {
+  border: none;
+  background-color: var(--color-bg);
+  font-size: 2rem;
+  font-family: var(--font-text);
+  color: var(--color-primary);
+  width: 2rem;
+  height: 2rem;
+}
+.arrowBtn:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+.arrowBtn:disabled {
+  color: grey;
+}
+.arrowBtn:disabled:hover {
+  transform: scale(1);
+  cursor: auto;
+}
+.num_selector {
+  font-size: 1rem;
+  font-family: var(--font-text);
+  -webkit-appearance: none;
+  padding: 1px 4px;
+  text-align: center;
+}
+.num_selector:hover {
+  cursor: pointer;
+}
+.activeSubject {
+  background-color: #ed6789 !important;
+  color: white !important;
 }
