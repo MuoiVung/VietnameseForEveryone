@@ -7,92 +7,25 @@ import BreadcrumbItem from "../../components/UI/BreadcrumItem";
 import {AiOutlineArrowLeft,AiOutlineArrowRight} from "react-icons/ai"
 import styles from "../QuickExercises/ListeningPage.module.scss";
 import StyledButton from "../../components/UI/StyledButton";
-const CardArray = [
-  {
-    id: 1,
-    question:
-      "Dòng nào nêu đúng các phương diện của yêu cầu sử dụng tiếng Việt?",
-    answer: "Ngữ âm và chữ viết, phong cách ngôn ngữ, ngữ pháp, từ ngữ.",
-    options: [
-      "Ngữ âm, ngữ pháp, phong cách ngôn ngữ, chính tả.",
-      "Ngữ âm và chữ viết, phong cách ngôn ngữ, ngữ pháp, từ ngữ.",
-      "Chữ viết, phong cách ngôn ngữ, chính tả, ngữ âm.",
-      " Từ ngữ, ngữ âm, ngữ pháp, phong cách ngôn ngữ.",
-    ],
-  },
-  {
-    id: 2,
-    question: "Dòng nào khái quát được yêu cầu sử dụng tiếng Việt?",
-    answer: 'Sử dụng đúng và chính xác',
-    options: [
-      'Sử dụng đúng và chính xác',
-      'Sử dụng hay và phong phú',
-      'Sử dụng chính xác và phong phú',
-      'Sử dụng đúng và hay'
-    ]
-  },
-  {
-    id: 3,
-    question: "Dòng nào nêu đúng và đủ yêu cầu sử dụng tiếng Việt về ngữ âm và chữ viết?",
-    answer: ' Phát âm theo âm thanh chuẩn, viết đúng các quy tắc chính tả.',
-    options: [
-      ' Phát âm theo âm thanh chuẩn, thể hiện ở chữ viết.',
-      'Viết đúng các quy tắc chính tả.',
-      ' Phát âm theo âm thanh chuẩn, viết đúng các quy tắc chính tả.',
-      ' Sử dụng đúng từ ngữ và viết đúng quy tắc ngữ pháp.'
-    ]
-  },
-  {
-    id: 4,
-    question: "Trường hợp nào sau đây mắc lỗi về ngữ âm và chữ viết?",
-    answer: 'Con châu thắng trận tung hoành trên bãi biển.',
-    options: [
-      '  Từng dấu bàn chân trâu to lớn để lại trên cát.',
-      ' Từng dấu bàn chân trâu to lớn để lại trên cát.',
-      '  Con châu thắng trận tung hoành trên bãi biển.',
-      'Chuỗi hạt trân châu này thật đẹp.'
-    ]
-  },
-  {
-    id: 5,
-    question: "Dòng nào nêu đúng và đủ yêu cầu sử dụng tiếng Việt về từ ngữ?",
-    answer: ' Dùng đúng hình thức và cấu tạo, ý nghĩa và đặc điểm ngữ pháp.',
-    options: [
-      '  Dùng đúng hình thức và cấu tạo, ý nghĩa và đặc điểm ngữ pháp.',
-      ' Dùng đúng quy cách cấu tạo, ý nghĩa và đặc điểm của tiếng Việt.',
-      '  Dùng đúng hình thức và cấu tạo, ý nghĩa và đặc điểm ngữ pháp.',
-      ' Dùng đúng cách phát âm các từ ngữ theo chuẩn tiếng Việt.'
-    ]
-  },
-  {
-    id: 6,
-    question: "Câu nào không mắc lỗi dùng từ?",
-    answer: 'Anh ấy thật sự là một tấm gương sáng chói.',
-    options: [
-      ' Một màn sương bàn bạc bay trong không gian.',
-      ' Thúy Kiều là con người tài sách vẹn toàn.',
-      '  Cuộc họp sẽ kéo dài vì nhiều việc phải bàng bạc kĩ.',
-      'Anh ấy thật sự là một tấm gương sáng chói.'
-    ]
-  },
-  {
-    id: 7,
-    question: "Dòng nào nêu đúng yêu cầu sử dụng tiếng Việt về ngữ pháp?",
-    answer: 'Viết câu đúng quy tắc ngữ pháp, dùng đúng dấu câu.',
-    options: [
-      ' Dùng từ ngữ đúng với hình thức và cấu tạo.',
-      ' Viết câu đúng quy tắc ngữ pháp, dùng đúng dấu câu.',
-      '  Viết câu đúng quy tắc ngữ pháp, dùng đúng dấu câu.',
-      'Viết tiếng Việt đúng theo quy tắc chính tả hiện hành.'
-    ]
-  },
+
+const colors = [
+  ["White","Blue","Brown","Red","Yellow","Black","Gray","Green","Purple","Orange"],
+  ["Trắng","Xanh Dương","Nâu","Đỏ","Vàng","Đen","Xám","Xanh Lá","Tím","Cam"]
+];
+const numbers = [
+  ["0","1","2","3","4","5","6","7","8","9","10"],
+  ["Không","Một","Hai","Ba","Bốn","Năm","Sáu","Bảy","Tám","Chín","Mười"]
+];
+const bodyParts = [
+  ["Head","Face","Hair","Eye","Ear","Nose","Mouth","Tooth","Lips","Skin","Neck","Vai","Ngực","Bụng","Arm","Hand","Leg","Foot"],
+  ["Đầu","Khuôn mặt","Tóc","Mắt","Tai","Mũi","Miệng","Răng","Môi","Da","Cổ","Shoulder","Chest","Belly","Cánh Tay","Bàn Tay","Cẳng Chân","Bàn Chân"]
 ];
 
-const subjects = ["Grammar","Alphabet","Numbers","Colors","Food","Clothes","Body parts"];
+const subjects = [["Colors","Numbers","Body Parts"],[colors,numbers,bodyParts]];
 
 const FlashcardLearnPage = () => {
   const [currentCardNum, setcurrentCardNum] = useState(0);
-  const [currentCard, setCurrentCard] = useState(CardArray[0]);
+  const [currentCard, setCurrentCard] = useState([subjects[1][0][0],subjects[1][1][0]]);
   const [nextBtnIsActive, setNextBtnIsActive] = useState(true);
   const [prevBtnIsActive, setPrevBtnIsActive] = useState(false);
   const [flip, setFlip] = useState(false)
@@ -100,24 +33,27 @@ const FlashcardLearnPage = () => {
 
   useEffect(() => {
     (currentCardNum === 0) ? setPrevBtnIsActive(false) : setPrevBtnIsActive(true);
-    (currentCardNum === CardArray.length-1) ? setNextBtnIsActive(false) : setNextBtnIsActive(true);
-    setCurrentCard(CardArray[currentCardNum]);
+    (currentCardNum === subjects[1][currentSubject][0].length-1) ? setNextBtnIsActive(false) : setNextBtnIsActive(true);
+    setCurrentCard([subjects[1][currentSubject][0][currentCardNum],subjects[1][currentSubject][1][currentCardNum]]);
     setFlip(false);
-  }, [currentCardNum])
+  }, [currentCardNum,currentSubject])
   const handleNext = () => {
-    setcurrentCardNum((prev) => prev+1);
-    (currentCardNum === CardArray.length) ? setNextBtnIsActive(false) : setNextBtnIsActive(true);
+    setcurrentCardNum((prev) => Number(prev)+1);
   }
   const handlePrev = () => {
-    setcurrentCardNum((prev) => prev-1);
+    setcurrentCardNum((prev) => Number(prev)-1);
   }
   const handleChangeSubject = (i) => {
     (i!==currentSubject) && setCurrentSubject(i);
+    setcurrentCardNum(0);
+  }
+  const handleSelect = (e) => {
+    setcurrentCardNum(e.target.value);
   }
   
   return(
     <>
-      <Header title="Learn through flashcards">
+      <Header title="Learn Vocabulary Through Flashcards">
         <Breadcrumb>
           <BreadcrumbItem>Flashcard</BreadcrumbItem>
           <BreadcrumbItem href="/flashcard/learn">Learn</BreadcrumbItem>
@@ -129,28 +65,27 @@ const FlashcardLearnPage = () => {
             <h3>Subjects</h3>
             <div className={classes.contentLeft}>
             <ul className={styles.instruction}>
-                {subjects.map((subject, i) => (
+                {subjects[0].map((subject, i) => (
                   <li key={`subject_${i}`}><StyledButton disabled={(i===currentSubject)} className={(i===currentSubject) && classes.activeSubject} onClick={() => handleChangeSubject(i)}>{subject}</StyledButton></li>
                 ))}
             </ul>
             </div>
         </div>
         <div className={classes.right}>   
-          <h3>{subjects[currentSubject]}</h3><br/>
+          <h3>{subjects[0][currentSubject]}</h3><br/>
           <div className={[classes.card, flip ? classes.flip : ''].join(' ')} onClick={() => {setFlip(!flip)}}>
-            <div className={classes.front}>
-                {currentCard.question}
-                <div className={classes.flashcardOptions}>
-                    {currentCard.options.map((item, i) => {
-                        return <div className={classes.flashcardOption} key={i}>{i+1}. {item}</div>
-                    })}
-                </div>
-            </div>
-            <div className={classes.back}><b>ĐÁP ÁN:<br/></b>{currentCard.answer}</div>
+            <div className={classes.front}>{currentCard[0]}</div>
+            <div className={classes.back}>{currentCard[1]}</div>
           </div>
           <div className={classes.cardNavigator}>
             <button className={classes.arrowBtn} disabled={!prevBtnIsActive} onClick={handlePrev}><AiOutlineArrowLeft/></button>
-            <div className={classes.monitor}>{currentCardNum+1} / {CardArray.length}</div>
+            <div className={classes.monitor}>
+              <select className={classes.num_selector} onChange={handleSelect} value={currentCardNum}>
+                {subjects[1][currentSubject][0].map((numMonitor,i) => (
+                  <option key={numMonitor} value={i}>{i+1}</option>
+                ))}
+              </select> / {subjects[1][currentSubject][0].length}
+            </div>
             <button className={classes.arrowBtn} disabled={!nextBtnIsActive} onClick={handleNext}><AiOutlineArrowRight/></button>
           </div>
         </div>
