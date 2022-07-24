@@ -5,7 +5,7 @@ import classes from '../Lesson.module.css';
 
 const Vocabulary = ({lesson, displayVocab}) => {
   const [displayExample, setDisplayExample] = useState ('none');
-  const [a, setA] = useState (null);
+
   return (
     <div
       style={{display: `${displayVocab}`}}
@@ -22,8 +22,6 @@ const Vocabulary = ({lesson, displayVocab}) => {
                   className={classes.vocabulary_item_icon}
                   setDisplayExample={setDisplayExample}
                   order={index}
-                  a={a}
-                  setA={setA}
                 />
                 <div>
                   <p className={classes.vocabulary_item_vn}>{vocab.vn}</p>

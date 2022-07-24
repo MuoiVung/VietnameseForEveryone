@@ -76,27 +76,31 @@
   display: flex;
   background-color: #323235;
   border-radius: 7px;
+  justify-content: space-between;
+}
+.showPathway_contentLeft{
+  display: flex;
 }
 .showPathway_count{
-  line-height: 40px;
-  font-size: 40px;
+  font-size: 25px;
   padding-top: 20px;
+  padding-left: 10px;
 }
 .showPathway_title{
   margin: 0 15px;
   padding:  10px;
 }
-.showPathway_title h1{
+.showPathway_title h3{
   margin-bottom: 10px;
 }
-.showPathway_content span{
-  
-}
-.showPathway_checkbox{
+.showPathway_contentRight{
   width: 20px;
   height: 20px;
   content: "";
   border-radius: 50%;
+  margin-right: 10px;
+  margin: auto 10px;
+  cursor: pointer;
 }
 /* lesson detail bar */
 
@@ -118,9 +122,8 @@
   margin-right: 30px;
 }
 .ld_bar_step_arrow {
-  padding: 0px;
+  margin-top: 20px;
   height: fit-content;
-  margin: auto 0;
 }
 .ld_bar_step_des {
   line-height: 40px;
@@ -145,7 +148,7 @@
 .ld_baner {
   margin: 0 auto;
   text-align: center;
-  background-color: var(--color-heading);
+  border: 1px solid var(--color-heading);
 }
 .ld_baner h1 {
   color: var(--color-primary);
@@ -154,18 +157,21 @@
 .ld_baner p {
   padding-bottom: 20px;
 }
-.banner__category {
+.ld_banner__category {
   padding: 20px 0;
-  justify-content: space-between;
+ 
 }
-.banner__category span {
+.ld_banner__category span {
   display: inline-block;
-  padding-right: 20px;
+  margin-right: 10px;
 }
 /* detail content */
 
 .ld_container_content {
   border: 1px solid #999;
+  border-top: none;
+  width: 80%;
+  margin: 0 auto;
 }
 .ld_content_sidebar {
   list-style: none;

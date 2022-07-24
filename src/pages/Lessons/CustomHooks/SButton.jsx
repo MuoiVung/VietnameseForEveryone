@@ -5,6 +5,7 @@ const SButton = styled.button`
     color: var(--color-primary);
     border-radius: 5px;
     padding: 5px 10px;
+    margin: 0 10px;
     cursor: pointer;
     border: solid 1px var(--color-primary);
     &:hover{

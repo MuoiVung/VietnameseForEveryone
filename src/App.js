@@ -1,6 +1,12 @@
+import React, {Suspense} from 'react';
+import {Route, Routes} from 'react-router-dom';
+import {ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import HomePage from './components/Layout/HomePage';
 import LoadingSpinner from './components/UI/LoadingSpinner';
 
-const NotFoundPage = React.lazy (() => import ('./pages/NotFoundPage'))
+const NotFoundPage = React.lazy (() => import ('./pages/NotFoundPage'));
+const LessonsBeginnerPage = React.lazy (() =>
   import ('./pages/Lessons/LessonsBeginnerPage')
 );
 const LessonsIntermediatePage = React.lazy (() =>

@@ -13,12 +13,14 @@ const ShowPathway = ({lessons}) => {
             className={classes.showPathway_Link}
           >
             <div className={classes.showPathway_content}>
-              <span className={classes.showPathway_count}>{index + 1}</span>
-              <div className={classes.showPathway_title}>
-                <h1>{item.title}</h1>
-                <span>{item.stats}</span>
+              <div className={classes.showPathway_contentLeft}>
+                <span className={classes.showPathway_count}>{index + 1}</span>
+                <div className={classes.showPathway_title}>
+                  <h3>{item.title}</h3>
+                  <span>{item.stats}</span>
+                </div>
               </div>
-              <button className={classes.showPathway_checkbox} />
+              <button className={classes.showPathway_contentRight} />
             </div>
           </Link>
         ))}
