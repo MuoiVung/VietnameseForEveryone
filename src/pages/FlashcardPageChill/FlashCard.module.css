@@ -9,7 +9,6 @@
   flex: 2;
 }
 
-
 .contentLeft {
   border-radius: 15px;
   line-height: 1.15;
@@ -57,11 +56,6 @@
 
 .card.flip {
   --rotate-y: 180deg
-}
-
-
-.card .front {
-  left: 0;
 }
 
 .card .front,
@@ -171,6 +165,16 @@
 .arrowBtn:disabled:hover {
   transform: scale(1);
   cursor: auto;
+}
+.num_selector {
+  font-size: 1rem;
+  font-family: var(--font-text);
+  -webkit-appearance: none;
+  padding: 1px 4px;
+  text-align: center;
+}
+.num_selector:hover {
+  cursor: pointer;
 }
 .activeSubject {
   background-color: #ed6789 !important;
