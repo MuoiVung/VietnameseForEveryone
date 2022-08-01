@@ -152,7 +152,7 @@ const LoginPage = () => {
           "loginDataNewUser",
           JSON.stringify(DataUser.localId)
         );
-        navigate("/lessons");
+        navigate("/");
       }
       setCheckNameID(true);
     } catch (error) {
@@ -187,7 +187,7 @@ const LoginPage = () => {
         "loginDataNewUser",
         JSON.stringify(DataUser.localId)
       );
-      navigate("/lessons");
+      navigate("/");
     } catch (error) {
       setCheckloginName(true);
       setCheckloginPassword(true);
