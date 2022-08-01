@@ -63,7 +63,7 @@ const MainNavigation = () => {
       }
     };
     getLocalStorageData ();
-  });
+  },[]);
 
   const toggleLessonsHandler = event => {
     event.preventDefault ();
