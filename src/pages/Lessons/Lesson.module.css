@@ -109,8 +109,8 @@
   height: 60px;
   display: flex;
   justify-content: space-between;
-  background-color: #1c1c1e;
-  color: white;
+  background-color: var(--color-bg);
+  color: black;
   padding: 10px;
 }
 .ld_bar_left {
@@ -126,6 +126,7 @@
   height: fit-content;
 }
 .ld_bar_step_des {
+  font-size: 1.25rem;
   line-height: 40px;
   padding: 0 20px;
 }
@@ -148,7 +149,7 @@
 .ld_baner {
   margin: 0 auto;
   text-align: center;
-  border: 1px solid var(--color-heading);
+  /* border: 1px solid var(--color-heading); */
 }
 .ld_baner h1 {
   color: var(--color-primary);
@@ -168,7 +169,7 @@
 /* detail content */
 
 .ld_container_content {
-  border: 1px solid #999;
+  /* border: 1px solid #999; */
   border-top: none;
   width: 80%;
   margin: 0 auto;
@@ -184,15 +185,19 @@
   padding: 20px 0;
   color: var(--color-heading);
 }
+
+
 .ld_content_sidebar li:hover {
   color: var(--color-primary);
-  border-bottom: 3px solid var(--color-primary);
+  text-decoration: underline var(--color-primary) ;
+  /* border-bottom: 3px solid var(--color-primary); */
 }
 .ld_content_sidebar li{
   display: inline-block;
   padding: 20px;
   font-size: 1.2rem;
 }
+
 /* dialog */
 .dialogue_container {
   padding: 20px;
