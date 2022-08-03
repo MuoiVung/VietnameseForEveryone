@@ -16,6 +16,7 @@ const LessonDetailPage = () => {
   const {lessonId} = useParams ();
   const [lesson, setLesson] = useState (null);
 
+  const [ParamNext,setParamNext] = useState(lessonId)
   const [display, setDisplay] = useState ('none');
   const [hide, setHide] = useState ('true');
   const handleClickShowPathway = () => {
@@ -68,7 +69,7 @@ const LessonDetailPage = () => {
     () => {
       const fetchLessonAPI = async () => {
         try {
-          const response = await fetch (`${URL_API}/${lessonId}/.json`);
+          const response = await fetch (`${URL_API}/${ParamNext}/.json`);
           if (!response.ok) {
             throw new Error ('Something went wrong!');
           }
@@ -80,7 +81,7 @@ const LessonDetailPage = () => {
       };
       fetchLessonAPI ();
     },
-    [lessonId]
+    [ParamNext]
   );
 
   const [lessons, setLessons] = useState (null);
@@ -113,14 +114,28 @@ const LessonDetailPage = () => {
     fetchLessonAPI ();
   }, []);
 
+  const handClickNext = () =>{
+    if(Number(ParamNext.charAt(6)) === 8){
+      return
+    }
+    setParamNext(`lesson${Number(ParamNext.charAt(6)) + 1}`)
+  }
+
+  const handClickPrev = () =>{
+    if(Number(ParamNext.charAt(6)) === 1){
+      return
+    }
+    setParamNext(`lesson${Number(ParamNext.charAt(6)) - 1}`)
+  }
+
   return (
     <section className={classes.ld_container}>
       <div>
         <div className={classes.ld_bar}>
           <div className={classes.ld_bar_left}>
-            <p className={classes.ld_bar_title}>Level 1 Vietnamese</p>
+            <p className={classes.ld_bar_title}>Level {ParamNext.charAt(6)} Vietnamese</p>
             <div className={classes.ld_bar_subTitle}>
-              <span>0</span>
+              <span>{ParamNext.charAt(6)}</span>
               <span>/</span>
               <span>24</span>
               <span className={classes.ld_bar_subTitle_completed}>
@@ -130,9 +145,9 @@ const LessonDetailPage = () => {
           </div>
           <div className={classes.ld_bar_right}>
             <div className={classes.ld_bar_step}>
-              <SButton className={classes.ld_bar_step_arrow}>Prev</SButton>
-              <p className={classes.ld_bar_step_des}>{lessonId}</p>
-              <SButton className={classes.ld_bar_step_arrow}>Next</SButton>
+              <SButton onClick={handClickPrev} className={classes.ld_bar_step_arrow}>Prev</SButton>
+              <p className={classes.ld_bar_step_des}>{ParamNext}</p>
+              <SButton onClick={handClickNext} className={classes.ld_bar_step_arrow}>Next</SButton>
             </div>
             <div
               className={classes.ld_bar_showbtn}
