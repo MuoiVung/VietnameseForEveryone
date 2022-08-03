@@ -8,8 +8,9 @@ const SButton = styled.button`
     margin: 0 10px;
     cursor: pointer;
     padding: 0 20px;
-    line-height: 40px;
+    line-height: 30px;
     border: solid 1px var(--color-primary);
+    margin-top: 0 ;
     &:hover{
         background-color: var(--color-primary);
         color: white;
