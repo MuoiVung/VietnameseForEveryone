@@ -127,7 +127,7 @@
 }
 .ld_bar_step_des {
   font-size: 1.25rem;
-  line-height: 30px;
+  line-height: 40px;
   padding: 0 20px;
 }
 
@@ -179,6 +179,7 @@
   display: block;
   padding: 0px 20px;
   border-bottom: 1px solid var(--color-heading);
+  text-align: center;
 }
 .ld_content_sidebar a {
   text-decoration: none;
