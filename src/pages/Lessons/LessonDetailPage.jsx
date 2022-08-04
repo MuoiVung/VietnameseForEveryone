@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import { useNavigate } from "react-router-dom";
 import {useParams} from 'react-router-dom';
 import classes from './Lesson.module.css';
 import ReactAudioPlayer from 'react-audio-player';
@@ -13,6 +14,7 @@ import Show from './CustomHooks/Show';
 import ShowPathway from './ShowPathway';
 
 const LessonDetailPage = () => {
+  const navigate = useNavigate();
   const {lessonId} = useParams ();
   const [lesson, setLesson] = useState (null);
 
@@ -119,6 +121,7 @@ const LessonDetailPage = () => {
       return
     }
     setParamNext(`lesson${Number(ParamNext.charAt(6)) + 1}`)
+    navigate(`/lessons/beginner/lesson${Number(ParamNext.charAt(6)) + 1}`)
   }
 
   const handClickPrev = () =>{
@@ -126,6 +129,7 @@ const LessonDetailPage = () => {
       return
     }
     setParamNext(`lesson${Number(ParamNext.charAt(6)) - 1}`)
+    navigate(`/lessons/beginner/lesson${Number(ParamNext.charAt(6)) - 1}`)
   }
 
   return (
