@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import classes from './FlashCard.module.css';
 import {AiOutlineArrowLeft,AiOutlineArrowRight} from "react-icons/ai"
 import {BsXCircleFill,BsCheckCircleFill} from "react-icons/bs"
+import {FaVolumeUp} from 'react-icons/fa'
 import styles from "../QuickExercises/ListeningPage.module.scss";
 import StyledButton from "../../components/UI/StyledButton";
 
@@ -18,6 +19,14 @@ const bodyParts = [
   ["Head","Face","Hair","Eye","Ear","Nose","Mouth","Tooth","Lips","Skin","Neck","Shoulder","Chest","Belly","Arm","Hand","Leg","Foot"],
   ["Đầu","Khuôn mặt","Tóc","Mắt","Tai","Mũi","Miệng","Răng","Môi","Da","Cổ","Vai","Ngực","Bụng","Cánh Tay","Bàn Tay","Cẳng Chân","Bàn Chân"]
 ];
+const clothes = [
+  ["Coat","Hat","Jacket","Pants","Shoes","Shirt","T-shirt","Umbrella","Socks"],
+  ["Áo choàng","Nón","Áo khoác","Quần","Giày","Áo sơ mi","Áo thun","Ô","Tất ngắn"]
+];
+const weather = [
+  ["Windy","Cloudy","Raining","Cold","Snowing","Sunny","Hot","Spring","Summer","Autumn","Winter"],
+  ["Gió","Nhiều mây","Mưa","Lạnh","Tuyết rơi","Nắng","Nóng","Mùa Xuân","Mùa Hè","Mùa Thu","Mùa Đông"]
+];
 const subjects = [
   {
     name: "Colors",
@@ -30,6 +39,14 @@ const subjects = [
   {
     name: "Body Parts",
     array: bodyParts
+  },
+  {
+    name: "Weather",
+    array: weather
+  },
+  {
+    name: "Clothes",
+    array: clothes
   }
 ];
 const getAnswers = (array,correctIndex) => {
@@ -142,6 +159,8 @@ const SubjectAndCard = ({mode}) => {
   const [answersArray, setAnswersArray] = useState(getAnswers(subjects[currentSubject].array[1],currentCardNum));
   const [checkedAnswer, setCheckedAnswer] = useState(0);
   const [isChecking, setIsChecking] = useState(false);
+  const [audio, setAudio] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     (currentCardNum === 0) ? setPrevBtnIsActive(false) : setPrevBtnIsActive(true);
     (currentCardNum === subjects[currentSubject].array[0].length-1) ? setNextBtnIsActive(false) : setNextBtnIsActive(true);
@@ -182,7 +201,46 @@ const SubjectAndCard = ({mode}) => {
   const handleRandom = () => {
     setcurrentCardNum(Math.floor(Math.random()*subjects[currentSubject].array[0].length))
   }
- 
+
+  useEffect(() => {
+    if(mode==="learn") {  
+      setIsLoading(true);
+      fetch('https://hf.space/embed/ntt123/vietTTS/+/api/predict/', { 
+        method: "POST", 
+        body: JSON.stringify({"data":[subjects[0].array[1][0]]}), 
+        headers: { "Content-Type": "application/json" }
+      })
+        .then(res => res.json())
+        .then(data => setAudio(new Audio(data.data[0])))
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
+  }, [mode]);
+  useEffect(() => {
+    const abortController = new AbortController();
+    if (mode==="learn") {
+      setIsLoading(true);
+      fetch('https://hf.space/embed/ntt123/vietTTS/+/api/predict/', { 
+        method: "POST", 
+        body: JSON.stringify({"data":[subjects[currentSubject].array[1][currentCardNum]]}), 
+        headers: { "Content-Type": "application/json" },
+        signal: abortController.signal
+      })
+        .then(res => res.json())
+        .then(data => {
+          setAudio(new Audio(data.data[0]));
+          setIsLoading(false);
+        });
+    }
+    return () => {
+      abortController.abort();
+    }
+  }, [currentCardNum,currentSubject,mode]);
+  
+  const handlePlaySound = () => {
+    audio.play();
+  }
   
   return(
       <div className={classes.page_layout}>
@@ -202,19 +260,21 @@ const SubjectAndCard = ({mode}) => {
             <div className={classes.front}>{currentCard[0]}</div>
             <div className={classes.back}>{currentCard[1]}</div>
           </div>
-          {mode==="learn" && <div className={classes.cardNavigator}>
-            <button className={classes.arrowBtn} disabled={!prevBtnIsActive} onClick={handlePrev}><AiOutlineArrowLeft/></button>
-            <div className={classes.monitor}>
-              <select className={classes.num_selector} value={currentCardNum} onChange={handleSelect}>
-                {subjects[currentSubject].array[0].map((numMonitor,i) => (
-                  <option key={numMonitor} value={i}>({numMonitor}) {i+1}</option>
-                ))}
-              </select> / {subjects[currentSubject].array[0].length}
-            </div>
-            <button className={classes.arrowBtn} disabled={!nextBtnIsActive} onClick={handleNext}><AiOutlineArrowRight/></button>
-          </div>}
+          {mode==="learn" && <div className={classes.under_card}>
+            <button className={classes.arrowBtn} disabled={isLoading} onClick={handlePlaySound}><FaVolumeUp/></button>
+            <div className={classes.cardNavigator}>
+              <button className={classes.arrowBtn} disabled={!prevBtnIsActive} onClick={handlePrev}><AiOutlineArrowLeft/></button>
+              <div className={classes.monitor}>
+                <select className={classes.num_selector} value={currentCardNum} onChange={handleSelect}>
+                  {subjects[currentSubject].array[0].map((numMonitor,i) => (
+                    <option key={numMonitor} value={i}>({numMonitor}) {i+1}</option>
+                  ))}
+                </select> / {subjects[currentSubject].array[0].length}
+              </div>
+              <button className={classes.arrowBtn} disabled={!nextBtnIsActive} onClick={handleNext}><AiOutlineArrowRight/></button>
+          </div></div>}
           {mode==="practice" && <><br/>
-          <div> <span  style={{fontSize:"1.1rem", fontWeight:"bold"}}>Word</span> {currentCardNum+1} / {subjects[currentSubject].array[0].length} </div>
+          <div> <span style={{fontSize:"1.1rem", fontWeight:"bold"}}>Word</span> {currentCardNum+1} / {subjects[currentSubject].array[0].length} </div>
           <div>{answersArray[0].map((answer, i) => {
             return (
               <div className={classes.check_box} key={i}>
