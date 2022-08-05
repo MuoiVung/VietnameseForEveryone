@@ -6,6 +6,7 @@ import {BsXCircleFill,BsCheckCircleFill} from "react-icons/bs"
 import {FaVolumeUp} from 'react-icons/fa'
 import styles from "../QuickExercises/ListeningPage.module.scss";
 import StyledButton from "../../components/UI/StyledButton";
+import useSpeechSynthesis from 'react-speech-kit/dist/useSpeechSynthesis';
 
 const colors = [
   ["White","Blue","Brown","Red","Yellow","Black","Gray","Green","Purple","Orange"],
@@ -241,7 +242,7 @@ const SubjectAndCard = ({mode}) => {
   const handlePlaySound = () => {
     audio.play();
   }
-  
+  const { speak, voices } = useSpeechSynthesis();
   return(
       <div className={classes.page_layout}>
         <div className={classes.left}>
@@ -261,6 +262,9 @@ const SubjectAndCard = ({mode}) => {
             <div className={classes.back}>{currentCard[1]}</div>
           </div>
           {mode==="learn" && <div className={classes.under_card}>
+            {/* NÚT SPEAK */}
+            <button onClick={() => speak({text:subjects[currentSubject].array[1][currentCardNum],voice:voices[6]})}>Speak</button>
+            {/* NÚT SPEAK */}
             <button className={classes.arrowBtn} disabled={isLoading} onClick={handlePlaySound}><FaVolumeUp/></button>
             <div className={classes.cardNavigator}>
               <button className={classes.arrowBtn} disabled={!prevBtnIsActive} onClick={handlePrev}><AiOutlineArrowLeft/></button>
