@@ -68,7 +68,9 @@
 .card .back {
   transform: rotateY(180deg);
 }
-
+.no_hover {
+  pointer-events: none;
+}
 .flashcardOptions {
   margin-top: 0.5rem;
 }
@@ -121,11 +123,16 @@
   flex-wrap: wrap;
 }
 
-.cardNavigator {
+.under_card {
   margin-top: 30px;
   display: flex;
   align-items: center;
-  margin-left: 110px;
+}
+
+.cardNavigator {
+  margin-left: 80px;
+  display: flex;
+  align-items: center;
 }
 
 .monitor {
