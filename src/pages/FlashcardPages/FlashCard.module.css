@@ -68,7 +68,9 @@
 .card .back {
   transform: rotateY(180deg);
 }
-
+.no_hover {
+  pointer-events: none;
+}
 .flashcardOptions {
   margin-top: 0.5rem;
 }
