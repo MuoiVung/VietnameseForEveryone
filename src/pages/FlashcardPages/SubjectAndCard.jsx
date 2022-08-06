@@ -168,8 +168,10 @@ const SubjectAndCard = ({mode}) => {
   const [answersArray, setAnswersArray] = useState(getAnswers(subjects[currentSubject].array[1],currentCardNum));
   const [checkedAnswer, setCheckedAnswer] = useState(0);
   const [isChecking, setIsChecking] = useState(false);
-  // const [audio, setAudio] = useState(null);
-  // const [isLoading, setIsLoading] = useState(true);
+  const [audio, setAudio] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSpeechAvailable, setIsSpeechAvailable] = useState(true);
+  const [vnVoice, setVnVoice] = useState(0)
   useEffect(() => {
     (currentCardNum === 0) ? setPrevBtnIsActive(false) : setPrevBtnIsActive(true);
     (currentCardNum === subjects[currentSubject].array[0].length-1) ? setNextBtnIsActive(false) : setNextBtnIsActive(true);
@@ -211,47 +213,61 @@ const SubjectAndCard = ({mode}) => {
     setcurrentCardNum(Math.floor(Math.random()*subjects[currentSubject].array[0].length))
   }
 
-  // useEffect(() => {
-  //   if(mode==="learn") {  
-  //     setIsLoading(true);
-  //     fetch('https://hf.space/embed/ntt123/vietTTS/+/api/predict/', { 
-  //       method: "POST", 
-  //       body: JSON.stringify({"data":[subjects[0].array[1][0]]}), 
-  //       headers: { "Content-Type": "application/json" }
-  //     })
-  //       .then(res => res.json())
-  //       .then(data => setAudio(new Audio(data.data[0])))
-  //       .finally(() => {
-  //         setIsLoading(false);
-  //       });
-  //   }
-  // },[mode]);
-  // useEffect(() => {
-  //   const abortController = new AbortController();
-  //   if (mode==="learn") {
-  //     setIsLoading(true);
-  //     fetch('https://hf.space/embed/ntt123/vietTTS/+/api/predict/', { 
-  //       method: "POST", 
-  //       body: JSON.stringify({"data":[subjects[currentSubject].array[1][currentCardNum]]}), 
-  //       headers: { "Content-Type": "application/json" },
-  //       signal: abortController.signal
-  //     })
-  //       .then(res => res.json())
-  //       .then(data => {
-  //         setAudio(new Audio(data.data[0]));
-  //         setIsLoading(false);
-  //       })
-  //       .catch(() => {})
-  //   }
-  //   return () => {
-  //     abortController.abort();
-  //   }
-  // }, [currentCardNum,currentSubject,mode]);
+  useEffect(() => {
+    const abortController = new AbortController();
+    if(mode==="learn" && !isSpeechAvailable) {  
+      setIsLoading(true);
+      fetch('https://hf.space/embed/ntt123/vietTTS/+/api/predict/', { 
+        method: "POST", 
+        body: JSON.stringify({"data":[subjects[0].array[1][0]]}), 
+        headers: { "Content-Type": "application/json" },
+        signal: abortController.signal
+      })
+        .then(res => res.json())
+        .then(data => setAudio(new Audio(data.data[0])))
+        .finally(() => {
+          setIsLoading(false);
+        })
+        .catch((e) => {console.log(e)})
+    }
+    return () => {
+      abortController.abort();
+    }
+  },[mode,isSpeechAvailable]);
+  useEffect(() => {
+    const abortController = new AbortController();
+    if (mode==="learn" && !isSpeechAvailable) {
+      setIsLoading(true);
+      fetch('https://hf.space/embed/ntt123/vietTTS/+/api/predict/', { 
+        method: "POST", 
+        body: JSON.stringify({"data":[subjects[currentSubject].array[1][currentCardNum]]}), 
+        headers: { "Content-Type": "application/json" },
+        signal: abortController.signal
+      })
+        .then(res => res.json())
+        .then(data => {
+          setAudio(new Audio(data.data[0]));
+          setIsLoading(false);
+        })
+        .catch((e) => {console.log(e)})
+    }
+    return () => {
+      abortController.abort();
+    }
+  }, [currentCardNum,currentSubject,mode,isSpeechAvailable]);
   
-  // const handlePlaySound = () => {
-  //   audio.play();
-  // }
   const { speak, voices } = useSpeechSynthesis();
+  useEffect(() => {
+    for (let i = 0; i < voices.length; i++) {
+      if (voices[i].lang === "vi-VN") {
+        setIsSpeechAvailable(true);
+        setVnVoice(i);
+        return;
+      }
+    }
+    setIsSpeechAvailable(false);
+  }, [voices])
+  
   return(
       <div className={classes.page_layout}>
         <div className={classes.left}>
@@ -271,8 +287,9 @@ const SubjectAndCard = ({mode}) => {
             <div className={classes.back}>{currentCard[1]}</div>
           </div>
           {mode==="learn" && <div className={classes.under_card}>
-            <button className={classes.arrowBtn} onClick={() => speak({text:subjects[currentSubject].array[1][currentCardNum],voice:voices[6]})}><FaVolumeUp/></button>
-            {/* <button className={classes.arrowBtn} disabled={isLoading} onClick={handlePlaySound}><FaVolumeUp/></button> */}
+            {isSpeechAvailable 
+            ? <button className={classes.arrowBtn} onClick={() => speak({text:subjects[currentSubject].array[1][currentCardNum],voice:voices[vnVoice]})}><FaVolumeUp/></button> 
+            : <button className={classes.arrowBtn} disabled={isLoading} onClick={() => audio.play()}><FaVolumeUp/></button>}
             <div className={classes.cardNavigator}>
               <button className={classes.arrowBtn} disabled={!prevBtnIsActive} onClick={handlePrev}><AiOutlineArrowLeft/></button>
               <div className={classes.monitor}>
