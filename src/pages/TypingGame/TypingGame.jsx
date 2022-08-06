@@ -58,25 +58,26 @@ const TypingGame = () => {
       <div className={styles.left}>
         <h3>Cách gõ dấu tiếng Việt:</h3><br/>
         <h4>Telex: </h4>
-        <p style={{color:"black"}}>Chữ S: dấu Sắc; 
-        chữ F: dấu Huyền; 
-        chữ R: dấu Hỏi; 
-        chữ X: dấu Ngã; 
-        chữ J: dấu Nặng; 
-        chữ W: dấu Á (ă) hoặc dấu Ơ (ơ, ư); 
-        đánh đúp chữ aa, ee, oo…sẽ cho dấu Ô; 
+        <p style={{color:"black"}}>
+        Chữ S: dấu Sắc;<br/> 
+        chữ F: dấu Huyền;<br/> 
+        chữ R: dấu Hỏi; <br/>
+        chữ X: dấu Ngã; <br/>
+        chữ J: dấu Nặng; <br/>
+        chữ W: dấu Á (ă) hoặc dấu Ơ (ơ, ư);<br/> 
+        đánh đúp chữ aa, ee, oo…sẽ cho dấu Ô;<br/> 
         đánh đúp chữ dd: chữ Đ</p><br/>
         <h4>VNI: </h4>
-        <p style={{color:"black"}}>Chữ S: dấu Sắc; 
-        Phím 1 là dấu sắc
-Phím 2 là dấu huyền
-Phím 3 là dấu hỏi
-Phím 4 là dấu ngã
-Phím 5 là dấu nặng
-Phím 6 là dấu ô (â, ô)
-Phím 7 là dấu mũ (ư, ơ)
-Phím 8 là dấu á (ă)
-Phím 9 dùng gõ chữ "Đ" khi kết hợp với chữ "D"</p><br/>
+        <p style={{color:"black"}}> 
+        Phím 1 là dấu sắc<br/>
+        Phím 2 là dấu huyền<br/>
+        Phím 3 là dấu hỏi<br/>
+        Phím 4 là dấu ngã<br/>
+        Phím 5 là dấu nặng<br/>
+        Phím 6 là dấu ô (â, ô)<br/>
+        Phím 7 là dấu mũ (ư, ơ)<br/>
+        Phím 8 là dấu á (ă)<br/>
+        Phím 9 dùng gõ chữ "Đ" khi kết hợp với chữ "D"</p><br/>
       </div>
       <div className={styles.right}>
         <div className={classes.typing_wrapper}>
