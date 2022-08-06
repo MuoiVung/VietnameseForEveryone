@@ -13,8 +13,8 @@ const colors = [
   ["Trắng","Xanh Dương","Nâu","Đỏ","Vàng","Đen","Xám","Xanh Lá","Tím","Cam"]
 ];
 const numbers = [
-  ["0","1","2","3","4","5","6","7","8","9","10"],
-  ["Không","Một","Hai","Ba","Bốn","Năm","Sáu","Bảy","Tám","Chín","Mười"]
+  ["0","1","2","3","4","5","6","7","8","9","10","20","100","1 thousand","1 million","1 billion"],
+  ["Không","Một","Hai","Ba","Bốn","Năm","Sáu","Bảy","Tám","Chín","Mười","Hai mươi","Một trăm","Một nghìn","Một triệu","Một tỷ"]
 ];
 const bodyParts = [
   ["Head","Face","Hair","Eye","Ear","Nose","Mouth","Tooth","Lips","Skin","Neck","Shoulder","Chest","Belly","Arm","Hand","Leg","Foot"],
@@ -27,6 +27,10 @@ const clothes = [
 const weather = [
   ["Windy","Cloudy","Raining","Cold","Snowing","Sunny","Hot","Spring","Summer","Autumn","Winter"],
   ["Gió","Nhiều mây","Mưa","Lạnh","Tuyết rơi","Nắng","Nóng","Mùa Xuân","Mùa Hè","Mùa Thu","Mùa Đông"]
+];
+const food = [
+  ["Food","Bread","Cheese","Meat","Chicken","Fish","Beef","Salad","Salt","Sugar","Pepper","Candy","Fruit","Vegetables"],
+  ["Thực phẩm","Bánh mì","Pho mát","Thịt","Gà","Cá","Bò","Xà lách","Muối","Đường","Tiêu","Kẹo","Trái cây","Củ quả"]
 ];
 const subjects = [
   {
@@ -48,6 +52,10 @@ const subjects = [
   {
     name: "Clothes",
     array: clothes
+  },
+  {
+    name: "Food",
+    array: food
   }
 ];
 const getAnswers = (array,correctIndex) => {
@@ -160,8 +168,8 @@ const SubjectAndCard = ({mode}) => {
   const [answersArray, setAnswersArray] = useState(getAnswers(subjects[currentSubject].array[1],currentCardNum));
   const [checkedAnswer, setCheckedAnswer] = useState(0);
   const [isChecking, setIsChecking] = useState(false);
-  const [audio, setAudio] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  // const [audio, setAudio] = useState(null);
+  // const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
     (currentCardNum === 0) ? setPrevBtnIsActive(false) : setPrevBtnIsActive(true);
     (currentCardNum === subjects[currentSubject].array[0].length-1) ? setNextBtnIsActive(false) : setNextBtnIsActive(true);
@@ -203,45 +211,46 @@ const SubjectAndCard = ({mode}) => {
     setcurrentCardNum(Math.floor(Math.random()*subjects[currentSubject].array[0].length))
   }
 
-  useEffect(() => {
-    if(mode==="learn") {  
-      setIsLoading(true);
-      fetch('https://hf.space/embed/ntt123/vietTTS/+/api/predict/', { 
-        method: "POST", 
-        body: JSON.stringify({"data":[subjects[0].array[1][0]]}), 
-        headers: { "Content-Type": "application/json" }
-      })
-        .then(res => res.json())
-        .then(data => setAudio(new Audio(data.data[0])))
-        .finally(() => {
-          setIsLoading(false);
-        });
-    }
-  }, [mode]);
-  useEffect(() => {
-    const abortController = new AbortController();
-    if (mode==="learn") {
-      setIsLoading(true);
-      fetch('https://hf.space/embed/ntt123/vietTTS/+/api/predict/', { 
-        method: "POST", 
-        body: JSON.stringify({"data":[subjects[currentSubject].array[1][currentCardNum]]}), 
-        headers: { "Content-Type": "application/json" },
-        signal: abortController.signal
-      })
-        .then(res => res.json())
-        .then(data => {
-          setAudio(new Audio(data.data[0]));
-          setIsLoading(false);
-        });
-    }
-    return () => {
-      abortController.abort();
-    }
-  }, [currentCardNum,currentSubject,mode]);
+  // useEffect(() => {
+  //   if(mode==="learn") {  
+  //     setIsLoading(true);
+  //     fetch('https://hf.space/embed/ntt123/vietTTS/+/api/predict/', { 
+  //       method: "POST", 
+  //       body: JSON.stringify({"data":[subjects[0].array[1][0]]}), 
+  //       headers: { "Content-Type": "application/json" }
+  //     })
+  //       .then(res => res.json())
+  //       .then(data => setAudio(new Audio(data.data[0])))
+  //       .finally(() => {
+  //         setIsLoading(false);
+  //       });
+  //   }
+  // },[mode]);
+  // useEffect(() => {
+  //   const abortController = new AbortController();
+  //   if (mode==="learn") {
+  //     setIsLoading(true);
+  //     fetch('https://hf.space/embed/ntt123/vietTTS/+/api/predict/', { 
+  //       method: "POST", 
+  //       body: JSON.stringify({"data":[subjects[currentSubject].array[1][currentCardNum]]}), 
+  //       headers: { "Content-Type": "application/json" },
+  //       signal: abortController.signal
+  //     })
+  //       .then(res => res.json())
+  //       .then(data => {
+  //         setAudio(new Audio(data.data[0]));
+  //         setIsLoading(false);
+  //       })
+  //       .catch(() => {})
+  //   }
+  //   return () => {
+  //     abortController.abort();
+  //   }
+  // }, [currentCardNum,currentSubject,mode]);
   
-  const handlePlaySound = () => {
-    audio.play();
-  }
+  // const handlePlaySound = () => {
+  //   audio.play();
+  // }
   const { speak, voices } = useSpeechSynthesis();
   return(
       <div className={classes.page_layout}>
@@ -257,15 +266,13 @@ const SubjectAndCard = ({mode}) => {
         </div>
         <div className={classes.right}>   
           <h3>{subjects[currentSubject].name}</h3><br/>
-          <div className={[classes.card, flip ? classes.flip : ''].join(' ')} onClick={() => {mode==="learn" && setFlip(!flip)}}>
+          <div className={[classes.card, flip && classes.flip, mode==="practice" && classes.no_hover].join(' ')} onClick={() => {mode==="learn" && setFlip(!flip)}}>
             <div className={classes.front}>{currentCard[0]}</div>
             <div className={classes.back}>{currentCard[1]}</div>
           </div>
           {mode==="learn" && <div className={classes.under_card}>
-            {/* NÚT SPEAK */}
-            <button onClick={() => speak({text:subjects[currentSubject].array[1][currentCardNum],voice:voices[6]})}>Speak</button>
-            {/* NÚT SPEAK */}
-            <button className={classes.arrowBtn} disabled={isLoading} onClick={handlePlaySound}><FaVolumeUp/></button>
+            <button className={classes.arrowBtn} onClick={() => speak({text:subjects[currentSubject].array[1][currentCardNum],voice:voices[6]})}><FaVolumeUp/></button>
+            {/* <button className={classes.arrowBtn} disabled={isLoading} onClick={handlePlaySound}><FaVolumeUp/></button> */}
             <div className={classes.cardNavigator}>
               <button className={classes.arrowBtn} disabled={!prevBtnIsActive} onClick={handlePrev}><AiOutlineArrowLeft/></button>
               <div className={classes.monitor}>
