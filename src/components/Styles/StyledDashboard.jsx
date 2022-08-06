@@ -24,6 +24,7 @@ const StyledDashboard = styled.section`
       .left {
         flex: 1;
         .continue-courses {
+          padding-right: 8px;
           list-style: none;
           height: 22.5rem;
           overflow-y: scroll;
@@ -67,8 +68,27 @@ const StyledDashboard = styled.section`
             }
           }
         }
+
+        .continue-courses::-webkit-scrollbar {
+          display: none;
+          width: 6px;
+        }
+
+        .continue-courses ::-webkit-scrollbar-track {
+          background: #f1f1f1;
+        }
+
+        .continue-courses::-webkit-scrollbar-thumb {
+          background: var(--color-primary);
+        }
+
         padding-right: 1rem;
       }
+
+      .left:hover .continue-courses::-webkit-scrollbar {
+        display: block;
+      }
+
       .right {
         padding-left: 1rem;
         flex: 1;
