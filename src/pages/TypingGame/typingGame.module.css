@@ -1,0 +1,45 @@
+.typing_wrapper {
+  margin-top: 70px;
+  font-size: 1.5rem;
+  background-color: papayawhip;
+  padding: 20px;
+  border-radius: 10px;
+}
+.input_field {
+  opacity: 0;
+  z-index: -999;
+  position: absolute;
+}
+
+.correct{
+  color: #56964f;
+}
+.incorrect{
+  color: #cb3439;
+  outline: 1px solid #fff;
+  background: #ffc0cb;
+  border-radius: 4px;
+}
+.typing_area p .active {
+  position: relative;
+}
+.active{
+  color: #ed6789;
+}
+.active::before{
+  position: absolute;
+  content: "";
+  height: 2px;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  border-radius: 5px;
+  background: #ed6789;
+  animation: blink 1s ease-in-out infinite;
+}
+@keyframes blink{
+  50%{ 
+    opacity: 1; 
+  }
+}

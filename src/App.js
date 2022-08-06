@@ -27,6 +27,9 @@ const FlashcardLearnPage = React.lazy (() =>
 const FlashcardPracticePage = React.lazy (() =>
   import ('./pages/FlashcardPages/FlashcardPracticePage')
 );
+const TypingGame = React.lazy (() =>
+  import ('./pages/TypingGame/TypingGame')
+);
 const LoginPage = React.lazy (() => import ('./pages/LoginPage'));
 const ListeningPage = React.lazy (() =>
   import ('./pages/QuickExercises/ListeningPage')
@@ -72,6 +75,7 @@ function App () {
             path="/flashcard/practice"
             element={<FlashcardPracticePage />}
           />
+          <Route path="/typing" element={<TypingGame />} />
         </Route>
         <Route path="*" element={<NotFoundPage />} />
       </Routes>

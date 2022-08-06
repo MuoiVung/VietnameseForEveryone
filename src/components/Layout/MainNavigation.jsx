@@ -10,7 +10,7 @@ import {
   MdOutlineHome as DashboardIcon,
 } from 'react-icons/md';
 import {RiLogoutBoxLine as LoginIcon} from 'react-icons/ri';
-import {BsCardHeading as FlashcardIcon} from 'react-icons/bs';
+import {BsCardHeading as FlashcardIcon,BsKeyboard as KeyboardIcon} from 'react-icons/bs';
 
 const MainNavigation = () => {
   const [isLessonsActive, setIsLessonsActive] = useState (false);
@@ -190,6 +190,17 @@ const MainNavigation = () => {
                   </NavLink>
                 </li>
               </ul>
+            </li>
+            <li className={classes['nav-item']}>
+              <NavLink
+                to="/typing"
+                className={navData => (navData.isActive ? classes.active : '')}
+              >
+                <div className="flex-center">
+                  <KeyboardIcon className={classes.icon} />
+                  Typing
+                </div>
+              </NavLink>
             </li>
             <li onClick={handleLogout} className={classes['nav-item']}>
               <NavLink
